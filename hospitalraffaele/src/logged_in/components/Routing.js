@@ -54,6 +54,7 @@ function Routing(props) {
     posts,
     transactions,
     userList,
+    roleList,
     toggleAccountActivation,
     CardChart,
     statistics,
@@ -95,6 +96,7 @@ function Routing(props) {
           path="/c/users"
           component={Users}
           userList={userList}
+          roleList={roleList}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectUsers={selectUsers}
           openAddUserDialog={openAddUserDialog}
