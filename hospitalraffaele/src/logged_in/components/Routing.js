@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
+import Users from "./users/Users";
 import PropsRoute from "../../shared/components/PropsRoute";
 
 const styles = (theme) => ({
@@ -52,6 +53,7 @@ function Routing(props) {
     pushMessageToSnackbar,
     posts,
     transactions,
+    userList,
     toggleAccountActivation,
     CardChart,
     statistics,
@@ -62,7 +64,9 @@ function Routing(props) {
     selectDashboard,
     selectPosts,
     selectSubscription,
+    selectUsers,
     openAddBalanceDialog,
+    openAddUserDialog,
   } = props;
   return (
     <div className={classes.wrapper}>
@@ -86,6 +90,14 @@ function Routing(props) {
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectSubscription={selectSubscription}
           openAddBalanceDialog={openAddBalanceDialog}
+        />
+        <PropsRoute
+          path="/c/users"
+          component={Users}
+          userList={userList}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          selectUsers={selectUsers}
+          openAddUserDialog={openAddUserDialog}
         />
         <PropsRoute
           path=""
@@ -115,6 +127,7 @@ Routing.propTypes = {
   setPosts: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  userList: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,
@@ -123,7 +136,9 @@ Routing.propTypes = {
   selectDashboard: PropTypes.func.isRequired,
   selectPosts: PropTypes.func.isRequired,
   selectSubscription: PropTypes.func.isRequired,
+  selectUsers: PropTypes.func.isRequired,
   openAddBalanceDialog: PropTypes.func.isRequired,
+  openAddUserDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(memo(Routing));
