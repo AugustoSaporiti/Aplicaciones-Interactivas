@@ -14,8 +14,25 @@ import {
 } from "@material-ui/core";
 import headerImage from "../../dummy_data/images/headerImage.jpg";
 import WaveBorder from "../../../shared/components/WaveBorder";
+import Banner from "../../dummy_data/images/banner.png";
 
 const styles = theme => ({
+  imagenFondo:{
+    backgroundImage: `url(${Banner})`
+  },
+ 
+  posicion: { 
+    position: 'absolute',
+    top: 100,
+    width: 500,
+    paddingLeft: 40 
+ },
+
+ letra: { 
+  font: 'bold 24px/45px Helvetica, Sans-Serif',
+  letterspacing: -1
+},
+
   extraLargeButtonLabel: {
     fontSize: theme.typography.body1.fontSize,
     [theme.breakpoints.up("sm")]: {
@@ -66,7 +83,8 @@ const styles = theme => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor:'#01aad3',
+    // backgroundColor: theme.palette.secondary.main,
     paddingBottom: theme.spacing(2)
   },
   image: {
@@ -106,13 +124,24 @@ function HeadSection(props) {
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="center" className="row">
             <Card
-              className={classes.card}
+              className={classes.card, classes.imagenFondo}
               data-aos-delay="200"
               data-aos="zoom-in"
             >
-              <div className={classNames(classes.containerFix, "container")}>
-                <Box justifyContent="space-between" className="row">
-                  <Grid item xs={12} md={5}>
+              <img
+                src={Banner}
+                className={classes.image}
+                alt="header example"
+              />
+
+              <h2
+                className={classes.posicion}
+              ><span className={classes.letra}>El Hospital San Raffaele es uno de los principales de la Red Regional de Enfermedades Raras
+                       <br></br> <br></br>Excelencia clínica, científica y universitaria</span></h2>
+              {/* <div className={classNames(classes.containerFix, "container")}>
+                <Box justifyContent="space-between" className="row"> */}
+             
+                  {/* <Grid item xs={12} md={5}>
                     <Box
                       display="flex"
                       flexDirection="column"
@@ -157,16 +186,22 @@ function HeadSection(props) {
                         className={classes.image}
                         alt="header example"
                       />
+                         <img
+                        src={Banner}
+                        className={classes.image}
+                        alt="header example"
+                      />
                     </Grid>
-                  </Hidden>
-                </Box>
-              </div>
+                  </Hidden> */}
+                {/* </Box>
+              </div> */}
             </Card>
           </Box>
         </div>
       </div>
       <WaveBorder
-        upperColor={theme.palette.secondary.main}
+            upperColor="#01aad3"
+            // {theme.palette.secondary.main}
         lowerColor="#FFFFFF"
         className={classes.waveBorder}
         animationNegativeDelay={2}
