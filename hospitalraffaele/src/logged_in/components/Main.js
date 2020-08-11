@@ -47,6 +47,7 @@ function Main(props) {
   );
   const [transactions, setTransactions] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [roleList, setRoleList] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
   const [targets, setTargets] = useState([]);
@@ -54,6 +55,7 @@ function Main(props) {
   const [isAccountActivated, setIsAccountActivated] = useState(false);
   const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
+  const [isAddRoleDialogOpen, setIsAddRoleDialogOpen] = useState(false);
   const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
   const fetchRandomTargets = useCallback(() => {
@@ -88,10 +90,16 @@ function Main(props) {
   }, [setIsAddUserDialogOpen]);
 
   const closeAddUserDialog = useCallback(() => {
-    console.log('cerrando');
     setIsAddUserDialogOpen(false);
-    console.log("estado: " + isAddUserDialogOpen);
   }, [setIsAddUserDialogOpen]);
+
+  const openAddRoleDialog = useCallback(() => {
+    setIsAddRoleDialogOpen(true);
+  }, [setIsAddRoleDialogOpen]);
+
+  const closeAddRoleDialog = useCallback(() => {
+    setIsAddRoleDialogOpen(false);
+  }, [setIsAddRoleDialogOpen]);
 
   const onPaymentSuccess = useCallback(() => {
     pushMessageToSnackbar({
@@ -106,6 +114,13 @@ function Main(props) {
     });
     setIsAddUserDialogOpen(false);
   }, [pushMessageToSnackbar, setIsAddUserDialogOpen]);
+
+  const onAddRoleSuccess = useCallback(() => {
+    pushMessageToSnackbar({
+      text: "El rol ha sido creado.",
+    });
+    setIsAddRoleDialogOpen(false);
+  }, [pushMessageToSnackbar, setIsAddRoleDialogOpen]);
 
   const editUser = useCallback(() => {
     
@@ -235,6 +250,35 @@ function Main(props) {
     }
     setUserList(userList);
   }, [setUserList]);
+
+  const fetchRandomRoles = useCallback(() => {
+    const roleList = [];
+    const iterations = 4;
+    const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
+    const roleTemplates = [
+      {
+        name: "Admin",
+      },
+      {
+        name: "Medico",
+      },
+      {
+        name: "Secretario",
+      },
+      {
+        name: "Paciente",
+      },
+    ];
+    for (let i = 0; i < iterations; i += 1) {
+      const randomRoleTemplate = roleTemplates[i];
+      const role = {
+        id: i,
+        name: randomRoleTemplate.name,
+      };
+      roleList.push(role);
+    }
+    setRoleList(roleList);
+  }, [setRoleList]);
 
   const fetchRandomMessages = useCallback(() => {
     shuffle(persons);
@@ -382,6 +426,7 @@ function Main(props) {
     fetchRandomStatistics();
     fetchRandomTransactions();
     fetchRandomUsers();
+    fetchRandomRoles();
     fetchRandomMessages();
     fetchRandomPosts();
   }, [
@@ -389,6 +434,7 @@ function Main(props) {
     fetchRandomStatistics,
     fetchRandomTransactions,
     fetchRandomUsers,
+    fetchRandomRoles,
     fetchRandomMessages,
     fetchRandomPosts,
   ]);
@@ -425,6 +471,7 @@ function Main(props) {
           pushMessageToSnackbar={pushMessageToSnackbar}
           transactions={transactions}
           userList={userList}
+          roleList={roleList}
           statistics={statistics}
           posts={posts}
           targets={targets}
