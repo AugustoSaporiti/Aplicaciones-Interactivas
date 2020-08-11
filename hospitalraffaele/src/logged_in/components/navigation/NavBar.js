@@ -23,6 +23,7 @@ import {
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ImageIcon from "@material-ui/icons/Image";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
@@ -184,21 +185,21 @@ function NavBar(props) {
       }
     },
     {
-      link: "/c/subscription",
-      name: "Subscription",
+      link: "/c/users",
+      name: "Usuarios",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <AccountBalanceIcon
+          <PersonAddIcon
             className={
-              selectedTab === "Subscription"
+              selectedTab === "Usuarios"
                 ? classes.textPrimary
                 : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />
+        mobile: <PersonAddIcon className="text-white" />
       }
     },
     {
