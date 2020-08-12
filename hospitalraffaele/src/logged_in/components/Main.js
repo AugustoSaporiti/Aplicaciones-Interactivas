@@ -8,6 +8,7 @@ import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnac
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
+import LazyLoadAddUserDialog from "./users/LazyLoadAddUserDialog";
 
 const styles = (theme) => ({
   main: {
@@ -45,12 +46,14 @@ function Main(props) {
     false
   );
   const [transactions, setTransactions] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [statistics, setStatistics] = useState({ views: [], profit: [] });
   const [posts, setPosts] = useState([]);
   const [targets, setTargets] = useState([]);
   const [messages, setMessages] = useState([]);
   const [isAccountActivated, setIsAccountActivated] = useState(false);
   const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
+  const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
   const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
   const fetchRandomTargets = useCallback(() => {
@@ -80,12 +83,33 @@ function Main(props) {
     setIsAddBalanceDialogOpen(false);
   }, [setIsAddBalanceDialogOpen]);
 
+  const openAddUserDialog = useCallback(() => {
+    setIsAddUserDialogOpen(true);
+  }, [setIsAddUserDialogOpen]);
+
+  const closeAddUserDialog = useCallback(() => {
+    console.log('cerrando');
+    setIsAddUserDialogOpen(false);
+    console.log("estado: " + isAddUserDialogOpen);
+  }, [setIsAddUserDialogOpen]);
+
   const onPaymentSuccess = useCallback(() => {
     pushMessageToSnackbar({
       text: "Your balance has been updated.",
     });
     setIsAddBalanceDialogOpen(false);
   }, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
+
+  const onAddUserSuccess = useCallback(() => {
+    pushMessageToSnackbar({
+      text: "El usuario ha sido creado.",
+    });
+    setIsAddUserDialogOpen(false);
+  }, [pushMessageToSnackbar, setIsAddUserDialogOpen]);
+
+  const editUser = useCallback(() => {
+    
+  });
 
   const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
@@ -167,6 +191,50 @@ function Main(props) {
     transactions.reverse();
     setTransactions(transactions);
   }, [setTransactions]);
+
+  const fetchRandomUsers = useCallback(() => {
+    const userList = [];
+    const iterations = 4;
+    const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
+    const userTemplates = [
+      {
+        name: "Pepita Gomez",
+        email: "pepita@test.com",
+        role: "Admin",
+      },
+      {
+        name: "Sandro Perez",
+        email: "sandro@test.com",
+        role: "Doctor",
+      },
+      {
+        name: "Lauro Lopez",
+        email: "lauro@test.com",
+        role: "Secretario",
+      },
+      {
+        name: "Susana Aguirre",
+        email: "susana@test.com",
+        role: "Secretario",
+      },
+    ];
+    let curUnix = Math.round(
+      new Date().getTime() / 1000 - iterations * oneMonthSeconds
+    );
+    for (let i = 0; i < iterations; i += 1) {
+      const randomUserTemplate = userTemplates[i];
+      const user = {
+        id: i,
+        name: randomUserTemplate.name,
+        email: randomUserTemplate.email,
+        role: randomUserTemplate.role,
+        timestamp: curUnix,
+      };
+      curUnix += oneMonthSeconds;
+      userList.push(user);
+    }
+    setUserList(userList);
+  }, [setUserList]);
 
   const fetchRandomMessages = useCallback(() => {
     shuffle(persons);
@@ -290,6 +358,18 @@ function Main(props) {
     setHasFetchedDateTimePicker,
   ]);
 
+  const selectSubscription = useCallback(() => {
+    smoothScrollTop();
+    document.title = "WaVer - Subscription";
+    setSelectedTab("Subscription");
+  }, [setSelectedTab]);
+
+  const selectUsers = useCallback(() => {
+    smoothScrollTop();
+    document.title = "Raffaele - Usuarios";
+    setSelectedTab("Users");
+  }, [setSelectedTab]);
+
   const getPushMessageFromChild = useCallback(
     (pushMessage) => {
       setPushMessageToSnackbar(() => pushMessage);
@@ -301,12 +381,14 @@ function Main(props) {
     fetchRandomTargets();
     fetchRandomStatistics();
     fetchRandomTransactions();
+    fetchRandomUsers();
     fetchRandomMessages();
     fetchRandomPosts();
   }, [
     fetchRandomTargets,
     fetchRandomStatistics,
     fetchRandomTransactions,
+    fetchRandomUsers,
     fetchRandomMessages,
     fetchRandomPosts,
   ]);
@@ -323,6 +405,11 @@ function Main(props) {
         messages={messages}
         openAddBalanceDialog={openAddBalanceDialog}
       />
+      <LazyLoadAddUserDialog
+        open={isAddUserDialogOpen}
+        onClose={closeAddUserDialog}
+        onSuccess={onAddUserSuccess}
+      />
       <ConsecutiveSnackbarMessages
         getPushMessageFromChild={getPushMessageFromChild}
       />
@@ -337,12 +424,16 @@ function Main(props) {
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
           transactions={transactions}
+          userList={userList}
           statistics={statistics}
           posts={posts}
           targets={targets}
           selectDashboard={selectDashboard}
           selectPosts={selectPosts}
+          selectSubscription={selectSubscription}
+          selectUsers={selectUsers}
           openAddBalanceDialog={openAddBalanceDialog}
+          openAddUserDialog={openAddUserDialog}
           setTargets={setTargets}
           setPosts={setPosts}
         />

@@ -22,6 +22,7 @@ import {
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ImageIcon from "@material-ui/icons/Image";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
@@ -179,6 +180,24 @@ function NavBar(props) {
           />
         ),
         mobile: <ImageIcon className="text-white" />
+      }
+    },
+    {
+      link: "/c/users",
+      name: "Usuarios",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <PersonAddIcon
+            className={
+              selectedTab === "Usuarios"
+                ? classes.textPrimary
+                : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <PersonAddIcon className="text-white" />
       }
     },
     {
