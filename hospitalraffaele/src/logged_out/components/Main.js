@@ -36,6 +36,12 @@ function Main(props) {
     setSelectedTab("Home");
   }, [setSelectedTab]);
 
+  const selectQuienesSomos = useCallback(() => {
+    smoothScrollTop();    
+    document.title = "WaVer - Blog";
+    setSelectedTab("QuienesSomos");
+  }, [setSelectedTab]);
+
   const selectBlog = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Blog";
@@ -130,6 +136,7 @@ function Main(props) {
       <Routing
         blogPosts={blogPosts}
         selectHome={selectHome}
+        selectQuienesSomos={selectQuienesSomos}
         selectBlog={selectBlog}
       />
       <Footer />

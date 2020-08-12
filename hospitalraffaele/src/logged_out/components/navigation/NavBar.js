@@ -52,12 +52,12 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
-      link: "/",
+      link: "/inicio",
       name: "Inicio",
       icon: <HomeIcon className="text-white" />
     },
         {
-          link: "/quienessomos",
+          link: "/QuienesSomos",
       name: "Quienes Somos",
       icon: <EventIcon className="text-white" />
     },

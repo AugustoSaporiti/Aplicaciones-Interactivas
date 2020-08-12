@@ -1,31 +1,24 @@
-import { Box, Typography } from "@material-ui/core";
-import PropTypes from "prop-types";
 import React, { Fragment, useEffect } from "react";
-import SettingsArea from "./SettingsArea";
+import PropTypes from "prop-types";
+import HeadSection from "./HeadSection";
+import Cuerpo from "./Cuerpo";
 
 function QuienesSomos(props) {
- 
+  const { selectQuienesSomos } = props;
+
+  useEffect(() => {
+    selectQuienesSomos();
+  }, [selectQuienesSomos]);
   return (
     <Fragment>
-      <Box mt={4}>
-        <Typography variant="subtitle1" gutterBottom>
-          Bienvenido!
-        </Typography>
-      </Box>
-      <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar}targets={targets} setTargets={setTargets} />
+      <HeadSection />
+      <Cuerpo />
     </Fragment>
   );
 }
 
-// Dashboard.propTypes = {
-//   CardChart: PropTypes.elementType,
-//   statistics: PropTypes.object.isRequired,
-//   toggleAccountActivation: PropTypes.func,
-//   pushMessageToSnackbar: PropTypes.func,
-//   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   setTargets: PropTypes.func.isRequired,
-//   isAccountActivated: PropTypes.bool.isRequired,
-//   selectDashboard: PropTypes.func.isRequired,
-// };
+QuienesSomos.propTypes = {
+  selectQuienesSomos: PropTypes.func.isRequired
+};
 
 export default QuienesSomos;

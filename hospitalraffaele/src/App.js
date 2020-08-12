@@ -7,7 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 import Pace from "./shared/components/Pace";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
-
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 function App() {
