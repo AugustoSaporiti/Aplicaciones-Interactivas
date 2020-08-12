@@ -9,20 +9,34 @@ import {
   IconButton,
   Avatar,
   Box,
+  Paper,
+  List,
+  Toolbar,
+  ListItemText,
+  Button,
+  Divider,
+  TextField,
+ // Link,
   ExpansionPanel,
   ExpansionPanelSummary,
   Typography,
   withStyles,
+  ListItem,
 } from "@material-ui/core";
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import EditIcon from "@material-ui/icons/Edit";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
 import stableSort from "../../../shared/functions/stableSort";
 import getSorting from "../../../shared/functions/getSorting";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
+import MedicalHistory from "./medicalhistory/MedicalHistory";
+import { Link as LinkR } from 'react-router-dom';
 
 const styles = (theme) => ({
   tableWrapper: {
@@ -64,15 +78,22 @@ const rows = [
   {
     id: "name",
     numeric: false,
-    label: "Name",
+    label: "Nombre",
   },
-  { id: "number1", numeric: false, label: "Category 1" },
-  { id: "number2", numeric: false, label: "Category 2" },
-  { id: "number3", numeric: false, label: "Category 3" },
   {
-    id: "number4",
+    id: "lastName",
     numeric: false,
-    label: "Category 4",
+    label: "Apellido",
+  },
+  {
+    id: "phoneNumber",
+    numeric: false,
+    label: "Teléfono",
+  },
+  {
+    id: "email",
+    numeric: false,
+    label: "Email",
   },
   {
     id: "actions",
@@ -171,19 +192,16 @@ function CustomTable(props) {
   );
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography>Some user data</Typography>
-      </ExpansionPanelSummary>
+    <Paper>
       <ConfirmationDialog
         open={isDeleteTargetDialogOpen}
-        title="Confirmation"
+        title="Eliminar paciente"
         content={
           deleteTargetDialogRow ? (
             <span>
-              {"Do you really want to remove the friend "}
-              <b>{deleteTargetDialogRow.name}</b>
-              {" from your list?"}
+              {"Está seguro de que desea eliminar a "}
+              <b>{deleteTargetDialogRow.name} {deleteTargetDialogRow.lastName}</b>
+              {" de la lista?"}
             </span>
           ) : null
         }
@@ -191,6 +209,22 @@ function CustomTable(props) {
         onConfirm={deleteTarget}
         loading={isDeleteTargetLoading}
       />
+      <List disablePadding>
+        <Toolbar className={classes.toolbar}>
+          <ListItemText primary="Pacientes" />
+          <TextField
+            id="standard-helperText"
+            defaultValue="Search"
+          />
+          <IconButton
+              className={classes.iconButton}
+              aria-label="Crear"
+            >
+              <AddBoxIcon className={classes.blackIcon} />
+          </IconButton>
+        </Toolbar>
+        <Divider className={classes.divider} />
+      </List>
       <Box width="100%">
         <div className={classes.tableWrapper}>
           {targets.length > 0 ? (
@@ -221,43 +255,34 @@ function CustomTable(props) {
                         {row.name}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                        {row.number1}
+                        {row.lastName}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                        {row.number2}
+                        {row.phoneNumber}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                        {row.number3}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {row.number4}
+                        {row.email}
                       </TableCell>
                       <TableCell component="th" scope="row">
                         <Box display="flex" justifyContent="flex-end">
-                          {row.isActivated ? (
-                            <IconButton
+                          <IconButton
                               className={classes.iconButton}
-                              onClick={() => {
-                                toggleTarget(row);
-                              }}
-                              aria-label="Pause"
+                              aria-label="Edit"
                             >
-                              <PauseCircleOutlineIcon
-                                className={classes.blackIcon}
-                              />
+                              <EditIcon className={classes.blackIcon} />
+                          </IconButton>
+                          <ListItem
+                            key="medicalHistory"
+                            component={LinkR}
+                            to="/c/historia-clinica"
+                          >
+                             <IconButton
+                                className={classes.iconButton}
+                              >
+                                <AssignmentIcon className={classes.blackIcon} />
                             </IconButton>
-                          ) : (
-                            <IconButton
-                              className={classes.iconButton}
-                              color="primary"
-                              onClick={() => {
-                                toggleTarget(row);
-                              }}
-                              aria-label="Resume"
-                            >
-                              <PlayCirlceOutlineIcon />
-                            </IconButton>
-                          )}
+                          </ListItem>
+                         
                           <IconButton
                             className={classes.iconButton}
                             onClick={() => {
@@ -304,7 +329,7 @@ function CustomTable(props) {
           />
         </div>
       </Box>
-    </ExpansionPanel>
+    </Paper>
   );
 }
 
