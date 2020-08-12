@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
+import ArrowDowardIcon from '@material-ui/icons/ArrowDownward';
 import {
   Grid,
   TablePagination,
@@ -97,6 +98,13 @@ function PostContent(props) {
                         },
                         icon: <DeleteIcon />,
                       },
+                      {
+                        name: "Descargar",
+                        onClick: () => {
+                          onDelete(element);
+                        },
+                        icon: <ArrowDowardIcon />,
+                      }
                     ]}
                   />
                 </Grid>

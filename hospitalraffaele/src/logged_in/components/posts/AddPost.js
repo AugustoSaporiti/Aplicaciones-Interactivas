@@ -13,6 +13,7 @@ function AddPost(props) {
     DateTimePicker,
     ImageCropper,
     onClose,
+    targets
   } = props;
 
   const [files, setFiles] = useState([]);
@@ -89,6 +90,7 @@ function AddPost(props) {
             Dropzone={Dropzone}
             files={files}
             onDrop={onDrop}
+            targets={targets}
             deleteItem={deleteItem}
             DateTimePicker={DateTimePicker}
             uploadAt={uploadAt}

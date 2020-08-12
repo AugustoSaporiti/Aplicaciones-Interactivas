@@ -38,6 +38,7 @@ function SettingsArea(props) {
     setValue(newValue);
   }
   const { pushMessageToSnackbar } = props;
+  console.log(targets)
   return (
     <Fragment>
       <Tabs
@@ -47,12 +48,11 @@ function SettingsArea(props) {
         textColor="primary"
         centered
       >
-        <Tab label="Item One" >
-
+        <Tab label="Sacar turno" >
         </Tab>
         <Tab label="Item Two" >
         </Tab>
-        <Tab label="Item Three" />
+        <Tab label="Lista de pacientes" />
       </Tabs>
 
       <TabPanel value={value} index={0}>
@@ -68,7 +68,6 @@ function SettingsArea(props) {
           setTargets={setTargets}
         />
       </TabPanel>
-
     </Fragment>
   );
 }

@@ -13,6 +13,7 @@ function Posts(props) {
     pushMessageToSnackbar,
     posts,
     setPosts,
+    targets
   } = props;
   const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
 
@@ -34,6 +35,7 @@ function Posts(props) {
       EmojiTextArea={EmojiTextArea}
       ImageCropper={ImageCropper}
       Dropzone={Dropzone}
+      targets={targets}
       DateTimePicker={DateTimePicker}
       pushMessageToSnackbar={pushMessageToSnackbar}
     />

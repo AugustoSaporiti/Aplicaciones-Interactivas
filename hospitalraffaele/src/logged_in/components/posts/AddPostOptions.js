@@ -13,6 +13,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
+import UserDataArea from "../../../logged_in/components/dashboard/UserDataArea";
 
 const styles = (theme) => ({
   floatButtonWrapper: {
@@ -85,6 +86,9 @@ function AddPostOptions(props) {
     onCropperClose,
     uploadAt,
     onChangeUploadAt,
+    targets,
+    setTargets,
+    pushMessageToSnackbar
   } = props;
 
   const printFile = useCallback(() => {
@@ -113,7 +117,7 @@ function AddPostOptions(props) {
       </Dropzone>
     );
   }, [onDrop, files, classes, deleteItem]);
-
+  console.log(targets)
   return (
     <Fragment>
       {ImageCropper && (
@@ -159,8 +163,14 @@ function AddPostOptions(props) {
               )}
             </ListItemSecondaryAction>
           </ListItem>
+
         </Bordered>
       </List>
+      <UserDataArea
+        pushMessageToSnackbar={pushMessageToSnackbar}
+        targets={targets}
+        setTargets={setTargets}
+      />
     </Fragment>
   );
 }

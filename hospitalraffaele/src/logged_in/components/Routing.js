@@ -69,12 +69,14 @@ function Routing(props) {
     openAddBalanceDialog,
     openAddUserDialog,
   } = props;
+  
   return (
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
           path="/c/posts"
           component={Posts}
+          targets={targets}
           EmojiTextArea={EmojiTextArea}
           ImageCropper={ImageCropper}
           Dropzone={Dropzone}

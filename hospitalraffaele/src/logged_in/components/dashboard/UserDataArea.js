@@ -64,7 +64,7 @@ const rows = [
   {
     id: "name",
     numeric: false,
-    label: "Name",
+    label: "Nombre",
   },
   { id: "number1", numeric: false, label: "Category 1" },
   { id: "number2", numeric: false, label: "Category 2" },
@@ -119,7 +119,7 @@ function CustomTable(props) {
       _targets.splice(index, 1);
       setTargets(_targets);
       pushMessageToSnackbar({
-        text: "Your friend has been removed",
+        text: "Paciente elminado",
       });
     }, 1500);
   }, [
@@ -158,22 +158,22 @@ function CustomTable(props) {
       _targets[index] = row;
       if (row.isActivated) {
         pushMessageToSnackbar({
-          text: "The row is now activated",
+          text: "Linea activada",
         });
       } else {
         pushMessageToSnackbar({
-          text: "The row is now deactivated",
+          text: "Linea desactivada",
         });
       }
       setTargets(_targets);
     },
     [pushMessageToSnackbar, targets, setTargets]
   );
-
-  return (
+    console.log(targets)
+  return ( 
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography>Some user data</Typography>
+        <Typography>Pacientes</Typography>
       </ExpansionPanelSummary>
       <ConfirmationDialog
         open={isDeleteTargetDialogOpen}
@@ -181,9 +181,9 @@ function CustomTable(props) {
         content={
           deleteTargetDialogRow ? (
             <span>
-              {"Do you really want to remove the friend "}
+              {"Estas seguro que queres elimnarlo "}
               <b>{deleteTargetDialogRow.name}</b>
-              {" from your list?"}
+              {" de tu lista?"}
             </span>
           ) : null
         }
@@ -276,7 +276,7 @@ function CustomTable(props) {
           ) : (
             <Box m={2}>
               <HighlightedInformation>
-                No friends added yet.
+                No hay pacientes agregados todavia.
               </HighlightedInformation>
             </Box>
           )}
