@@ -53,7 +53,7 @@ function PostContent(props) {
       _posts.splice(index, 1);
       setPosts(_posts);
       pushMessageToSnackbar({
-        text: "Your post has been deleted",
+        text: "La receta fue eliminada exitosamente",
       });
       closeDeletePostDialog();
     }, 1500);
@@ -91,7 +91,7 @@ function PostContent(props) {
                     timeStamp={element.timestamp}
                     options={[
                       {
-                        name: "Delete",
+                        name: "Eliminar",
                         onClick: () => {
                           onDelete(element);
                         },
@@ -108,7 +108,7 @@ function PostContent(props) {
     return (
       <Box m={2}>
         <HighlightedInformation>
-          No posts added yet. Click on &quot;NEW&quot; to create your first one.
+          No hay recetas todavia. Clickea en &quot;NEW&quot; para crear una.
         </HighlightedInformation>
       </Box>
     );
@@ -117,14 +117,14 @@ function PostContent(props) {
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Your Posts</Typography>
+        <Typography variant="h6">Recetas</Typography>
         <Button
           variant="contained"
           color="secondary"
           onClick={openAddPostModal}
           disableElevation
         >
-          Add Post
+          Agregar receta
         </Button>
       </Toolbar>
       <Divider />
@@ -152,7 +152,7 @@ function PostContent(props) {
       <ConfirmationDialog
         open={isDeletePostDialogOpen}
         title="Confirmation"
-        content="Do you really want to delete the post?"
+        content="Seguro de eliminar la receta?"
         onClose={closeDeletePostDialog}
         loading={isDeletePostDialogLoading}
         onConfirm={deletePost}

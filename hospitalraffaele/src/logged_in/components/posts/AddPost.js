@@ -103,7 +103,7 @@ function AddPost(props) {
           <Fragment>
             <Box mr={1}>
               <Button onClick={onClose} disabled={loading}>
-                Back
+                Atras
               </Button>
             </Box>
             <Button
@@ -112,7 +112,7 @@ function AddPost(props) {
               color="secondary"
               disabled={files.length === 0 || loading}
             >
-              Upload {loading && <ButtonCircularProgress />}
+              Subir receta {loading && <ButtonCircularProgress />}
             </Button>
           </Fragment>
         }

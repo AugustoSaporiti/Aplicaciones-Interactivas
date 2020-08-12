@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import Settings1 from "./Settings1";
+import Settings1 from "./Turnos";
 import Settings2 from "./Settings2";
 import { Tab, Tabs, Box, Typography } from "@material-ui/core"
 import UserDataArea from "./UserDataArea";

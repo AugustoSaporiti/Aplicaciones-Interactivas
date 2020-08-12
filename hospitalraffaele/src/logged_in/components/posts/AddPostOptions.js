@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Typography,
@@ -7,10 +7,6 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  FormControl,
-  Select,
-  OutlinedInput,
-  MenuItem,
   Box,
   withStyles,
 } from "@material-ui/core";
@@ -74,8 +70,6 @@ const styles = (theme) => ({
   },
 });
 
-const inputOptions = ["None", "Slow", "Normal", "Fast"];
-
 function AddPostOptions(props) {
   const {
     Dropzone,
@@ -92,40 +86,13 @@ function AddPostOptions(props) {
     uploadAt,
     onChangeUploadAt,
   } = props;
-  const [option1, setOption1] = useState("None");
-  const [option2, setOption2] = useState("None");
-  const [option3, setOption3] = useState("None");
-  const [option4, setOption4] = useState("None");
-
-  const handleChange = useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      switch (name) {
-        case "option1":
-          setOption1(value);
-          break;
-        case "option2":
-          setOption2(value);
-          break;
-        case "option3":
-          setOption3(value);
-          break;
-        case "option4":
-          setOption4(value);
-          break;
-        default:
-          throw new Error("No branch selected in switch-statement.");
-      }
-    },
-    [setOption1, setOption2, setOption3, setOption4]
-  );
 
   const printFile = useCallback(() => {
     if (files[0]) {
       return (
         <div className={classes.imgWrapper}>
           <img
-            alt="uploaded item"
+            alt="Se cargo la imagen"
             src={files[0].preview}
             className={classes.img}
             style={{ height: 151 }}
@@ -141,37 +108,11 @@ function AddPostOptions(props) {
     return (
       <Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
         <span className={classes.uploadText}>
-          Click / Drop file <br /> here
+          Clickea / Solta archivo <br /> aca
         </span>
       </Dropzone>
     );
   }, [onDrop, files, classes, deleteItem]);
-
-  const inputs = useCallback(
-    [
-      {
-        state: option1,
-        label: "Option 1",
-        stateName: "option1",
-      },
-      {
-        state: option2,
-        label: "Option 2",
-        stateName: "option2",
-      },
-      {
-        state: option3,
-        label: "Option 3",
-        stateName: "option3",
-      },
-      {
-        state: option4,
-        label: "Option 4",
-        stateName: "option4",
-      },
-    ],
-    [option1, option2, option3, option4]
-  );
 
   return (
     <Fragment>
@@ -186,7 +127,7 @@ function AddPostOptions(props) {
         />
       )}
       <Typography paragraph variant="h6">
-        Upload Image
+        Subir receta
       </Typography>
       <Box mb={2}>
         {EmojiTextArea && (
@@ -199,13 +140,13 @@ function AddPostOptions(props) {
         )}
       </Box>
       <Typography paragraph variant="h6">
-        Options
+        Opciones
       </Typography>
       <List disablePadding>
         <Bordered disableVerticalPadding disableBorderRadius>
           <ListItem divider disableGutters className="listItemLeftPadding">
             <ListItemText>
-              <Typography variant="body2">Upload at</Typography>
+              <Typography variant="body2">Ingrese fecha</Typography>
             </ListItemText>
             <ListItemSecondaryAction>
               {DateTimePicker && (
@@ -218,41 +159,6 @@ function AddPostOptions(props) {
               )}
             </ListItemSecondaryAction>
           </ListItem>
-          {inputs.map((element, index) => (
-            <ListItem
-              className="listItemLeftPadding"
-              disableGutters
-              divider={index !== inputs.length - 1}
-              key={index}
-            >
-              <ListItemText>
-                <Typography variant="body2">{element.label}</Typography>
-              </ListItemText>
-              <FormControl variant="outlined">
-                <ListItemSecondaryAction>
-                  <Select
-                    value={element.state}
-                    onChange={handleChange}
-                    input={
-                      <OutlinedInput
-                        name={element.stateName}
-                        labelWidth={0}
-                        className={classes.numberInput}
-                        classes={{ input: classes.numberInputInput }}
-                      />
-                    }
-                    MenuProps={{ disableScrollLock: true }}
-                  >
-                    {inputOptions.map((innerElement) => (
-                      <MenuItem value={innerElement} key={innerElement}>
-                        {innerElement}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </ListItemSecondaryAction>
-              </FormControl>
-            </ListItem>
-          ))}
         </Bordered>
       </List>
     </Fragment>

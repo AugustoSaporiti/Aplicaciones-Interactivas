@@ -231,7 +231,7 @@ function Main(props) {
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Dashboard";
+    document.title = "Consultorio Raffaele";
     setSelectedTab("Dashboard");
     if (!hasFetchedCardChart) {
       setHasFetchedCardChart(true);
@@ -248,7 +248,7 @@ function Main(props) {
 
   const selectPosts = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Posts";
+    document.title = "Consultorio Raffaele";
     setSelectedTab("Posts");
     if (!hasFetchedEmojiTextArea) {
       setHasFetchedEmojiTextArea(true);
@@ -289,12 +289,6 @@ function Main(props) {
     hasFetchedDateTimePicker,
     setHasFetchedDateTimePicker,
   ]);
-
-  const selectSubscription = useCallback(() => {
-    smoothScrollTop();
-    document.title = "WaVer - Subscription";
-    setSelectedTab("Subscription");
-  }, [setSelectedTab]);
 
   const getPushMessageFromChild = useCallback(
     (pushMessage) => {
@@ -348,7 +342,6 @@ function Main(props) {
           targets={targets}
           selectDashboard={selectDashboard}
           selectPosts={selectPosts}
-          selectSubscription={selectSubscription}
           openAddBalanceDialog={openAddBalanceDialog}
           setTargets={setTargets}
           setPosts={setPosts}
