@@ -61,11 +61,11 @@ function NavBar(props) {
       name: "Quienes Somos",
       icon: <EventIcon className="text-white" />
     },
-    // {
-    //   name: "Turnos",
-    //   onClick: openRegisterDialog,
-    //   icon: <EventIcon className="text-white" />
-    // },
+    {
+       name: "Turnos",
+       onClick: openLoginDialog,
+       icon: <EventIcon className="text-white" />
+     },
     // {
     //   link: "/blog",
     //   name: "Blog",
@@ -93,7 +93,7 @@ function NavBar(props) {
               display="inline"
               color="primary"
             >
-              Hospital
+              Consultorio
             </Typography>
             <Typography
               variant="h4"
@@ -101,7 +101,7 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              Raffaele
+              SanRaffaele
             </Typography>
           </div>
           <div>

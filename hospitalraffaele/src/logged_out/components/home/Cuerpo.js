@@ -23,7 +23,7 @@ function Cuerpo(props) {
     <div style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-fluid lg-p-top">
         <Typography variant="h3" align="center" className="lg-mg-bottom">
-        Hospital San Raffaele
+        Consultorio San Raffaele
         <br></br>
         <br></br>
         <Typography variant="body2" paragraph>
@@ -45,7 +45,7 @@ function Cuerpo(props) {
         Cuidado de vanguardia
           </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-        La excelencia médico-científica del Hospital San Raffaele se deriva de la triple identidad del instituto, un lugar donde la investigación, la clínica y la educación universitaria interactúan a diario.
+        La excelencia médico-científica del Consultorio San Raffaele se deriva de la triple identidad del instituto, un lugar donde la investigación, la clínica y la educación universitaria interactúan a diario.
         </Typography>
       </CardContent>
         </Card>
@@ -60,7 +60,7 @@ function Cuerpo(props) {
         Alta tecnología
           </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-        Desde robots quirúrgicos hasta instrumentos de radioterapia e imágenes de precisión: en el Hospital San Raffaele, las tecnologías de vanguardia permiten un diagnóstico cada vez más temprano y tratamientos más personalizados.
+        Desde robots quirúrgicos hasta instrumentos de radioterapia e imágenes de precisión: en el Consultorio San Raffaele, las tecnologías de vanguardia permiten un diagnóstico cada vez más temprano y tratamientos más personalizados.
         </Typography>
       </CardContent>
         </Card>
@@ -75,7 +75,7 @@ function Cuerpo(props) {
         Enfoque multidisciplinario
           </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-        En el Hospital San Raffaele, las enfermedades se tratan en 360 °, gracias a la presencia de varios especialistas que combinan sus habilidades al servicio del paciente.
+        En el Consultorio San Raffaele, las enfermedades se tratan en 360 °, gracias a la presencia de varios especialistas que combinan sus habilidades al servicio del paciente.
         </Typography>
       </CardContent>
         </Card>
