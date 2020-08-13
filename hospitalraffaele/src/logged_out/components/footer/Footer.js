@@ -16,10 +16,17 @@ import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
+import emergency from "../../dummy_data/images/emergency.png";
 
 const styles = theme => ({
   footerInner: {
-    backgroundColor: theme.palette.common.darkBlack,
+    // backgroundColor: theme.palette.common.darkBlack,
+    backgroundImage: `url(${emergency})`,
+    backgroundSize: 'cover',  
+    borderRadius: 10 / 2,
+    overflow: "hidden",
+    borderWidth: 2,
+    // borderColor: "solid red !important",
     paddingTop: theme.spacing(8),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -78,7 +85,7 @@ const styles = theme => ({
 const infos = [
   {
     icon: <PhoneIcon />,
-    description: "+1 555 123456"
+    description: "07636600962"
   },
   {
     icon: <MailIcon />,
@@ -87,22 +94,22 @@ const infos = [
 ];
 
 const socialIcons = [
-  {
-    icon: (
-      <svg
-        role="img"
-        width="24px"
-        height="24px"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <title>GitHub</title>
-        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-      </svg>
-    ),
-    label: "Github",
-    href: "https://github.com/dunky11/react-saas-template"
-  },
+  // {
+  //   icon: (
+  //     <svg
+  //       role="img"
+  //       width="24px"
+  //       height="24px"
+  //       viewBox="0 0 24 24"
+  //       xmlns="http://www.w3.org/2000/svg"
+  //     >
+  //       <title>GitHub</title>
+  //       <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+  //     </svg>
+  //   ),
+  //   label: "Github",
+  //   href: "https://github.com/dunky11/react-saas-template"
+  // },
   {
     icon: (
       <svg
@@ -117,7 +124,7 @@ const socialIcons = [
       </svg>
     ),
     label: "Facebook",
-    href: "https://facebook.com"
+    href: "https://www.facebook.com/ospedalesanraffaele"
   },
   {
     icon: (
@@ -133,7 +140,7 @@ const socialIcons = [
       </svg>
     ),
     label: "LinkedIn",
-    href: "https://www.linkedin.com/"
+    href: "https://www.linkedin.com/company/ospedale-san-raffaele"
   },
   {
     icon: (
@@ -149,7 +156,7 @@ const socialIcons = [
       </svg>
     ),
     label: "Twitter",
-    href: "https://www.twitter.com/"
+    href: "https://twitter.com/SanRaffaeleMI"
   }
 ];
 
@@ -159,38 +166,44 @@ function Footer(props) {
     <footer className="lg-p-top">
       <WaveBorder
         upperColor="#FFFFFF"
-        lowerColor={theme.palette.common.darkBlack}
+        lowerColor="#006787"
         animationNegativeDelay={4}
       />
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
-          <Grid item xs={12} md={6} lg={4}>
-            <form>
-              <Box display="flex" flexDirection="column">
-                <Box mb={1}>
-                  <TextField
+            <Grid item xs={12} md={1} lg={1}>
+              <form>
+                <Box display="flex" flexDirection="column">
+                  <Box mb={1}>
+                  <div>
+                       <img
+                        src={"https://www.hsr.it/docroot/1.7.0/ospedali/dist/images/hsr_full_white.svg"}
+                        alt="header example"
+                      />
+                  </div>
+                    {/* <TextField
+                      variant="outlined"
+                      multiline
+                      placeholder="Get in touch with us"
+                      inputProps={{ "aria-label": "Get in Touch" }}
+                      InputProps={{
+                        className: classes.whiteBg
+                      }}
+                      rows={4}
+                      fullWidth
+                      required
+                    /> */}
+                  </Box>
+                  {/* <ColoredButton
+                    color={theme.palette.common.white}
                     variant="outlined"
-                    multiline
-                    placeholder="Get in touch with us"
-                    inputProps={{ "aria-label": "Get in Touch" }}
-                    InputProps={{
-                      className: classes.whiteBg
-                    }}
-                    rows={4}
-                    fullWidth
-                    required
-                  />
+                    type="submit"
+                  >
+                    Send Message
+                  </ColoredButton> */}
                 </Box>
-                <ColoredButton
-                  color={theme.palette.common.white}
-                  variant="outlined"
-                  type="submit"
-                >
-                  Send Message
-                </ColoredButton>
-              </Box>
-            </form>
-          </Grid>
+              </form>
+            </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6} lg={4}>
               <Box display="flex" justifyContent="center">
@@ -222,13 +235,13 @@ function Footer(props) {
             </Grid>
           </Hidden>
           <Grid item xs={12} md={6} lg={4}>
-            <Typography variant="h6" paragraph className="text-white">
-              About the Company
+            {/* <Typography variant="h6" paragraph className="text-white">
+              ¿Quiénes somos?
             </Typography>
             <Typography style={{ color: "#8f9296" }} paragraph>
               Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
               euismod convallis velit, eu auctor lacus vehicula sit amet.
-            </Typography>
+            </Typography> */}
             <Box display="flex">
               {socialIcons.map((socialIcon, index) => (
                 <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>

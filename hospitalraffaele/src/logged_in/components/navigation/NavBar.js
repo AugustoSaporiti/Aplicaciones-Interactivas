@@ -257,7 +257,7 @@ function NavBar(props) {
                 display="inline"
                 color="secondary"
               >
-                Rafaele
+                SanRaffaele
               </Typography>
             </Hidden>
           </Box>

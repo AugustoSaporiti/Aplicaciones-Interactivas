@@ -64,12 +64,11 @@ function Main(props) {
       const randomPerson = persons[Math.floor(Math.random() * persons.length)];
       const target = {
         id: i,
-        number1: Math.floor(Math.random() * 251),
-        number2: Math.floor(Math.random() * 251),
-        number3: Math.floor(Math.random() * 251),
-        number4: Math.floor(Math.random() * 251),
         name: randomPerson.name,
         profilePicUrl: randomPerson.profilePicUrl,
+        lastName: randomPerson.lastName,
+        email: randomPerson.email,
+        phoneNumber: randomPerson.phoneNumber,
         isActivated: Math.round(Math.random()) ? true : false,
       };
       targets.push(target);

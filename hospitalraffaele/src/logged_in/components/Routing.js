@@ -4,6 +4,7 @@ import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import DashboardPaciente from "./dashboardPaciente/Dashboard";
+import MedicalHistory from "./dashboard/medicalhistory/MedicalHistory";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import Users from "./users/Users";
@@ -115,6 +116,12 @@ function Routing(props) {
           setTargets={setTargets}
           isAccountActivated={isAccountActivated}
           selectDashboard={selectDashboard}
+        />
+          <PropsRoute
+          path="/c/historia-clinica"
+          component={MedicalHistory}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+     //     openAddUserDialog={openAddUserDialog}
         />
         <PropsRoute
           path=""
