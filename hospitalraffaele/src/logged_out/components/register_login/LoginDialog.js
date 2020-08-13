@@ -14,6 +14,7 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import global from "../Global.js";
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -53,21 +54,45 @@ function LoginDialog(props) {
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    if (loginEmail.current.value !== "test@web.com") {
-      setTimeout(() => {
-        setStatus("invalidEmail");
-        setIsLoading(false);
-      }, 1500);
-    } else if (loginPassword.current.value !== "test") {
-      setTimeout(() => {
-        setStatus("invalidPassword");
-        setIsLoading(false);
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        history.push("/c/dashboard");
-      }, 150);
-    }
+    global.usuarioElegido = global.usuarioRoles.filter(x=>{
+
+      if (loginEmail.current.value !== x.email) {
+        setTimeout(() => {
+          setStatus("invalidEmail");
+          setIsLoading(false);
+        }, 1500);
+      } else if (loginPassword.current.value !== x.pass) {
+        setTimeout(() => {
+          setStatus("invalidPassword");
+          setIsLoading(false);
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          history.push("/c/dashboard");
+        }, 150);
+      }
+
+      if ( x.email === loginEmail.current.value && x.pass === loginPassword.current.value) 
+      {
+        return x;
+      }       
+    });
+
+  // if (loginEmail.current.value !== "test@web.com") {
+  //   setTimeout(() => {
+  //     setStatus("invalidEmail");
+  //     setIsLoading(false);
+  //   }, 1500);
+  // } else if (loginPassword.current.value !== "test") {
+  //   setTimeout(() => {
+  //     setStatus("invalidPassword");
+  //     setIsLoading(false);
+  //   }, 1500);
+  // } else {
+  //   setTimeout(() => {
+  //     history.push("/c/dashboard");
+  //   }, 150);
+  // }
   }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
 
   return (

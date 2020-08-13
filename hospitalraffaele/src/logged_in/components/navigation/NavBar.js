@@ -30,6 +30,8 @@ import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
+import validadorUsuario from "../../validadorUsuario.js";
+import global from "../../../logged_out/components/Global.js";
 
 const styles = theme => ({
   appBar: {
@@ -149,7 +151,7 @@ function NavBar(props) {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
-  const menuItems = [
+  const menuItemsPrueba = [
     {
       link: "/c/dashboard",
       name: "Dashboard",
@@ -216,7 +218,7 @@ function NavBar(props) {
       }
     },
     {
-      link: "/",
+      link: "/inicio",
       name: "Salir",
       icon: {
         desktop: (
@@ -226,6 +228,20 @@ function NavBar(props) {
       }
     }
   ];
+
+
+  const menu = () => {   
+
+    const datosUsuario  = validadorUsuario.validarUsuario(menuItemsPrueba,global.usuarioElegido);
+
+    validadorUsuario.variableGuardada = datosUsuario;
+
+   return datosUsuario;
+  }
+
+  const menuItems= menu();
+
+
   return (
     <Fragment>
       <AppBar position="sticky" className={classes.appBar}>

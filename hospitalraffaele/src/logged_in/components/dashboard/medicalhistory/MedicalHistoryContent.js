@@ -22,7 +22,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EnhancedTableHead from "../../../../shared/components/EnhancedTableHead";
 import SelfAligningImage from "../../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../../shared/components/HighlightedInformation";
+import validadorUsuario from "../../../validadorUsuario.js";
+import global from "../../../../logged_out/components/Global.js";
 
+var showButton = false;
 const styles = {
   dBlock: { display: "block" },
   dNone: { display: "none" },
@@ -34,6 +37,7 @@ const styles = {
 const rowsPerPage = 25;
 
 function MedicalHistoryContent(props) {
+  showButton = validadorUsuario.esVisible(global.usuarioElegido);
   const {
     pushMessageToSnackbar,
   //  setPosts,
@@ -154,14 +158,14 @@ function MedicalHistoryContent(props) {
     <Paper>
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6">Historia clínica</Typography>      
-        <Button
+        { showButton ? <Button
           variant="contained"
           color="secondary"
           onClick={openAddMedicalHistoryEntryModal}
           disableElevation
         >
           Agregar observacion
-        </Button>
+        </Button> : null }
       </Toolbar>
       <Divider className={classes.divider} />
       
