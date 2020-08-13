@@ -87,7 +87,7 @@ function PostContent(props) {
               .map((element) => (
                 <Grid item xs={6} sm={4} md={3} key={element.id}>
                   <SelfAligningImage
-                    src={element.src}
+                    src="n"
                     title={element.name}
                     timeStamp={element.timestamp}
                     options={[
