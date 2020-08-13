@@ -17,7 +17,7 @@ function Dashboard(props) {
     <Fragment>
       <Box mt={4}>
         <Typography variant="subtitle1" gutterBottom>
-          Bienvenido !
+          Bienvenido Paciente!
         </Typography>
       </Box>
       <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar}targets={targets} setTargets={setTargets} />

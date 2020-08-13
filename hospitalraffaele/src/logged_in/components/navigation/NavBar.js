@@ -167,6 +167,23 @@ function NavBar(props) {
       }
     },
     {
+      link: "/c/dashboardPaciente",
+      name: "Dashboard Paciente",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <DashboardIcon
+            className={
+              selectedTab === "Dashboard Paciente" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+            
+          />
+        ),
+        mobile: <DashboardIcon className="text-white" />
+      }
+    },
+    {
       link: "/c/posts",
       name: "Posts",
       onClick: closeMobileDrawer,
@@ -190,9 +207,7 @@ function NavBar(props) {
         desktop: (
           <PersonAddIcon
             className={
-              selectedTab === "Usuarios"
-                ? classes.textPrimary
-                : "text-white"
+              selectedTab === "Usuarios" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
@@ -201,8 +216,8 @@ function NavBar(props) {
       }
     },
     {
-      link: "/inicio",
-      name: "Logout",
+      link: "/",
+      name: "Salir",
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -266,7 +281,7 @@ function NavBar(props) {
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">Usuario</Typography>
                   }
                 />
               )}

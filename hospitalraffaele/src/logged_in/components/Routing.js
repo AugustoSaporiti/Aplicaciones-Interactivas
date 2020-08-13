@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
+import DashboardPaciente from "./dashboardPaciente/Dashboard";
 import MedicalHistory from "./dashboard/medicalhistory/MedicalHistory";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
@@ -105,6 +106,18 @@ function Routing(props) {
           openAddUserDialog={openAddUserDialog}
         />
         <PropsRoute
+          path="/c/dashboardPaciente"
+          component={DashboardPaciente}
+          toggleAccountActivation={toggleAccountActivation}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          CardChart={CardChart}
+          statistics={statistics}
+          targets={targets}
+          setTargets={setTargets}
+          isAccountActivated={isAccountActivated}
+          selectDashboard={selectDashboard}
+        />
+          <PropsRoute
           path="/c/historia-clinica"
           component={MedicalHistory}
           pushMessageToSnackbar={pushMessageToSnackbar}
