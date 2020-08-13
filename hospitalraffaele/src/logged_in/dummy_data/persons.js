@@ -12,42 +12,72 @@ import image10 from "./images/image10.jpg";
 export default [
   {
     profilePicUrl: image1,
-    name: "Markus"
+    name: "Markus",
+    lastName: "Gomes",
+    phoneNumber: 36278163,
+    email: "markus@test.com"
   },
   {
     profilePicUrl: image2,
-    name: "David"
+    name: "David",
+    lastName: "Perez",
+    phoneNumber: 32343322,
+    email: "David@test.com"
   },
   {
     profilePicUrl: image3,
-    name: "Arold"
+    name: "Arold",
+    lastName: "Sale",
+    phoneNumber: 87979798,
+    email: "as@test.com"
   },
   {
     profilePicUrl: image4,
-    name: "Joanic"
+    name: "Joanic",
+    lastName: "Bo",
+    phoneNumber: 878787,
+    email: "bo@test.com"
   },
   {
     profilePicUrl: image5,
-    name: "Sophia"
+    name: "Sophia",
+    lastName: "Torres",
+    phoneNumber: 43243432,
+    email: "sophi@test.com"
   },
   {
     profilePicUrl: image6,
-    name: "Aaron"
+    name: "Aaron",
+    lastName: "Uller",
+    phoneNumber: 67626726,
+    email: "auller@test.com"
   },
   {
     profilePicUrl: image7,
-    name: "Steven"
+    name: "Steven",
+    lastName: "Fuk",
+    phoneNumber: 879879,
+    email: "fuk@test.com"
   },
   {
     profilePicUrl: image8,
-    name: "Felix"
+    name: "Felix",
+    lastName: "Gonzalez",
+    phoneNumber: 87878787,
+    email: "felix@test.com"
   },
   {
     profilePicUrl: image9,
-    name: "Vivien"
+    name: "Vivien",
+    lastName: "Casella",
+    phoneNumber: 876876,
+    email: "cas@test.com"
   },
   {
     profilePicUrl: image10,
-    name: "Leonie"
+    name: "Leonie",
+    lastName: "Fraser",
+    phoneNumber: 987987,
+    email: "fraser@test.com"
   }
 ];
