@@ -201,7 +201,7 @@ function NavBar(props) {
       }
     },
     {
-      link: "/",
+      link: "/inicio",
       name: "Logout",
       icon: {
         desktop: (

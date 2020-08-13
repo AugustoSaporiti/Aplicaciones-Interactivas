@@ -52,20 +52,25 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
-      link: "/",
-      name: "Home",
+      link: "/inicio",
+      name: "Inicio",
       icon: <HomeIcon className="text-white" />
     },
-    {
-      name: "Turnos",
-      onClick: openRegisterDialog,
+        {
+          link: "/QuienesSomos",
+      name: "Quienes Somos",
       icon: <EventIcon className="text-white" />
     },
-    {
-      link: "/blog",
-      name: "Blog",
-      icon: <BookIcon className="text-white" />
-    },
+    // {
+    //   name: "Turnos",
+    //   onClick: openRegisterDialog,
+    //   icon: <EventIcon className="text-white" />
+    // },
+    // {
+    //   link: "/blog",
+    //   name: "Blog",
+    //   icon: <BookIcon className="text-white" />
+    // },
     {
       name: "Register",
       onClick: openRegisterDialog,
