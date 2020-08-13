@@ -32,19 +32,19 @@ function Main(props) {
   const selectHome = useCallback(() => {
     smoothScrollTop();
     document.title =
-      "WaVer - Free template for building an SaaS or admin application";
+      "Consultorio Raffaele";
     setSelectedTab("Home");
   }, [setSelectedTab]);
 
   const selectQuienesSomos = useCallback(() => {
     smoothScrollTop();    
-    document.title = "WaVer - Blog";
+    document.title = "Consultorio Raffael";
     setSelectedTab("QuienesSomos");
   }, [setSelectedTab]);
 
   const selectBlog = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Blog";
+    document.title = "Consultorio Raffael";
     setSelectedTab("Blog");
   }, [setSelectedTab]);
 

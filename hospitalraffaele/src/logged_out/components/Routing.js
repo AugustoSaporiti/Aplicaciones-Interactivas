@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
-import QuienesSomos from "./home/QuienesSomos";
+import QuienesSomos from "./home/quienessomos";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/BlogPost";
 
