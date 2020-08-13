@@ -22,6 +22,7 @@ import {
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ImageIcon from "@material-ui/icons/Image";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -187,13 +188,13 @@ function NavBar(props) {
     },
     {
       link: "/c/posts",
-      name: "Posts",
+      name: "Recetas",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <ImageIcon
+          <FileCopyIcon
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === "Recetas" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
