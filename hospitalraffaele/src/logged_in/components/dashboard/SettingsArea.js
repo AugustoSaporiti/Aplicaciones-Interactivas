@@ -48,10 +48,7 @@ function SettingsArea(props) {
         textColor="primary"
         centered
       >
-        <Tab label="Sacar turno" >
-        </Tab>
-        <Tab label="Item Two" >
-        </Tab>
+        <Tab label="Sacar turno" />
         <Tab label="Lista de pacientes" />
       </Tabs>
 
@@ -59,9 +56,6 @@ function SettingsArea(props) {
         <Settings1 pushMessageToSnackbar={pushMessageToSnackbar} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Settings2 pushMessageToSnackbar={pushMessageToSnackbar} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
         <UserDataArea
           pushMessageToSnackbar={pushMessageToSnackbar}
           targets={targets}
