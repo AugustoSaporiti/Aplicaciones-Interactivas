@@ -42,6 +42,11 @@ const tableIcons = {
       columns: [
         { title: 'Nombre', field: 'name' },
         { title: 'Apellido', field: 'surname' },
+        {
+          title: 'Doctor',
+          field: 'Doctorfield',
+          lookup: { 20: 'Sarasa', 10: 'Tomas' },
+        },
         { title: 'Fecha', field: 'birthYear' },
         {
           title: 'Horario',
@@ -50,10 +55,16 @@ const tableIcons = {
         },
       ],
       data: [
-        { name: 'Mehmet', surname: 'Baran', birthYear: "19/11/2020", birthCity: 63 },
+        { name: 'Mehmet',
+         surname: 'Baran',
+         Doctorfield: 10, 
+         birthYear: "19/11/2020", 
+         birthCity: 63 
+        },
         {
           name: 'Zerya Betül',
           surname: 'Baran',
+          Doctorfield: 20,
           birthYear: "17/12/2020",
           birthCity: 34,
         },
