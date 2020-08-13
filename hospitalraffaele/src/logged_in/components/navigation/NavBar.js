@@ -202,6 +202,22 @@ function NavBar(props) {
       }
     },
     {
+      link: "/c/postsPaciente",
+      name: "PostsPaciente",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <ImageIcon
+            className={
+              selectedTab === "PostsPaciente" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <ImageIcon className="text-white" />
+      }
+    },
+    {
       link: "/c/users",
       name: "Usuarios",
       onClick: closeMobileDrawer,

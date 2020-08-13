@@ -6,6 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import DashboardPaciente from "./dashboardPaciente/Dashboard";
 import MedicalHistory from "./dashboard/medicalhistory/MedicalHistory";
 import Posts from "./posts/Posts";
+
 import Subscription from "./subscription/Subscription";
 import Users from "./users/Users";
 import PropsRoute from "../../shared/components/PropsRoute";
@@ -77,6 +78,19 @@ function Routing(props) {
       <Switch>
         <PropsRoute
           path="/c/posts"
+          component={Posts}
+          targets={targets}
+          EmojiTextArea={EmojiTextArea}
+          ImageCropper={ImageCropper}
+          Dropzone={Dropzone}
+          DateTimePicker={DateTimePicker}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          posts={posts}
+          setPosts={setPosts}
+          selectPosts={selectPosts}
+        />
+        <PropsRoute
+          path="/c/postsPaciente"
           component={Posts}
           targets={targets}
           EmojiTextArea={EmojiTextArea}

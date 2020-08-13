@@ -10,7 +10,6 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  Divider2,
   Typography,
   Box,
   withStyles
