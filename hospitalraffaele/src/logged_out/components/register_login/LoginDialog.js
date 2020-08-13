@@ -68,7 +68,11 @@ function LoginDialog(props) {
         }, 1500);
       } else {
         setTimeout(() => {
-          history.push("/c/dashboard");
+          if (x.pass === "paciente") {
+            history.push("/c/dashboardPaciente");
+          } else {
+            history.push("/c/dashboard");
+          }
         }, 150);
       }
 
@@ -171,9 +175,14 @@ function LoginDialog(props) {
               </HighlightedInformation>
             ) : (
               <HighlightedInformation>
-                Email is: <b>test@web.com</b>
+                Paciente: <b>susana@test.com</b> || Pass: <b>paciente</b>
                 <br />
-                Password is: <b>test</b>
+                Medico: <b>sandro@test.com</b> || Pass:<b>doctor</b>
+                <br />
+                Secretario: <b>lauro@test.com</b> || Pass:<b>secretario</b>
+                <br />
+                Admin: <b>pepita@test.com</b> || Pass:<b>admin</b>
+                <br />
               </HighlightedInformation>
             )}
           </Fragment>
