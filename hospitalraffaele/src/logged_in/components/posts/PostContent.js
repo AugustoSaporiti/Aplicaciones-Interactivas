@@ -135,7 +135,28 @@ function PostContent(props) {
           Agregar receta
         </Button>
       </Toolbar>
-      
+      <Divider />
+      {printImageGrid()}
+      <TablePagination
+        component="div"
+        count={posts.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        backIconButtonProps={{
+          "aria-label": "Previous Page",
+        }}
+        nextIconButtonProps={{
+          "aria-label": "Next Page",
+        }}
+        onChangePage={handleChangePage}
+        classes={{
+          select: classes.dNone,
+          selectIcon: classes.dNone,
+          actions: posts.length > 0 ? classes.dBlock : classes.dNone,
+          caption: posts.length > 0 ? classes.dBlock : classes.dNone,
+        }}
+        labelRowsPerPage=""
+      />
       <ConfirmationDialog
         open={isDeletePostDialogOpen}
         title="Confirmation"
