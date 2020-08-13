@@ -1,25 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Grid, Typography, isWidthUp, withWidth,Card} from "@material-ui/core";
+import { Grid, Typography, Card} from "@material-ui/core";
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CodeIcon from "@material-ui/icons/Code";
-import BuildIcon from "@material-ui/icons/Build";
-import ComputerIcon from "@material-ui/icons/Computer";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import HeadsetMicIcon from "@material-ui/icons/HeadsetMic";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import CloudIcon from "@material-ui/icons/Cloud";
-import MeassageIcon from "@material-ui/icons/Message";
-import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
-import FeatureCard from "./FeatureCard";
 import vanguardia from "../../dummy_data/images/vanguardia.png"
 import tecnologia from "../../dummy_data/images/Tecnologia.png"
 import multidisciplina from "../../dummy_data/images/Multidisciplina.png"
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     media: {
       height: 0,
       paddingTop: '100%' // 16:9
