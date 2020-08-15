@@ -204,6 +204,22 @@ function NavBar(props) {
     },
     {
       link: "/c/postsPaciente",
+      name: "Recetas paciente",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <FileCopyIcon
+            className={
+              selectedTab === "Recetas paciente" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <ImageIcon className="text-white" />
+      }
+    },
+    {
+      link: "/c/postsPaciente",
       name: "PostsPaciente",
       onClick: closeMobileDrawer,
       icon: {

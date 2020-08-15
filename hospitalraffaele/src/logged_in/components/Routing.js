@@ -6,7 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import DashboardPaciente from "./dashboardPaciente/Dashboard";
 import MedicalHistory from "./dashboard/medicalhistory/MedicalHistory";
 import Posts from "./posts/Posts";
-
+import PostsPaciente from "./postsPaciente/Posts"
 import Subscription from "./subscription/Subscription";
 import Users from "./users/Users";
 import PropsRoute from "../../shared/components/PropsRoute";
@@ -91,7 +91,7 @@ function Routing(props) {
         />
         <PropsRoute
           path="/c/postsPaciente"
-          component={Posts}
+          component={PostsPaciente}
           targets={targets}
           EmojiTextArea={EmojiTextArea}
           ImageCropper={ImageCropper}

@@ -6,7 +6,7 @@ const validarUsuario = (value, role) => {
     if (role !== undefined && role !== null) {
         if (role[0].role === "Paciente") {
             value.filter(x => {
-                if (x.name === "Dashboard Paciente" || x.name === "Recetas" || x.name === "Salir") {
+                if (x.name === "Dashboard Paciente" || x.name === "Recetas paciente" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
             });
@@ -30,7 +30,9 @@ const validarUsuario = (value, role) => {
 
         else if (role[0].role === "Admin") {
             value.filter(x => {
-                menuItemValidado.push(x);
+                if (x.name === "Dashboard" || x.name === "Recetas" || x.name === "Usuarios" || x.name === "Salir") {
+                    menuItemValidado.push(x);
+                }
             });
         }
 

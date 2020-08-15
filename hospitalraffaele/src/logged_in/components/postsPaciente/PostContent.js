@@ -5,9 +5,6 @@ import {
   Grid,
   TablePagination,
   Divider,
-  Toolbar,
-  Typography,
-  Button,
   Paper,
   Box,
   withStyles,
@@ -32,7 +29,6 @@ function PostContent(props) {
     pushMessageToSnackbar,
     setPosts,
     posts,
-    openAddPostModal,
     classes,
   } = props;
   const [page, setPage] = useState(0);
@@ -91,13 +87,6 @@ function PostContent(props) {
                     title={element.name}
                     timeStamp={element.timestamp}
                     options={[
-                      {
-                        name: "Eliminar",
-                        onClick: () => {
-                          onDelete(element);
-                        },
-                        icon: <DeleteIcon />,
-                      },
                       {
                         name: "Descargar",
                         onClick: () => {
