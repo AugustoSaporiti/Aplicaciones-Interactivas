@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Settings1 from "./Turnos";
-import Settings2 from "./Settings2";
+import MultipleSelect from "./HorarioAtencion";
 import { Tab, Tabs, Box, Typography } from "@material-ui/core"
 import UserDataArea from "./UserDataArea";
 
@@ -50,6 +50,7 @@ function SettingsArea(props) {
       >
         <Tab label="Sacar turno" />
         <Tab label="Lista de pacientes" />
+        <Tab label="Horario de atencion" />
       </Tabs>
 
       <TabPanel value={value} index={0}>
@@ -61,6 +62,9 @@ function SettingsArea(props) {
           targets={targets}
           setTargets={setTargets}
         />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <MultipleSelect pushMessageToSnackbar={pushMessageToSnackbar}/>
       </TabPanel>
     </Fragment>
   );
