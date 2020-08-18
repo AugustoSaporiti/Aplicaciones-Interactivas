@@ -71,7 +71,7 @@ function RegisterDialog(props) {
       loading={isLoading}
       onClose={onClose}
       open
-      headline="Register"
+      headline="Registrarse"
       onFormSubmit={(e) => {
         e.preventDefault();
         register();
@@ -86,7 +86,7 @@ function RegisterDialog(props) {
             required
             fullWidth
             error={status === "invalidEmail"}
-            label="Email Address"
+            label="Mail"
             autoFocus
             autoComplete="off"
             type="email"
@@ -105,7 +105,7 @@ function RegisterDialog(props) {
             error={
               status === "passwordTooShort" || status === "passwordsDontMatch"
             }
-            label="Password"
+            label="Contraseña"
             inputRef={registerPassword}
             autoComplete="off"
             onChange={() => {
@@ -118,10 +118,10 @@ function RegisterDialog(props) {
             }}
             helperText={(() => {
               if (status === "passwordTooShort") {
-                return "Create a password at least 6 characters long.";
+                return "Crea una contrseña de al menos un largo de 6 caracteres";
               }
               if (status === "passwordsDontMatch") {
-                return "Your passwords dont match.";
+                return "Tus contraseñas no concuerdan";
               }
               return null;
             })()}
@@ -137,7 +137,7 @@ function RegisterDialog(props) {
             error={
               status === "passwordTooShort" || status === "passwordsDontMatch"
             }
-            label="Repeat Password"
+            label="Repetir contraseña"
             inputRef={registerPasswordRepeat}
             autoComplete="off"
             onChange={() => {
@@ -150,10 +150,10 @@ function RegisterDialog(props) {
             }}
             helperText={(() => {
               if (status === "passwordTooShort") {
-                return "Create a password at least 6 characters long.";
+                return "Crea una contrseña de al menos un largo de 6 caracteres";
               }
               if (status === "passwordsDontMatch") {
-                return "Your passwords dont match.";
+                return "Tus contraseñas no concuerdan";
               }
             })()}
             FormHelperTextProps={{ error: true }}
@@ -173,7 +173,7 @@ function RegisterDialog(props) {
             }
             label={
               <Typography variant="body1">
-                I agree to the
+                Estoy de acuerdo con
                 <span
                   className={classes.link}
                   onClick={isLoading ? null : openTermsDialog}
@@ -190,7 +190,7 @@ function RegisterDialog(props) {
                   }}
                 >
                   {" "}
-                  terms of service
+                  terminos y condiciones
                 </span>
               </Typography>
             }
@@ -203,18 +203,18 @@ function RegisterDialog(props) {
                 marginTop: theme.spacing(-1),
               }}
             >
-              In order to create an account, you have to accept our terms of
-              service.
+              Para poder crear una cuenta, tiene que aceptar
+              los terminos y condiciones
             </FormHelperText>
           )}
           {status === "accountCreated" ? (
             <HighlightedInformation>
-              We have created your account. Please click on the link in the
-              email we have sent to you before logging in.
+              La cuenta ha sido creada, porfavor ingrese desde
+              el mail que se le envio.
             </HighlightedInformation>
           ) : (
             <HighlightedInformation>
-              Registration is disabled until we go live.
+              No se puede registrar aun.
             </HighlightedInformation>
           )}
         </Fragment>
@@ -229,7 +229,7 @@ function RegisterDialog(props) {
           color="secondary"
           disabled={isLoading}
         >
-          Register
+          Registrar
           {isLoading && <ButtonCircularProgress />}
         </Button>
         <Typography
