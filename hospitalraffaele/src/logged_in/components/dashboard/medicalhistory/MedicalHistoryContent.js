@@ -40,8 +40,8 @@ function MedicalHistoryContent(props) {
   showButton = validadorUsuario.esVisible(global.usuarioElegido);
   const {
     pushMessageToSnackbar,
-  //  setPosts,
-  //  posts,
+    //  setPosts,
+    //  posts,
     openAddMedicalHistoryEntryModal,
     classes,
   } = props;
@@ -50,7 +50,7 @@ function MedicalHistoryContent(props) {
   const [isDeleteMedicalHistoryEntryDialogLoading, setIsDeleteMedicalHistoryEntryDialogLoading] = useState(
     false
   );
-  
+
   const patient = {
     name: 'Joana Salas',
     birthday: '19/09/1992',
@@ -81,7 +81,7 @@ function MedicalHistoryContent(props) {
       label: "Observacion"
     },
   ];
-  
+
   const rowsPerPage = 25;
 
   const closeDeleteMedicalHistoryEntryDialog = useCallback(() => {
@@ -89,25 +89,25 @@ function MedicalHistoryContent(props) {
     setIsDeleteMedicalHistoryEntryDialogLoading(false);
   }, [setIsDeleteMedicalHistoryEntryDialogOpen, setIsDeleteMedicalHistoryEntryDialogLoading]);
 
- /* const deletePost = useCallback(() => {
-    setIsDeletePostDialogLoading(true);
-    setTimeout(() => {
-      const _posts = [...posts];
-      const index = _posts.find((element) => element.id === deletePost.id);
-      _posts.splice(index, 1);
-      setPosts(_posts);
-      pushMessageToSnackbar({
-        text: "La receta fue eliminada exitosamente",
-      });
-      closeDeletePostDialog();
-    }, 1500);
-  }, [
-    posts,
-    setPosts,
-    setIsDeletePostDialogLoading,
-    pushMessageToSnackbar,
-    closeDeletePostDialog,
-  ]);*/
+  /* const deletePost = useCallback(() => {
+     setIsDeletePostDialogLoading(true);
+     setTimeout(() => {
+       const _posts = [...posts];
+       const index = _posts.find((element) => element.id === deletePost.id);
+       _posts.splice(index, 1);
+       setPosts(_posts);
+       pushMessageToSnackbar({
+         text: "La receta fue eliminada exitosamente",
+       });
+       closeDeletePostDialog();
+     }, 1500);
+   }, [
+     posts,
+     setPosts,
+     setIsDeletePostDialogLoading,
+     pushMessageToSnackbar,
+     closeDeletePostDialog,
+   ]);*/
 
   const handleChangePage = useCallback(
     (__, page) => {
@@ -141,14 +141,14 @@ function MedicalHistoryContent(props) {
                 ))}
             </TableBody>
           </Table>
-          
+
         </div>
       );
     }
     return (
       <Box m={2}>
         <HighlightedInformation>
-          Sin observaciones. Haga click en <strong>Agregar observación</strong> para crear una entrada. 
+          Sin observaciones. Haga click en <strong>Agregar observación</strong> para crear una entrada.
         </HighlightedInformation>
       </Box>
     );
@@ -157,23 +157,23 @@ function MedicalHistoryContent(props) {
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Historia clínica</Typography>      
-        { showButton ? <Button
+        <Typography variant="h6">Historia clínica</Typography>
+        {showButton ? <Button
           variant="contained"
           color="secondary"
           onClick={openAddMedicalHistoryEntryModal}
           disableElevation
         >
           Agregar observacion
-        </Button> : null }
+        </Button> : null}
       </Toolbar>
       <Divider className={classes.divider} />
-      
+
       <Toolbar className={classes.toolbar}>
-        <Typography>Paciente: {patient.name}</Typography>      
-        <Typography>F. nacimiento: {patient.birthday}</Typography>      
+        <Typography>Paciente: {patient.name}</Typography>
+        <Typography>F. nacimiento: {patient.birthday}</Typography>
         <Typography>Obra social:  {patient.osocial}</Typography>
-        <Typography>Numero:  {patient.osocial_id}</Typography>           
+        <Typography>Numero:  {patient.osocial_id}</Typography>
       </Toolbar>
 
       <Divider className={classes.divider} />

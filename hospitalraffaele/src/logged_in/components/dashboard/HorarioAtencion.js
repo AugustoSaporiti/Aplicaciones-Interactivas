@@ -10,6 +10,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import InputBase from '@material-ui/core/InputBase';
 import VerticalTabs from "./TabsDias"
 import PropTypes from "prop-types";
+import global from "../../../logged_out/components/Global.js";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import validadorUsuario from "../../validadorUsuario.js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -89,6 +93,14 @@ MultipleSelect.propTypes = {
   pushMessageToSnackbar: PropTypes.func
 };
 
+const doctores = [
+  { title: 'Dc. Saporiti', year: 1994 },
+  { title: 'Dc. Sarasa', year: 1994 },
+  { title: 'Dc. Malio', year: 1994 },
+  { title: 'Dc. Guzman', year: 1994 },
+  { title: "Dc. Gargan", year: 1994 },
+];
+
 export default function MultipleSelect(props) {
   const classes = useStyles();
   const [personName, setPersonName] = React.useState([]);
@@ -98,6 +110,15 @@ export default function MultipleSelect(props) {
 
   return (
     <div>
+      {validadorUsuario.esVisibleAdmin(global.usuarioElegido) &&
+        <Autocomplete
+          id="combo-box-demo"
+          options={doctores}
+          getOptionLabel={(option) => option.title}
+          style={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Doctores" variant="outlined" />}
+        />
+      }
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-checkbox-label">Selecione dias de atencion</InputLabel>
         <Select
@@ -118,7 +139,8 @@ export default function MultipleSelect(props) {
           ))}
         </Select>
       </FormControl>
-    <VerticalTabs diasHabilitados={personName}/>
+      <VerticalTabs diasHabilitados={personName} />
+
     </div>
   )
 }

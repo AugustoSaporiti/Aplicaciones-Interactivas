@@ -80,8 +80,21 @@ const esVisible = (value) => {
     return visible;
 };
 
+const esVisibleAdmin = (value) => {
+    var visible = false;
+
+    if (value !== null && value !== undefined) {
+            if (value[0].role === "Admin") {
+                visible = true;
+            }
+    }
+
+    return visible;
+};
+
 
 export default {
     validarUsuario,
-    esVisible
+    esVisible,
+    esVisibleAdmin
 }; 

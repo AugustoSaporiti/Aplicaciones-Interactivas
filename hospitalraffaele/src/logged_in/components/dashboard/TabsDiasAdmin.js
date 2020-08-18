@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles , fade} from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +8,8 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
-
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,9 +54,26 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    }
+  }
 }));
 
-export default function VerticalTabs(props) {
+export default function VerticalTabsAdmin(props) {
   const { diasHabilitados } = props;
 
   const classes = useStyles();
@@ -67,9 +85,8 @@ export default function VerticalTabs(props) {
 
   return (
     <Fragment>
-      
-
       <div className={classes.root}>
+        
         {diasHabilitados.length > 0 && <>
           <Tabs
             orientation="vertical"
@@ -235,7 +252,7 @@ export default function VerticalTabs(props) {
         className={classes.button}
         startIcon={<SaveIcon />}
       >
-        Guardar cambios
+        Guardar cambios admin
       </Button>
     </Fragment >
   );
