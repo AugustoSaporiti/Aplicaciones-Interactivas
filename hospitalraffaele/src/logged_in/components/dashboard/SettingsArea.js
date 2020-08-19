@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Settings1 from "./Turnos";
 import MultipleSelect from "./HorarioAtencion";
 import { Tab, Tabs, Box, Typography } from "@material-ui/core"
-import UserDataArea from "./UserDataArea";
+import UserDataArea from "./ListaPacientes";
 
 
 function TabPanel(props) {

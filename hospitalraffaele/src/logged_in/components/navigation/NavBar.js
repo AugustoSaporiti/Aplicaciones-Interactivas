@@ -180,7 +180,7 @@ function NavBar(props) {
               selectedTab === "Dashboard Paciente" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
-            
+
           />
         ),
         mobile: <DashboardIcon className="text-white" />
@@ -263,16 +263,16 @@ function NavBar(props) {
   ];
 
 
-  const menu = () => {   
+  const menu = () => {
 
-    const datosUsuario  = validadorUsuario.validarUsuario(menuItemsPrueba,global.usuarioElegido);
+    const datosUsuario = validadorUsuario.validarUsuario(menuItemsPrueba, global.usuarioElegido);
 
     validadorUsuario.variableGuardada = datosUsuario;
 
-   return datosUsuario;
+    return datosUsuario;
   }
 
-  const menuItems= menu();
+  const menuItems = menu();
 
 
   return (
@@ -316,7 +316,6 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
