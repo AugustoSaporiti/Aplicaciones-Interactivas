@@ -1,4 +1,4 @@
-import React, { useState, useCallback, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -17,43 +17,9 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import validadorUsuario from "../../validadorUsuario.js";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TablePagination,
-  TableRow,
-  IconButton,
-  Avatar,
-  Box,
-  Paper,
-  List,
-  Toolbar,
-  ListItemText,
-  Button,
-  Divider,
-  TextField,
-  // Link,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  Typography,
-  withStyles,
-  ListItem,
-} from "@material-ui/core";
-import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import EditIcon from "@material-ui/icons/Edit";
-import AddBoxIcon from "@material-ui/icons/AddBox";
+import { Paper, withStyles } from "@material-ui/core";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
-import stableSort from "../../../shared/functions/stableSort";
-import getSorting from "../../../shared/functions/getSorting";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
-import MedicalHistory from "./medicalhistory/MedicalHistory";
-import { Link as LinkR, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import global from "../../../logged_out/components/Global.js";
 
 const tableIcons = {
@@ -107,131 +73,8 @@ const styles = (theme) => ({
   },
 });
 
-const rows = [
-  {
-    id: "icon",
-    numeric: true,
-    label: "",
-  },
-  {
-    id: "name",
-    numeric: false,
-    label: "Nombre",
-  },
-  {
-    id: "lastName",
-    numeric: false,
-    label: "Apellido",
-  },
-  {
-    id: "phoneNumber",
-    numeric: false,
-    label: "Teléfono",
-  },
-  {
-    id: "email",
-    numeric: false,
-    label: "Mail",
-  },
-  {
-    id: "actions",
-    numeric: false,
-    label: "Acciones",
-  },
-];
-
-const rowsPerPage = 25;
-
 function CustomTable(props) {
-  const { pushMessageToSnackbar,
-    classes,
-    targets,
-    setTargets
-  } = props;
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState(null);
-  const [page, setPage] = useState(0);
-  const [isDeleteTargetDialogOpen, setIsDeleteTargetDialogOpen] = useState(
-    false
-  );
-  const [deleteTargetDialogRow, setDeleteTargetDialogRow] = useState(null);
-  const [isDeleteTargetLoading, setIsDeleteTargetLoading] = useState(false);
-
-  const handleRequestSort = useCallback(
-    (__, property) => {
-      const _orderBy = property;
-      let _order = "desc";
-      if (orderBy === property && order === "desc") {
-        _order = "asc";
-      }
-      setOrder(_order);
-      setOrderBy(_orderBy);
-    },
-    [setOrder, setOrderBy, order, orderBy]
-  );
-
-  const deleteTarget = useCallback(() => {
-    setIsDeleteTargetLoading(true);
-    setTimeout(() => {
-      setIsDeleteTargetDialogOpen(false);
-      setIsDeleteTargetLoading(false);
-      const _targets = [...targets];
-      const index = _targets.findIndex(
-        (element) => element.id === deleteTargetDialogRow.id
-      );
-      _targets.splice(index, 1);
-      setTargets(_targets);
-      pushMessageToSnackbar({
-        text: "Paciente elminado",
-      });
-    }, 1500);
-  }, [
-    setIsDeleteTargetDialogOpen,
-    setIsDeleteTargetLoading,
-    pushMessageToSnackbar,
-    setTargets,
-    deleteTargetDialogRow,
-    targets,
-  ]);
-
-  const handleChangePage = useCallback(
-    (_, page) => {
-      setPage(page);
-    },
-    [setPage]
-  );
-
-  const handleDeleteTargetDialogClose = useCallback(() => {
-    setIsDeleteTargetDialogOpen(false);
-  }, [setIsDeleteTargetDialogOpen]);
-
-  const handleDeleteTargetDialogOpen = useCallback(
-    (row) => {
-      setIsDeleteTargetDialogOpen(true);
-      setDeleteTargetDialogRow(row);
-    },
-    [setIsDeleteTargetDialogOpen, setDeleteTargetDialogRow]
-  );
-
-  const toggleTarget = useCallback(
-    (row) => {
-      const _targets = [...targets];
-      const index = _targets.findIndex((element) => element.id === row.id);
-      row.isActivated = !row.isActivated;
-      _targets[index] = row;
-      if (row.isActivated) {
-        pushMessageToSnackbar({
-          text: "Linea activada",
-        });
-      } else {
-        pushMessageToSnackbar({
-          text: "Linea desactivada",
-        });
-      }
-      setTargets(_targets);
-    },
-    [pushMessageToSnackbar, targets, setTargets]
-  );
+  const { targets } = props;
 
   const [state, setState] = React.useState({
     columns: [
