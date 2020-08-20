@@ -13,7 +13,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
-import UserDataArea from "../dashboard/ListaPacientes";
+import UserDataArea from "./ListaPacientes";
 
 const styles = (theme) => ({
   floatButtonWrapper: {
