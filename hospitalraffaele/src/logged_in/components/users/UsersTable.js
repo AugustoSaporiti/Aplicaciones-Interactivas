@@ -17,9 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import validadorUsuario from "../../validadorUsuario.js";
 import { Paper, withStyles } from "@material-ui/core";
-import global from "../../../logged_out/components/Global.js";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),

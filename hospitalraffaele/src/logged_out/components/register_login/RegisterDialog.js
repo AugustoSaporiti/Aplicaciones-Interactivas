@@ -97,6 +97,16 @@ function RegisterDialog(props) {
             }}
             FormHelperTextProps={{ error: true }}
           />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="DNI"
+            autoFocus
+            autoComplete="off"
+            type="text"
+          />
           <VisibilityPasswordTextField
             variant="outlined"
             margin="normal"
