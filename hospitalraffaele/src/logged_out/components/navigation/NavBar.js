@@ -61,11 +61,6 @@ function NavBar(props) {
       name: "Quienes Somos",
       icon: <EventIcon className="text-white" />
     },
-    {
-      name: "Turnos",
-      onClick: openLoginDialog,
-      icon: <EventIcon className="text-white" />
-    },
     // {
     //   link: "/blog",
     //   name: "Blog",

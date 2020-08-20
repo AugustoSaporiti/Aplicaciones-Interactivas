@@ -31,13 +31,13 @@ function SettingsArea(props) {
   const {
     targets,
     setTargets,
+    pushMessageToSnackbar,
   } = props;
 
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   }
-  const { pushMessageToSnackbar } = props;
   console.log(targets)
   return (
     <Fragment>

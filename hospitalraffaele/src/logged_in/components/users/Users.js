@@ -40,7 +40,10 @@ function Users(props) {
     classes,
     openAddUserDialog,
     openAddRoleDialog,
-    selectUsers
+    selectUsers,
+    targets,
+    setTargets,
+    pushMessageToSnackbar,
   } = props;
 
   useEffect(selectUsers, [selectUsers]);
@@ -64,13 +67,18 @@ function Users(props) {
         <Tab label="Roles" >
         </Tab>
       </Tabs>
-    
-    <TabPanel value={value} index={0}>
+
+      <TabPanel value={value} index={0}>
         <Paper>
           <List disablePadding>
             <UsersInfo openAddUserDialog={openAddUserDialog} />
             <Divider className={classes.divider} />
-            <UsersTable userList={userList} />
+            <UsersTable
+              userList={userList}
+              pushMessageToSnackbar={pushMessageToSnackbar}
+              targets={targets}
+              setTargets={setTargets}
+            />
           </List>
         </Paper>
       </TabPanel>
@@ -83,7 +91,7 @@ function Users(props) {
           </List>
         </Paper>
       </TabPanel>
-    
+
     </Fragment>
   );
 }
