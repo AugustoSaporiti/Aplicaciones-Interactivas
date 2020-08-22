@@ -5,7 +5,6 @@ import { Tab, Tabs, Box, Typography } from "@material-ui/core"
 import UsersTable from "./UsersTable";
 import UsersInfo from "./UsersInfo";
 import RoleTable from "./RoleTable";
-import RoleInfo from "./RoleInfo";
 
 const styles = {
   divider: {

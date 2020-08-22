@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core";
 import MaterialTable from 'material-table';
@@ -17,7 +17,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { lastDayOfDecade } from "date-fns";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -67,16 +66,20 @@ const styles = theme => ({
 
 function RoleTable(props) {
   const { roleList, classes } = props;
+  const [count, setCount] = useState(roleList.length);
 
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     columns: [
       {
         title: 'Rol',
-        field: 'role'
+        field: 'role',
+        validate: ({ role }) => role?.trim().length > 0
       },
       {
         title: 'ID',
-        field: 'id'
+        field: 'id',
+        editable: 'never',
+        initialEditValue: count
       },
     ],
     data:
@@ -97,12 +100,15 @@ function RoleTable(props) {
         data={state.data}
         options={{
           actionsColumnIndex: -1,
-
+          
         }}
         localization={{ body: { editRow: { deleteText: 'Estas seguro de eliminar este rol?' } } }}
         editable={{
+          isDeleteHidden: rowData => rowData.role === 'Admin',
+          isEditHidden: rowData => rowData.role === 'Admin',
           onRowAdd: (newData) =>
             new Promise((resolve) => {
+              setCount(count + 1)
               setTimeout(() => {
                 resolve();
                 setState((prevState) => {

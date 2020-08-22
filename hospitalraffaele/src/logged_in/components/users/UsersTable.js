@@ -77,19 +77,24 @@ function UsersTable(props) {
     columns: [
       {
         title: 'Nombre',
-        field: 'name'
+        field: 'name',
+        validate: ({ name }) => name?.trim().length > 2
       },
       {
         title: 'Apellido',
-        field: 'surname'
+        field: 'surname',
+        validate: ({ surname }) => surname?.trim().length > 2
       },
       {
         title: 'DNI',
-        field: 'dni'
+        field: 'dni',
+        validate: ({ dni }) =>
+          !isNaN(dni) && dni?.trim().length > 5
       },
       {
         title: 'Rol',
-        field: 'role'
+        field: 'role',
+        validate: ({ role }) => role?.trim().length > 0
       },
       {
         title: 'Mail',

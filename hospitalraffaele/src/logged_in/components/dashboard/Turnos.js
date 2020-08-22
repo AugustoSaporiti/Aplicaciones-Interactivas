@@ -40,14 +40,25 @@ const tableIcons = {
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Nombre', field: 'name' },
-      { title: 'Apellido', field: 'surname' },
+      {
+        title: 'Nombre',
+        field: 'name',
+        validate: ({ name }) => name?.trim().length > 3,
+      },
+      {
+        title: 'Apellido',
+        field: 'surname',
+        validate: ({ surname }) => surname?.trim().length > 4
+      },
       {
         title: 'Doctor',
         field: 'Doctorfield',
         lookup: { 20: 'Sarasa', 10: 'Tomas' },
       },
-      { title: 'Fecha', field: 'birthYear' },
+      {
+        title: 'Fecha',
+        field: 'birthYear'
+      },
       {
         title: 'Horario',
         field: 'birthCity',
