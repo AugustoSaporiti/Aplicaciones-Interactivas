@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -17,8 +17,6 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Paper, withStyles } from "@material-ui/core";
-import { useHistory } from 'react-router-dom';
-import CheckIcon from '@material-ui/icons/Check';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -103,7 +101,7 @@ function CustomTable(props) {
         }
       })
   });
-  const history = useHistory();
+  const [seleccionado, setSeleccionado] = useState(undefined);
 
   return (
     <Paper>
@@ -114,17 +112,23 @@ function CustomTable(props) {
         data={state.data}
         options={{
           actionsColumnIndex: -1,
+          selection: true,
+          detailPanelType: "single",
+          showSelectAllCheckbox: false,
+          showTextRowsSelected: false,
+          selectionProps: rowData => ({
+            disabled: rowData !== seleccionado && seleccionado !== undefined,
+            color: 'primary'
+          })
         }}
-        actions={[
-          {
-            icon: CheckIcon,
-            tooltip: 'Historia clinica',
-            onClick: (event, rowData) => {
-              // Do save operation
-              history.push("/c/historia-clinica")
-            }
+        onSelectionChange={(rows) => {
+          if (rows.length === 0){
+            setSeleccionado(undefined);
           }
-        ]}
+          else{
+            setSeleccionado(rows[0])
+          }
+        }}
       />
     </Paper>
   );

@@ -33,12 +33,12 @@ function AddPost(props) {
       if (acceptedFiles.length + rejectedFiles.length > 1) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "You cannot upload more than one file at once",
+          text: "Solo se puede subir un archivo.",
         });
       } else if (acceptedFiles.length === 0) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "The file you wanted to upload isn't an image",
+          text: "El archivo que querias subir no era una imagen",
         });
       } else if (acceptedFiles.length === 1) {
         const file = acceptedFiles[0];
@@ -73,7 +73,7 @@ function AddPost(props) {
     setLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your post has been uploaded",
+        text: "Tu receta se subio con exito.",
       });
       onClose();
     }, 1500);
