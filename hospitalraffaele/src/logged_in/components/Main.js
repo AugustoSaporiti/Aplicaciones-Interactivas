@@ -490,6 +490,7 @@ function Main(props) {
           selectUsers={selectUsers}
           openAddBalanceDialog={openAddBalanceDialog}
           openAddUserDialog={openAddUserDialog}
+          openAddRoleDialog={openAddRoleDialog}
           setTargets={setTargets}
           setPosts={setPosts}
         />

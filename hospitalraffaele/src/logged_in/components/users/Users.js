@@ -85,8 +85,6 @@ function Users(props) {
       <TabPanel value={value} index={1}>
         <Paper>
           <List disablePadding>
-            <RoleInfo openAddRoleDialog={openAddRoleDialog} />
-            <Divider className={classes.divider} />
             <RoleTable roleList={roleList} />
           </List>
         </Paper>
