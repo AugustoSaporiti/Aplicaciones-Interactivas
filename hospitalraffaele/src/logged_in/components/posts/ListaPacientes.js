@@ -111,6 +111,7 @@ function CustomTable(props) {
         columns={state.columns}
         data={state.data}
         options={{
+          
           actionsColumnIndex: -1,
           selection: true,
           detailPanelType: "single",

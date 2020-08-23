@@ -10,6 +10,7 @@ import PostsPaciente from "./postsPaciente/Posts"
 import Subscription from "./subscription/Subscription";
 import Users from "./users/Users";
 import PropsRoute from "../../shared/components/PropsRoute";
+import CambiarContraseña from "./navigation/CambiarContraseña"
 
 const styles = (theme) => ({
   wrapper: {
@@ -131,9 +132,15 @@ function Routing(props) {
           isAccountActivated={isAccountActivated}
           selectDashboard={selectDashboard}
         />
-          <PropsRoute
+        <PropsRoute
           path="/c/historia-clinica"
           component={MedicalHistory}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+     //     openAddUserDialog={openAddUserDialog}
+        />
+        <PropsRoute
+          path="/c/navigation/CambiarContraseña"
+          component={CambiarContraseña}
           pushMessageToSnackbar={pushMessageToSnackbar}
      //     openAddUserDialog={openAddUserDialog}
         />

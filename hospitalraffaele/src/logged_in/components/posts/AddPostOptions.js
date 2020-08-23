@@ -163,7 +163,6 @@ function AddPostOptions(props) {
               variant="outlined"
             />
           </ListItem>
-
         </Bordered>
       </List>
       <UserDataArea

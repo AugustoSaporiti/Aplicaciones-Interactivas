@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, Fragment } from "react";
 import PropTypes from "prop-types";
+import { useHistory } from 'react-router-dom';
 import {
   Grid,
   TablePagination,
@@ -154,6 +155,8 @@ function MedicalHistoryContent(props) {
     );
   }, [posts, page]);
 
+  const history = useHistory();
+
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
@@ -198,6 +201,11 @@ function MedicalHistoryContent(props) {
         }}
         labelRowsPerPage=""
       />
+      <Fragment>
+        <Button style={{float: 'right'}} color="primary" variant="contained" onClick={() => history.push("/c/dashboard")}>
+          Atras
+      </Button>
+      </Fragment>
     </Paper>
   );
 }
