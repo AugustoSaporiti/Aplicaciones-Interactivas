@@ -158,7 +158,12 @@ function SideDrawer(props) {
             }),
         }}
       />
-      <Button variant="outlined" color="secondary" onClick={() => history.push("/c/navigation/CambiarContraseña")}>
+      <Button 
+      variant="outlined" 
+      color="secondary"
+       onClick={() => {history.push("/c/navigation/CambiarContraseña")
+       onClose()
+       }}>
         Cambiar contraseña
       </Button>
     </Drawer>

@@ -146,9 +146,6 @@ function AddPostOptions(props) {
           />
         )}
       </Box>
-      <Typography paragraph variant="h6">
-        Opciones
-      </Typography>
       <List disablePadding>
         <Bordered disableVerticalPadding disableBorderRadius>
           <ListItem divider disableGutters className="listItemLeftPadding">
