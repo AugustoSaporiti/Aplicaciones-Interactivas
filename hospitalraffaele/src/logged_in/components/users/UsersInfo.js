@@ -9,10 +9,14 @@ const styles = {
 };
 
 function UsersInfo(props) {
-  const { classes, openAddUserDialog } = props;
+  const {
+    classes,
+    openAddUserDialog
+  } = props;
+  
   return (
     <Toolbar className={classes.toolbar}>
-      <ListItemText primary="Usuarios" />
+      <ListItemText primary="" />
       <Button
         variant="contained"
         color="secondary"

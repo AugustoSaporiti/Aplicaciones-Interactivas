@@ -9,14 +9,18 @@ const styles = {
 };
 
 function RoleInfo(props) {
-  const { classes, openAddRoleDialog } = props;
+  const {
+    classes,
+    openAddRoleDialog
+  } = props;
+  
   return (
     <Toolbar className={classes.toolbar}>
       <ListItemText primary="Roles" />
       <Button
         variant="contained"
         color="secondary"
-       // onClick={openAddRoleDialog}
+        // onClick={openAddRoleDialog}
         disableElevation
       >
         Crear nuevo
@@ -27,7 +31,7 @@ function RoleInfo(props) {
 
 RoleInfo.propTypes = {
   classes: PropTypes.object.isRequired,
- // openAddRoleDialog: PropTypes.func.isRequired
+  // openAddRoleDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(RoleInfo);

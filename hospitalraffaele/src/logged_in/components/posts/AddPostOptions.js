@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback } from "react";
 import PropTypes from "prop-types";
+import TextField from '@material-ui/core/TextField';
 import {
   Typography,
   IconButton,
@@ -13,7 +14,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
-import UserDataArea from "../../../logged_in/components/dashboard/UserDataArea";
+import UserDataArea from "./ListaPacientes";
 
 const styles = (theme) => ({
   floatButtonWrapper: {
@@ -70,6 +71,8 @@ const styles = (theme) => ({
     display: "none",
   },
 });
+
+const fecha = new Date();
 
 function AddPostOptions(props) {
   const {
@@ -143,27 +146,20 @@ function AddPostOptions(props) {
           />
         )}
       </Box>
-      <Typography paragraph variant="h6">
-        Opciones
-      </Typography>
       <List disablePadding>
         <Bordered disableVerticalPadding disableBorderRadius>
           <ListItem divider disableGutters className="listItemLeftPadding">
             <ListItemText>
-              <Typography variant="body2">Ingrese fecha</Typography>
+              <Typography variant="body2">Fecha actual</Typography>
             </ListItemText>
-            <ListItemSecondaryAction>
-              {DateTimePicker && (
-                <DateTimePicker
-                  value={uploadAt}
-                  format="yyyy/MM/dd hh:mm a"
-                  onChange={onChangeUploadAt}
-                  disablePast
-                />
-              )}
-            </ListItemSecondaryAction>
+            <TextField
+              disabled
+              id="outlined-disabled"
+              label="Fecha"
+              defaultValue={fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear()}
+              variant="outlined"
+            />
           </ListItem>
-
         </Bordered>
       </List>
       <UserDataArea

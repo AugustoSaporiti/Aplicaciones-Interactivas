@@ -212,22 +212,30 @@ function Main(props) {
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
     const userTemplates = [
       {
-        name: "Pepita Gomez",
+        name: "Pepita",
+        surname: "Gomez",
+        dni: "222222222",
         email: "pepita@test.com",
         role: "Admin",
       },
       {
-        name: "Sandro Perez",
+        name: "Sandro",
+        surname: "Perez",
+        dni: "888888888",
         email: "sandro@test.com",
         role: "Doctor",
       },
       {
-        name: "Lauro Lopez",
+        name: "Lauro",
+        surname: "Lopez",
+        dni: "333333333",
         email: "lauro@test.com",
         role: "Secretario",
       },
       {
         name: "Susana Aguirre",
+        surname: "Aguirre",
+        dni: "111111111111",
         email: "susana@test.com",
         role: "Secretario",
       },
@@ -240,6 +248,8 @@ function Main(props) {
       const user = {
         id: i,
         name: randomUserTemplate.name,
+        surname: randomUserTemplate.surname,
+        dni: randomUserTemplate.dni,
         email: randomUserTemplate.email,
         role: randomUserTemplate.role,
         timestamp: curUnix,
@@ -480,6 +490,7 @@ function Main(props) {
           selectUsers={selectUsers}
           openAddBalanceDialog={openAddBalanceDialog}
           openAddUserDialog={openAddUserDialog}
+          openAddRoleDialog={openAddRoleDialog}
           setTargets={setTargets}
           setPosts={setPosts}
         />

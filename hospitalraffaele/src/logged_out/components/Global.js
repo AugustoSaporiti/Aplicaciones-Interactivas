@@ -1,24 +1,28 @@
 const usuarioRoles = [
     {
-      name: "Pepita Gomez",
+      name: "Pepita",
+      surname: "Gomez",
       email: "pepita@test.com",
       role: "Admin",
       pass: "admin"
     },
     {
-      name: "Sandro Perez",
+      name: "Sandro",
+      surname: "Perez",
       email: "sandro@test.com",
       role: "Doctor",
       pass: "doctor"
     },
     {
-      name: "Lauro Lopez",
+      name: "Lauro",
+      surname: "Lopez",
       email: "lauro@test.com",
       role: "Secretario",
       pass: "secretario"
     },
     {
-      name: "Susana Aguirre",
+      name: "Susana",
+      surname: "Aguirre",
       email: "susana@test.com",
       role: "Paciente",
       pass: "paciente"

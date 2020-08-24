@@ -52,10 +52,8 @@ const roles = [
   }
 ];
 
-const roleDefault = 0; // Admin
-
 function AddUserDialog(props) {
-  const { setStatus, theme, onClose, status, classes } = props;
+  const { setStatus, theme, onClose, status, classes, open } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerPassword = useRef();
@@ -83,7 +81,7 @@ function AddUserDialog(props) {
     <FormDialog
       loading={isLoading}
       onClose={onClose}
-      open
+      open={open}
       headline="Nuevo usuario"
       onFormSubmit={(e) => {
         e.preventDefault();
@@ -98,7 +96,17 @@ function AddUserDialog(props) {
             margin="normal"
             required
             fullWidth
-            label="Nombre completo"
+            label="Nombre"
+            autoFocus
+            autoComplete="off"
+            type="text"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Apellido"
             autoFocus
             autoComplete="off"
             type="text"
@@ -109,7 +117,7 @@ function AddUserDialog(props) {
             required
             fullWidth
             error={status === "invalidEmail"}
-            label="Dirección de mail"
+            label="Mail"
             autoComplete="off"
             type="email"
             onChange={() => {
@@ -125,8 +133,7 @@ function AddUserDialog(props) {
             required
             variant="outlined"
             label="Rol"
-            value={roleDefault}
-           // onChange={handleChange}
+          // onChange={handleChange}
           >
             {roles.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -134,6 +141,16 @@ function AddUserDialog(props) {
               </MenuItem>
             ))}
           </TextField>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="DNI"
+            autoFocus
+            autoComplete="off"
+            type="text"
+          />
           <VisibilityPasswordTextField
             variant="outlined"
             margin="normal"
@@ -202,26 +219,26 @@ function AddUserDialog(props) {
               La cuenta ha sido creada.
             </HighlightedInformation>
           ) : (
-            <HighlightedInformation>
-              Registration is disabled until we go live.
-            </HighlightedInformation>
-          )}
+              <HighlightedInformation>
+                Todavia no se puede registrar.
+              </HighlightedInformation>
+            )}
         </Fragment>
       }
       actions={
-      <Fragment>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          size="large"
-          color="secondary"
-          disabled={isLoading}
-        >
-          Crear
+        <Fragment>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            size="large"
+            color="secondary"
+            disabled={isLoading}
+          >
+            Crear
           {isLoading && <ButtonCircularProgress />}
-        </Button>
-      </Fragment>
+          </Button>
+        </Fragment>
       }
     />
   );

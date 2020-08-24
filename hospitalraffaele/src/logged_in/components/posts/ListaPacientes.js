@@ -1,6 +1,5 @@
 import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -17,6 +16,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Paper, withStyles } from "@material-ui/core";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -38,84 +38,81 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const styles = theme => ({
+const styles = (theme) => ({
   tableWrapper: {
     overflowX: "auto",
-    width: "100%"
   },
-  blackBackground: {
-    backgroundColor: theme.palette.primary.main
+  alignRight: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    paddingLeft: theme.spacing(2),
   },
-  contentWrapper: {
-    padding: theme.spacing(3),
-    [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(2)
-    },
-    width: "100%"
+  blackIcon: {
+    color: theme.palette.common.black,
   },
-  dBlock: {
-    display: "block !important"
-  },
-  dNone: {
-    display: "none !important"
+  avatar: {
+    width: 28,
+    height: 28,
   },
   firstData: {
-    paddingLeft: theme.spacing(3)
-  }
+    paddingLeft: theme.spacing(3),
+  },
+  iconButton: {
+    padding: theme.spacing(1),
+  },
+  dBlock: {
+    display: "block",
+  },
+  dNone: {
+    display: "none",
+  },
 });
 
-function RoleTable(props) {
-  const { roleList, classes } = props;
-  const [count, setCount] = useState(roleList.length);
+function CustomTable(props) {
+  const { targets } = props;
 
-  const [state, setState] = useState({
+  const [state, setState] = React.useState({
     columns: [
       {
-        title: 'Rol',
-        field: 'role',
-        validate: ({ role }) => role?.trim().length > 0
+        title: 'Nombre',
+        field: 'name'
       },
       {
-        title: 'ID',
-        field: 'id',
-        editable: 'never',
-        initialEditValue: count
+        title: 'Apellido',
+        field: 'surname'
+      },
+      {
+        title: 'Telefono',
+        field: 'telefono',
+      },
+      {
+        title: 'Mail',
+        field: 'mail'
       },
     ],
     data:
-      roleList.map(v => {
+      targets.map(v => {
         return {
-          role: v.name,
-          id: v.id,
+          name: v.name,
+          surname: v.lastName,
+          telefono: v.phoneNumber,
+          mail: v.email,
         }
       })
   });
+  const [seleccionado, setSeleccionado] = useState(undefined);
 
   return (
-    <div className={classes.tableWrapper}>
+    <Paper>
       <MaterialTable
         icons={tableIcons}
-        title="Roles"
+        title="Pacientes"
         columns={state.columns}
         data={state.data}
-        options={{
-          actionsColumnIndex: -1,
-          
-        }}
         localization={{
           body: {
             emptyDataSourceMessage: 'No hay datos por mostrar',
-            addTooltip: 'Añadir',
-            deleteTooltip: 'Eliminar',
-            editTooltip: 'Editar',
-            editRow: {
-              deleteText: '¿Segura(o) que quiere eliminar este rol?',
-              cancelTooltip: 'Cancelar',
-              saveTooltip: 'Guardar',
-            },
-          },
-          header: {
-            actions: 'Acciones',
           },
           toolbar: {
             searchPlaceholder: 'Buscar',
@@ -135,55 +132,36 @@ function RoleTable(props) {
             previousTooltip: 'Pagina anterior',
           },
         }}
-        editable={{
-          isDeleteHidden: rowData => rowData.role === 'Admin',
-          isEditHidden: rowData => rowData.role === 'Admin',
-          onRowAdd: (newData) =>
-            new Promise((resolve) => {
-              setCount(count + 1)
-              setTimeout(() => {
-                resolve();
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
-              }, 600);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                if (oldData) {
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
-                }
-              }, 600);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
-              }, 600);
-            }),
+        options={{
+          
+          actionsColumnIndex: -1,
+          selection: true,
+          detailPanelType: "single",
+          showSelectAllCheckbox: false,
+          showTextRowsSelected: false,
+          selectionProps: rowData => ({
+            disabled: rowData !== seleccionado && seleccionado !== undefined,
+            color: 'primary'
+          })
+        }}
+        onSelectionChange={(rows) => {
+          if (rows.length === 0){
+            setSeleccionado(undefined);
+          }
+          else{
+            setSeleccionado(rows[0])
+          }
         }}
       />
-    </div>
+    </Paper>
   );
 }
 
-RoleTable.propTypes = {
-  theme: PropTypes.object.isRequired,
+CustomTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  roleList: PropTypes.arrayOf(PropTypes.object).isRequired
+  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTargets: PropTypes.func.isRequired,
+  pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withStyles(styles, { withTheme: true })(RoleTable);
+export default withStyles(styles, { withTheme: true })(CustomTable);

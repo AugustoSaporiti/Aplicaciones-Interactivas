@@ -16,60 +16,71 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import HeadSection from "../../../logged_out/components/home/HeadSection";
 
 const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-  };
+  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+  DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+  Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+  ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+  SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+  ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
 
-  export default function MaterialTableDemo() {
-    const [state, setState] = React.useState({
-      columns: [
-        { title: 'Nombre', field: 'name' },
-        { title: 'Apellido', field: 'surname' },
-        {
-          title: 'Doctor',
-          field: 'Doctorfield',
-          lookup: { 20: 'Sarasa', 10: 'Tomas' },
-        },
-        { title: 'Fecha', field: 'birthYear' },
-        {
-          title: 'Horario',
-          field: 'birthCity',
-          lookup: { 34: '11:30', 63: '12:30' },
-        },
-      ],
-      data: [
-        { name: 'Mehmet',
-         surname: 'Baran',
-         Doctorfield: 10, 
-         birthYear: "19/11/2020", 
-         birthCity: 63 
-        },
-        {
-          name: 'Zerya Betül',
-          surname: 'Baran',
-          Doctorfield: 20,
-          birthYear: "17/12/2020",
-          birthCity: 34,
-        },
-      ],
-    });
+export default function MaterialTableDemo() {
+  const [state, setState] = React.useState({
+    columns: [
+      {
+        title: 'Nombre',
+        field: 'name',
+      },
+      {
+        title: 'Apellido',
+        field: 'surname',
+      },
+      {
+        title: 'Doctor',
+        field: 'Doctorfield',
+        lookup: { 20: 'Sarasa', 10: 'Tomas' },
+      },
+      {
+        title: 'Fecha',
+        field: 'birthYear'
+      },
+      {
+        title: 'Horario',
+        field: 'birthCity',
+        lookup: { 34: '11:30', 63: '12:30' },
+      },
+    ],
+    data: [
+      {
+        name: 'Mehmet',
+        surname: 'Baran',
+        Doctorfield: 10,
+        birthYear: "19/11/2020",
+        birthCity: 63
+      },
+      {
+        name: 'Zerya Betül',
+        surname: 'Baran',
+        Doctorfield: 20,
+        birthYear: "17/12/2020",
+        birthCity: 34,
+      },
+    ],
+  });
 
   return (
     <MaterialTable
@@ -77,6 +88,42 @@ const tableIcons = {
       title="Turnos"
       columns={state.columns}
       data={state.data}
+      localization={{
+        body: {
+          emptyDataSourceMessage: 'No hay datos por mostrar',
+          addTooltip: 'Añadir',
+          deleteTooltip: 'Eliminar',
+          editTooltip: 'Editar',
+          editRow: {
+            deleteText: '¿Segura(o) que quiere eliminar este turno?',
+            cancelTooltip: 'Cancelar',
+            saveTooltip: 'Guardar',
+          },
+        },
+        header: {
+          actions: 'Acciones',
+        },
+        toolbar: {
+          searchPlaceholder: 'Buscar',
+          searchTooltip: 'Buscar',
+        },
+        pagination: {
+          firstAriaLabel: 'Primera página',
+          firstTooltip: 'Primera página',
+          labelDisplayedRows: '{from}-{to} de {count}',
+          labelRowsPerPage: 'Filas por página:',
+          labelRowsSelect: 'filas',
+          lastAriaLabel: 'Ultima página',
+          lastTooltip: 'Ultima página',
+          nextAriaLabel: 'Pagina siguiente',
+          nextTooltip: 'Pagina siguiente',
+          previousAriaLabel: 'Pagina anterior',
+          previousTooltip: 'Pagina anterior',
+        },
+      }}
+      options={{
+        actionsColumnIndex: -1,
+      }}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {

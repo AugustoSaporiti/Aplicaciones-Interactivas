@@ -43,12 +43,12 @@ function AddMedicalHistoryEntry(props) {
       if (acceptedFiles.length + rejectedFiles.length > 1) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "You cannot upload more than one file at once",
+          text: "No podes subir mas de un archivo a la vez.",
         });
       } else if (acceptedFiles.length === 0) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "The file you wanted to upload isn't an image",
+          text: "El archivo que quieres subir no es una imagen.",
         });
       } else if (acceptedFiles.length === 1) {
         const file = acceptedFiles[0];
@@ -83,7 +83,7 @@ function AddMedicalHistoryEntry(props) {
     setLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your post has been uploaded",
+        text: "Tu observacion se subio correctamente",
       });
       onClose();
     }, 1500);

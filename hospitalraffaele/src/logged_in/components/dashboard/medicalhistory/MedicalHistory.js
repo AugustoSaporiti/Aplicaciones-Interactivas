@@ -25,7 +25,7 @@ function MedicalHistory(props) {
     setIsAddMedicalHistoryEntryPaperOpen(false);
   }, [setIsAddMedicalHistoryEntryPaperOpen]);
 
-console.log(props);
+
   if (isAddPostPaperOpen) {
     return <AddMedicalHistoryEntry
       onClose={closeAddMedicalHistoryEntryModal}
@@ -38,8 +38,6 @@ console.log(props);
   }
   return <MedicalHistoryContent
     openAddMedicalHistoryEntryModal={openAddMedicalHistoryEntryModal}
-  //  posts={posts}
-  //  setPosts={setPosts}
     pushMessageToSnackbar={pushMessageToSnackbar}
   />
 }

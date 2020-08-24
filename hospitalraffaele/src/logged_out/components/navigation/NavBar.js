@@ -56,23 +56,18 @@ function NavBar(props) {
       name: "Inicio",
       icon: <HomeIcon className="text-white" />
     },
-        {
-          link: "/QuienesSomos",
+    {
+      link: "/QuienesSomos",
       name: "Quienes Somos",
       icon: <EventIcon className="text-white" />
     },
-    {
-       name: "Turnos",
-       onClick: openLoginDialog,
-       icon: <EventIcon className="text-white" />
-     },
     // {
     //   link: "/blog",
     //   name: "Blog",
     //   icon: <BookIcon className="text-white" />
     // },
     {
-      name: "Register",
+      name: "Registrarse",
       onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />
     },
@@ -101,7 +96,7 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              SanRaffaele
+              Raffaele
             </Typography>
           </div>
           <div>

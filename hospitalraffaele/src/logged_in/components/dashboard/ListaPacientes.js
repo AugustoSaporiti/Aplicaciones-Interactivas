@@ -1,16 +1,6 @@
-import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import {
-  Drawer,
-  IconButton,
-  Toolbar,
-  Box,
-  withStyles
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import MaterialTable from "material-table";
+import PropTypes from "prop-types";
+import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -26,8 +16,11 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Button from '@material-ui/core/Button';
+import validadorUsuario from "../../validadorUsuario.js";
+import { Paper, withStyles } from "@material-ui/core";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import { useHistory } from 'react-router-dom';
+import global from "../../../logged_out/components/Global.js";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -49,98 +42,87 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const drawerWidth = 350;
-
-const styles = {
-  toolbar: {
-    minWidth: drawerWidth
-  }
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 350,
-    backgroundColor: theme.palette.background.paper,
+const styles = (theme) => ({
+  tableWrapper: {
+    overflowX: "auto",
   },
-}));
+  alignRight: {
+    display: "flex",
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    paddingLeft: theme.spacing(2),
+  },
+  blackIcon: {
+    color: theme.palette.common.black,
+  },
+  avatar: {
+    width: 28,
+    height: 28,
+  },
+  firstData: {
+    paddingLeft: theme.spacing(3),
+  },
+  iconButton: {
+    padding: theme.spacing(1),
+  },
+  dBlock: {
+    display: "block",
+  },
+  dNone: {
+    display: "none",
+  },
+});
 
-function SideDrawer(props) {
-
-  const {
-    classes,
-    onClose,
-    open
-  } = props;
+function CustomTable(props) {
+  const { targets } = props;
 
   const [state, setState] = React.useState({
     columns: [
       {
-        title: '',
-        field: 'name',
-        editable: 'never',
+        title: 'Nombre',
+        field: 'name'
       },
       {
-        title: 'Datos',
-        field: 'datos'
+        title: 'Apellido',
+        field: 'surname'
+      },
+      {
+        title: 'Telefono',
+        field: 'telefono',
+      },
+      {
+        title: 'Mail',
+        field: 'mail'
       },
     ],
-    data: [
-      {
-        name: 'Nombre',
-        datos: 'Augusto',
-      },
-      {
-        name: 'Apellido',
-        datos: 'Saporiti',
-      },
-      {
-        name: 'DNI',
-        datos: '123123312',
-      },
-      {
-        name: 'Mail',
-        datos: 'test@test.com',
-      },
-      {
-        name: 'Telefono',
-        datos: '5491100000',
-      },
-    ],
+    data:
+      targets.map(v => {
+        return {
+          name: v.name,
+          surname: v.lastName,
+          telefono: v.phoneNumber,
+          mail: v.email,
+        }
+      })
   });
   const history = useHistory();
 
-
   return (
-    <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
-      <Toolbar disableGutters className={classes.toolbar}>
-        <Box
-          pl={3}
-          pr={3}
-          display="flex"
-          justifyContent="space-between"
-          width="100%"
-          alignItems="center"
-        >
-          <IconButton
-            onClick={onClose}
-            color="primary"
-            aria-label="Close Sidedrawer"
-          >
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </Toolbar>
-      <Divider />
+    <Paper>
       <MaterialTable
         icons={tableIcons}
+        title="Pacientes"
         columns={state.columns}
-        title="Datos personales"
         data={state.data}
+        options={{ actionsColumnIndex: -1 }}
         localization={{
           body: {
+            emptyDataSourceMessage: 'No hay datos por mostrar',
+            addTooltip: 'Añadir',
+            deleteTooltip: 'Eliminar',
             editTooltip: 'Editar',
             editRow: {
+              deleteText: '¿Segura(o) que quiere eliminar este paciente?',
               cancelTooltip: 'Cancelar',
               saveTooltip: 'Guardar',
             },
@@ -148,13 +130,35 @@ function SideDrawer(props) {
           header: {
             actions: 'Acciones',
           },
+          toolbar: {
+            searchPlaceholder: 'Buscar',
+            searchTooltip: 'Buscar',
+          },
+          pagination: {
+            firstAriaLabel: 'Primera página',
+            firstTooltip: 'Primera página',
+            labelDisplayedRows: '{from}-{to} de {count}',
+            labelRowsPerPage: 'Filas por página:',
+            labelRowsSelect: 'filas',
+            lastAriaLabel: 'Ultima página',
+            lastTooltip: 'Ultima página',
+            nextAriaLabel: 'Pagina siguiente',
+            nextTooltip: 'Pagina siguiente',
+            previousAriaLabel: 'Pagina anterior',
+            previousTooltip: 'Pagina anterior',
+          },
         }}
-        options={{
-          search: false,
-          paging: false,
-          actionsColumnIndex: -1,
-        }}
-        editable={{
+        actions={[
+          {
+            icon: AssignmentIcon,
+            tooltip: 'Historia clinica',
+            onClick: (event, rowData) => {
+              // Do save operation
+              history.push("/c/historia-clinica")
+            }
+          }
+        ]}
+        editable={validadorUsuario.esVisibleAdmin(global.usuarioElegido) && {
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {
@@ -168,28 +172,28 @@ function SideDrawer(props) {
                 }
               }, 600);
             }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve();
+                setState((prevState) => {
+                  const data = [...prevState.data];
+                  data.splice(data.indexOf(oldData), 1);
+                  return { ...prevState, data };
+                });
+              }, 600);
+            }),
         }}
       />
-      <Button
-        variant="outlined"
-        color="secondary"
-        onClick={
-          () => {
-            history.push("/c/navigation/CambiarContraseña")
-            onClose()
-          }
-        }
-      >
-        Cambiar contraseña
-      </Button>
-    </Drawer>
+    </Paper>
   );
 }
 
-SideDrawer.propTypes = {
+CustomTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTargets: PropTypes.func.isRequired,
+  pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withStyles(styles)(SideDrawer);
+export default withStyles(styles, { withTheme: true })(CustomTable);
