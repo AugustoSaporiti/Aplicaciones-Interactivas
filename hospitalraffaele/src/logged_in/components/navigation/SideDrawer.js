@@ -137,6 +137,18 @@ function SideDrawer(props) {
         columns={state.columns}
         title="Datos personales"
         data={state.data}
+        localization={{
+          body: {
+            editTooltip: 'Editar',
+            editRow: {
+              cancelTooltip: 'Cancelar',
+              saveTooltip: 'Guardar',
+            },
+          },
+          header: {
+            actions: 'Acciones',
+          },
+        }}
         options={{
           search: false,
           paging: false,
@@ -158,12 +170,16 @@ function SideDrawer(props) {
             }),
         }}
       />
-      <Button 
-      variant="outlined" 
-      color="secondary"
-       onClick={() => {history.push("/c/navigation/CambiarContraseña")
-       onClose()
-       }}>
+      <Button
+        variant="outlined"
+        color="secondary"
+        onClick={
+          () => {
+            history.push("/c/navigation/CambiarContraseña")
+            onClose()
+          }
+        }
+      >
         Cambiar contraseña
       </Button>
     </Drawer>

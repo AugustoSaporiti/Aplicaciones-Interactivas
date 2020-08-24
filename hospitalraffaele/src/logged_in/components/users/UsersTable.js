@@ -122,7 +122,38 @@ function UsersTable(props) {
           columns={state.columns}
           data={state.data}
           options={{ actionsColumnIndex: -1 }}
-          localization={{ body: { editRow: { deleteText: 'Estas seguro de eliminar este paciente?' } } }}
+          localization={{
+            body: {
+              emptyDataSourceMessage: 'No hay datos por mostrar',
+              deleteTooltip: 'Eliminar',
+              editTooltip: 'Editar',
+              editRow: {
+                deleteText: '¿Segura(o) que quiere eliminar este usuario?',
+                cancelTooltip: 'Cancelar',
+                saveTooltip: 'Guardar',
+              },
+            },
+            header: {
+              actions: 'Acciones',
+            },
+            toolbar: {
+              searchPlaceholder: 'Buscar',
+              searchTooltip: 'Buscar',
+            },
+            pagination: {
+              firstAriaLabel: 'Primera página',
+              firstTooltip: 'Primera página',
+              labelDisplayedRows: '{from}-{to} de {count}',
+              labelRowsPerPage: 'Filas por página:',
+              labelRowsSelect: 'filas',
+              lastAriaLabel: 'Ultima página',
+              lastTooltip: 'Ultima página',
+              nextAriaLabel: 'Pagina siguiente',
+              nextTooltip: 'Pagina siguiente',
+              previousAriaLabel: 'Pagina anterior',
+              previousTooltip: 'Pagina anterior',
+            },
+          }}
           editable={{
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve) => {

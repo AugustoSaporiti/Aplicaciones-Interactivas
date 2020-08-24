@@ -102,7 +102,39 @@ function RoleTable(props) {
           actionsColumnIndex: -1,
           
         }}
-        localization={{ body: { editRow: { deleteText: 'Estas seguro de eliminar este rol?' } } }}
+        localization={{
+          body: {
+            emptyDataSourceMessage: 'No hay datos por mostrar',
+            addTooltip: 'Añadir',
+            deleteTooltip: 'Eliminar',
+            editTooltip: 'Editar',
+            editRow: {
+              deleteText: '¿Segura(o) que quiere eliminar este rol?',
+              cancelTooltip: 'Cancelar',
+              saveTooltip: 'Guardar',
+            },
+          },
+          header: {
+            actions: 'Acciones',
+          },
+          toolbar: {
+            searchPlaceholder: 'Buscar',
+            searchTooltip: 'Buscar',
+          },
+          pagination: {
+            firstAriaLabel: 'Primera página',
+            firstTooltip: 'Primera página',
+            labelDisplayedRows: '{from}-{to} de {count}',
+            labelRowsPerPage: 'Filas por página:',
+            labelRowsSelect: 'filas',
+            lastAriaLabel: 'Ultima página',
+            lastTooltip: 'Ultima página',
+            nextAriaLabel: 'Pagina siguiente',
+            nextTooltip: 'Pagina siguiente',
+            previousAriaLabel: 'Pagina anterior',
+            previousTooltip: 'Pagina anterior',
+          },
+        }}
         editable={{
           isDeleteHidden: rowData => rowData.role === 'Admin',
           isEditHidden: rowData => rowData.role === 'Admin',

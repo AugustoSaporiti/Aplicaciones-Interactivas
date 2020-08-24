@@ -115,6 +115,39 @@ function CustomTable(props) {
         columns={state.columns}
         data={state.data}
         options={{ actionsColumnIndex: -1 }}
+        localization={{
+          body: {
+            emptyDataSourceMessage: 'No hay datos por mostrar',
+            addTooltip: 'Añadir',
+            deleteTooltip: 'Eliminar',
+            editTooltip: 'Editar',
+            editRow: {
+              deleteText: '¿Segura(o) que quiere eliminar este paciente?',
+              cancelTooltip: 'Cancelar',
+              saveTooltip: 'Guardar',
+            },
+          },
+          header: {
+            actions: 'Acciones',
+          },
+          toolbar: {
+            searchPlaceholder: 'Buscar',
+            searchTooltip: 'Buscar',
+          },
+          pagination: {
+            firstAriaLabel: 'Primera página',
+            firstTooltip: 'Primera página',
+            labelDisplayedRows: '{from}-{to} de {count}',
+            labelRowsPerPage: 'Filas por página:',
+            labelRowsSelect: 'filas',
+            lastAriaLabel: 'Ultima página',
+            lastTooltip: 'Ultima página',
+            nextAriaLabel: 'Pagina siguiente',
+            nextTooltip: 'Pagina siguiente',
+            previousAriaLabel: 'Pagina anterior',
+            previousTooltip: 'Pagina anterior',
+          },
+        }}
         actions={[
           {
             icon: AssignmentIcon,
@@ -125,7 +158,6 @@ function CustomTable(props) {
             }
           }
         ]}
-        localization={{ body: { editRow: { deleteText: 'Estas seguro de eliminar este paciente?' } } }}
         editable={validadorUsuario.esVisibleAdmin(global.usuarioElegido) && {
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {

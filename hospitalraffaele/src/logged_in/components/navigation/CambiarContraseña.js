@@ -103,71 +103,71 @@ function CambiarContraseña(props) {
   };
 
   return (
-    <div style={{ marginTop: '10%', marginLeft: '35%'}}>
-    <div style={{ width:'40%'}} >
-      <div style={{ textAlign: 'center' }}>
-        <FormControl className={clsx(classes.margin, classes.textField)} justify-content='center' variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl>
-      </div>
-      <Divider light />
-      <div style={{ textAlign: 'center' }}>
-        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Repetir contraseña</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={valuesRepeat.showPassword ? 'text' : 'password'}
-            value={valuesRepeat.password}
-            onChange={handleChangeRepeat('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPasswordRepeat}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {valuesRepeat.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl>
-      </div>
+    <div style={{ marginTop: '10%', marginLeft: '35%' }}>
+      <div style={{ width: '40%' }} >
+        <div style={{ textAlign: 'center' }}>
+          <FormControl className={clsx(classes.margin, classes.textField)} justify-content='center' variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={values.showPassword ? 'text' : 'password'}
+              value={values.password}
+              onChange={handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+          </FormControl>
+        </div>
+        <Divider light />
+        <div style={{ textAlign: 'center' }}>
+          <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">Repetir contraseña</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={valuesRepeat.showPassword ? 'text' : 'password'}
+              value={valuesRepeat.password}
+              onChange={handleChangeRepeat('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPasswordRepeat}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {valuesRepeat.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+          </FormControl>
+        </div>
 
-      <Divider light />
-      <Fragment>
-        <Button style={{ float: 'right' }} color="secondary" variant="contained" onClick={submit}>
-          Confirmar
+        <Divider light />
+        <Fragment>
+          <Button style={{ float: 'right' }} color="secondary" variant="contained" onClick={submit}>
+            Confirmar
         </Button>
-        <Button
-          style={{ float: 'right' }}
-          variant="contained"
-          onClick={() => history.push(validadorUsuario.esVisibleAdmin(global.usuarioElegido) ? "/c/dashboard" : "/c/dashboardPaciente")}>
-          Atras
+          <Button
+            style={{ float: 'right' }}
+            variant="contained"
+            onClick={() => history.push(validadorUsuario.esVisibleAdmin(global.usuarioElegido) ? "/c/dashboard" : "/c/dashboardPaciente")}>
+            Atras
         </Button>
-      </Fragment>
-    </div>
+        </Fragment>
+      </div>
     </div>
   );
 }

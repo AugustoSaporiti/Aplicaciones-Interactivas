@@ -110,6 +110,28 @@ function CustomTable(props) {
         title="Pacientes"
         columns={state.columns}
         data={state.data}
+        localization={{
+          body: {
+            emptyDataSourceMessage: 'No hay datos por mostrar',
+          },
+          toolbar: {
+            searchPlaceholder: 'Buscar',
+            searchTooltip: 'Buscar',
+          },
+          pagination: {
+            firstAriaLabel: 'Primera página',
+            firstTooltip: 'Primera página',
+            labelDisplayedRows: '{from}-{to} de {count}',
+            labelRowsPerPage: 'Filas por página:',
+            labelRowsSelect: 'filas',
+            lastAriaLabel: 'Ultima página',
+            lastTooltip: 'Ultima página',
+            nextAriaLabel: 'Pagina siguiente',
+            nextTooltip: 'Pagina siguiente',
+            previousAriaLabel: 'Pagina anterior',
+            previousTooltip: 'Pagina anterior',
+          },
+        }}
         options={{
           
           actionsColumnIndex: -1,
