@@ -15,7 +15,6 @@ import validadorUsuario from "../../validadorUsuario.js";
 import global from "../../../logged_out/components/Global.js";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
-  Paper,
   withStyles,
   Button
 } from "@material-ui/core";

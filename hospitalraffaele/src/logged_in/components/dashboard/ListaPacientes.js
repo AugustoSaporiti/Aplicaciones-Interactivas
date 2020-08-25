@@ -153,7 +153,6 @@ function CustomTable(props) {
             icon: AssignmentIcon,
             tooltip: 'Historia clinica',
             onClick: (event, rowData) => {
-              // Do save operation
               history.push("/c/historia-clinica")
             }
           }
