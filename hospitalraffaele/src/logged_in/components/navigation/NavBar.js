@@ -27,7 +27,6 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
@@ -177,7 +176,7 @@ function NavBar(props) {
         desktop: (
           <DashboardIcon
             className={
-              selectedTab === "Dashboard Paciente" ? classes.textPrimary : "text-white"
+              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
@@ -193,7 +192,7 @@ function NavBar(props) {
         desktop: (
           <FileCopyIcon
             className={
-              selectedTab === "Recetas" ? classes.textPrimary : "text-white"
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
@@ -209,7 +208,7 @@ function NavBar(props) {
         desktop: (
           <FileCopyIcon
             className={
-              selectedTab === "Recetas paciente" ? classes.textPrimary : "text-white"
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
@@ -225,7 +224,7 @@ function NavBar(props) {
         desktop: (
           <PersonAddIcon
             className={
-              selectedTab === "Usuarios" ? classes.textPrimary : "text-white"
+              selectedTab === "Users" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
@@ -254,7 +253,7 @@ function NavBar(props) {
 
     return datosUsuario;
   }
-
+  console.log(selectedTab)
   const menuItems = menu();
 
 
