@@ -121,18 +121,6 @@ function Routing(props) {
           openAddUserDialog={openAddUserDialog}
         />
         <PropsRoute
-          path="/c/dashboardPaciente"
-          component={DashboardPaciente}
-          toggleAccountActivation={toggleAccountActivation}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          CardChart={CardChart}
-          statistics={statistics}
-          targets={targets}
-          setTargets={setTargets}
-          isAccountActivated={isAccountActivated}
-          selectDashboard={selectDashboard}
-        />
-        <PropsRoute
           path="/c/historia-clinica"
           component={MedicalHistory}
           pushMessageToSnackbar={pushMessageToSnackbar}
@@ -145,8 +133,20 @@ function Routing(props) {
      //     openAddUserDialog={openAddUserDialog}
         />
         <PropsRoute
-          path=""
+          path="/c/dashboard"
           component={Dashboard}
+          toggleAccountActivation={toggleAccountActivation}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          CardChart={CardChart}
+          statistics={statistics}
+          targets={targets}
+          setTargets={setTargets}
+          isAccountActivated={isAccountActivated}
+          selectDashboard={selectDashboard}
+        />
+        <PropsRoute
+          path="/c/dashboardPaciente"
+          component={DashboardPaciente}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
           CardChart={CardChart}

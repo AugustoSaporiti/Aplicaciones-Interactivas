@@ -180,7 +180,6 @@ function NavBar(props) {
               selectedTab === "Dashboard Paciente" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
-
           />
         ),
         mobile: <DashboardIcon className="text-white" />
@@ -211,22 +210,6 @@ function NavBar(props) {
           <FileCopyIcon
             className={
               selectedTab === "Recetas paciente" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />
-      }
-    },
-    {
-      link: "/c/postsPaciente",
-      name: "PostsPaciente",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <ImageIcon
-            className={
-              selectedTab === "PostsPaciente" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
