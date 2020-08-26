@@ -59,18 +59,16 @@ export default function VerticalTabs(props) {
   const { diasHabilitados } = props;
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(7);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log(value)
   return (
     <Fragment>
-      
-
       <div className={classes.root}>
-        {diasHabilitados.length > 0 && <>
+        {diasHabilitados.length >= 0 && <>
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -79,27 +77,46 @@ export default function VerticalTabs(props) {
             aria-label="Vertical tabs example"
             className={classes.tabs}
           >
-            {diasHabilitados.includes("Lunes") && <Tab label="Lunes" {...a11yProps(0)} />}
-            {diasHabilitados.includes("Martes") && <Tab label="Martes" {...a11yProps(1)} />}
-            {diasHabilitados.includes("Miercoles") && <Tab label="Miercoles" {...a11yProps(2)} />}
-            {diasHabilitados.includes("Jueves") && <Tab label="Jueves" {...a11yProps(3)} />}
-            {diasHabilitados.includes("Viernes") && <Tab label="Viernes" {...a11yProps(4)} />}
-            {diasHabilitados.includes("Sabado") && <Tab label="Sabado" {...a11yProps(5)} />}
-            {diasHabilitados.includes("Domingo") && <Tab label="Domingo" {...a11yProps(6)} />}
+            {diasHabilitados.includes("Lunes") && <Tab label="Lunes" value={0} {...a11yProps(0)} />}
+            {diasHabilitados.includes("Martes") && <Tab label="Martes" value={1} {...a11yProps(1)} />}
+            {diasHabilitados.includes("Miercoles") && <Tab label="Miercoles" value={2} {...a11yProps(2)} />}
+            {diasHabilitados.includes("Jueves") && <Tab label="Jueves" value={3} {...a11yProps(3)} />}
+            {diasHabilitados.includes("Viernes") && <Tab label="Viernes" value={4} {...a11yProps(4)} />}
+            {diasHabilitados.includes("Sabado") && <Tab label="Sabado" value={5} {...a11yProps(5)} />}
+            {diasHabilitados.includes("Domingo") && <Tab label="Domingo" value={6} {...a11yProps(6)} />}
+            <Tab label="Dias deshabilitados" value={7} {...a11yProps(7)} />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
               label="Frecuencia"
@@ -226,6 +243,32 @@ export default function VerticalTabs(props) {
               variant="outlined"
               color="secondary"
             />
+          </TabPanel>
+          <TabPanel value={value} index={7}>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="date"
+                label="Desde"
+                type="date"
+                defaultValue="2020-05-24"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="date"
+                label="Hasta"
+                type="date"
+                defaultValue="2020-05-24"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </form>
           </TabPanel></>}
       </div>
       <Button
