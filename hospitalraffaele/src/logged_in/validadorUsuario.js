@@ -80,6 +80,19 @@ const esVisible = (value) => {
     return visible;
 };
 
+const esVisibleSecretario = (value) => {
+    var visible = false;
+
+    console.log("variable",value)
+    if (value !== null && value !== undefined) {
+            if (value[0].role === "Doctor" || value[0].role === "Admin" || value[0].role === "Secretario" ) {
+                visible = true;
+            }
+    }
+
+    return visible;
+};
+
 const esVisibleAdmin = (value) => {
     var visible = false;
 
@@ -96,5 +109,6 @@ const esVisibleAdmin = (value) => {
 export default {
     validarUsuario,
     esVisible,
-    esVisibleAdmin
+    esVisibleAdmin,
+    esVisibleSecretario
 }; 

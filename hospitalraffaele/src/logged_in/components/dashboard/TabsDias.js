@@ -87,18 +87,36 @@ export default function VerticalTabs(props) {
             <Tab label="Dias deshabilitados" value={7} {...a11yProps(7)} />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
               label="Frecuencia"
