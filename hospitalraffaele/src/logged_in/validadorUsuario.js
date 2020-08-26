@@ -6,7 +6,7 @@ const validarUsuario = (value, role) => {
     if (role !== undefined && role !== null) {
         if (role[0].role === "Paciente") {
             value.filter(x => {
-                if (x.name === "Dashboard Paciente" || x.name === "Recetas paciente" || x.name === "Salir") {
+                if (x.name === "Principal Paciente" || x.name === "Recetas paciente" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
             });
@@ -14,7 +14,7 @@ const validarUsuario = (value, role) => {
 
         else if (role[0].role === "Secretario") {
             value.filter(x => {
-                if (x.name === "Dashboard" || x.name === "Recetas" || x.name === "Salir") {
+                if (x.name === "Principal" || x.name === "Recetas" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
             });
@@ -22,7 +22,7 @@ const validarUsuario = (value, role) => {
 
         else if (role[0].role === "Doctor") {
             value.filter(x => {
-                if (x.name === "Dashboard" || x.name === "Recetas" || x.name === "Salir") {
+                if (x.name === "Principal" || x.name === "Recetas" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
             });
@@ -30,7 +30,7 @@ const validarUsuario = (value, role) => {
 
         else if (role[0].role === "Admin") {
             value.filter(x => {
-                if (x.name === "Dashboard" || x.name === "Recetas" || x.name === "Usuarios" || x.name === "Salir") {
+                if (x.name === "Principal" || x.name === "Recetas" || x.name === "Usuarios" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
             });

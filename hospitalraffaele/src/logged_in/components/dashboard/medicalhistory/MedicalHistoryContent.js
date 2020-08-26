@@ -61,8 +61,8 @@ function MedicalHistoryContent(props) {
 
   const posts = [
     {
-      date: "2020-02-19 14:22",
-      text: "Allergy shots and immunotherapy bacteria cough decongestants dna dyslexia emotions frostbite."
+      date: "Numero de historia:",
+      text: "4321"
     },
     {
       date: "2019-10-23 11:45",
@@ -122,7 +122,7 @@ function MedicalHistoryContent(props) {
       return (
         <div className={classes.tableWrapper}>
           <Table aria-labelledby="tableTitle">
-            <EnhancedTableHead rowCount={posts.length} rows={rows} />
+            <EnhancedTableHead rowCount={posts.length} rows={rows}/>
             <TableBody>
               {posts
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -142,7 +142,6 @@ function MedicalHistoryContent(props) {
                 ))}
             </TableBody>
           </Table>
-
         </div>
       );
     }
@@ -160,7 +159,7 @@ function MedicalHistoryContent(props) {
   return (
     <Paper>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Historia clínica</Typography>
+        <Typography variant="h4">Historia clínica</Typography>
         {showButton ? <Button
           variant="contained"
           color="secondary"
@@ -169,17 +168,22 @@ function MedicalHistoryContent(props) {
         >
           Agregar observacion
         </Button> : null}
+        {showButton ? <Button
+          variant="contained"
+          color="primary"
+          onClick={openAddMedicalHistoryEntryModal}
+          disableElevation
+        >
+          Subir estudio
+        </Button> : null}
       </Toolbar>
       <Divider className={classes.divider} />
-
       <Toolbar className={classes.toolbar}>
-        <Typography>Paciente: {patient.name}</Typography>
-        <Typography>F. nacimiento: {patient.birthday}</Typography>
-        <Typography>Obra social:  {patient.osocial}</Typography>
-        <Typography>Numero:  {patient.osocial_id}</Typography>
+        <Typography variant="h6">ANEMESIS</Typography>
+        <Typography>Ultima fecha de modificacion:</Typography>
       </Toolbar>
-
       <Divider className={classes.divider} />
+
       {printImageGrid()}
       <TablePagination
         component="div"
@@ -202,7 +206,7 @@ function MedicalHistoryContent(props) {
         labelRowsPerPage=""
       />
       <Fragment>
-        <Button style={{float: 'right'}} color="primary" variant="contained" onClick={() => history.push("/c/dashboard")}>
+        <Button style={{ float: 'right' }} color="primary" variant="contained" onClick={() => history.push("/c/dashboard")}>
           Atras
       </Button>
       </Fragment>

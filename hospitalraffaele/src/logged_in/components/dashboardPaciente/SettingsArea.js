@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Settings1 from "./Turnos";
 import { Tab, Tabs, Box, Typography } from "@material-ui/core"
-
+import MedicalHistory from "../dashboard/medicalhistory/HistorialClinico"
 
 
 function TabPanel(props) {
@@ -48,10 +48,14 @@ function SettingsArea(props) {
         centered
       >
        <Tab label="Sacar turno" />
+       <Tab label="Historial clinico" />
       </Tabs>
 
       <TabPanel value={value} index={0}>
         <Settings1 pushMessageToSnackbar={pushMessageToSnackbar} />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <MedicalHistory/>
       </TabPanel>
 
     </Fragment>

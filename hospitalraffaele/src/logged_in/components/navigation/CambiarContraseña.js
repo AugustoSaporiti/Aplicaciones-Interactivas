@@ -15,7 +15,6 @@ import validadorUsuario from "../../validadorUsuario.js";
 import global from "../../../logged_out/components/Global.js";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {
-  Paper,
   withStyles,
   Button
 } from "@material-ui/core";
@@ -104,9 +103,9 @@ function CambiarContraseña(props) {
 
   return (
     <div style={{ marginTop: '10%', marginLeft: '35%' }}>
-      <div style={{ width: '40%' }} >
+      <div style={{ width: '50%' }} >
         <div style={{ textAlign: 'center' }}>
-          <FormControl className={clsx(classes.margin, classes.textField)} justify-content='center' variant="outlined">
+          <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"

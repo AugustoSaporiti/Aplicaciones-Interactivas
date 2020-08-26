@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { Fragment, useEffect } from "react";
 import SettingsArea from "./SettingsArea";
 
-function Dashboard(props) {
+function DashboardPaciente(props) {
   const {
     selectDashboard,
     pushMessageToSnackbar,
@@ -20,12 +20,12 @@ function Dashboard(props) {
           Bienvenido Paciente!
         </Typography>
       </Box>
-      <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar}targets={targets} setTargets={setTargets} />
+      <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} targets={targets} setTargets={setTargets} />
     </Fragment>
   );
 }
 
-Dashboard.propTypes = {
+DashboardPaciente.propTypes = {
   CardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,
   toggleAccountActivation: PropTypes.func,
@@ -36,4 +36,4 @@ Dashboard.propTypes = {
   selectDashboard: PropTypes.func.isRequired,
 };
 
-export default Dashboard;
+export default DashboardPaciente;

@@ -419,7 +419,7 @@ function Main(props) {
 
   const selectUsers = useCallback(() => {
     smoothScrollTop();
-    document.title = "Raffaele - Usuarios";
+    document.title = "Consultorio Raffaele";
     setSelectedTab("Users");
   }, [setSelectedTab]);
 
