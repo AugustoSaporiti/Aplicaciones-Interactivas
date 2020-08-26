@@ -6,7 +6,6 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import MaterialTable from "material-table";
-import CloseIcon from "@material-ui/icons/Close";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -22,8 +21,8 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Button from '@material-ui/core/Button';
-import { useHistory } from 'react-router-dom';
+import validadorUsuario from "../../../validadorUsuario.js";
+import global from "../../../../logged_out/components/Global.js";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -109,10 +108,6 @@ function MedicalHistory(props) {
     ],
     data: [
       {
-        name: 'Numero de historia',
-        datos: '4316',
-      },
-      {
         name: 'DNI',
         datos: '123123312',
       },
@@ -159,7 +154,7 @@ function MedicalHistory(props) {
     ],
   });
 
-  const [antecedentesPersonalesToxicos, setAntecedentesPersonalesToxicos] = React.useState({
+  const [antecedentesPersonales, setAntecedentesPersonales] = React.useState({
     columns: [
       {
         title: '',
@@ -167,66 +162,176 @@ function MedicalHistory(props) {
         editable: 'never',
       },
       {
-        title: 'Datos',
-        field: 'datos'
+        title: 'Tu',
+        field: 'paciente'
+      },
+      {
+        title: 'Padre',
+        field: 'padre'
+      },
+      {
+        title: 'Madre',
+        field: 'madre'
+      },
+      {
+        title: 'Hermanos',
+        field: 'hermanos'
       },
     ],
     data: [
       {
-        name: 'Alchol',
-        datos: 'Ocasionalmente toma una copa de vino con las comidas',
+        name: 'Hipertension arterial',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Tabaco',
-        datos: 'Niega',
+        name: 'Cardiopatia',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Drogas',
-        datos: 'Niega',
+        name: 'Accidente cardiovascular',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Infusiones',
-        datos: 'Niega',
-      },
-    ],
-  });
-
-  const [antecedentesPersonalesFisiologicos, setAntecedentesPersonalesFisiologicos] = React.useState({
-    columns: [
-      {
-        title: '',
-        field: 'name',
-        editable: 'never',
+        name: 'Diabates mellitus',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        title: 'Datos',
-        field: 'datos'
-      },
-    ],
-    data: [
-      {
-        name: 'Alimentacion',
-        datos: 'Realiza 3 refecciones durante el dia, en las cuales come alimentos sin restricciones',
+        name: 'Niveles altos de colesterol',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Diuresis',
-        datos: 'Normal, poco oscura, no despierta por la noche para orinar',
+        name: 'Niveles de trigliceridos',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Catarsis',
-        datos: 'Normal',
+        name: 'Hiperlecemia',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Sueño',
-        datos: 'Normal',
+        name: 'Artrosis',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Sexualidad',
-        datos: 'Casada, y 2 hijos',
+        name: 'Enfermedad tiroidea',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
       {
-        name: 'Otros',
-        datos: 'Su periodo de lactancia con los 2 hijos fue mayor de un año',
+        name: 'Hernia',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Litasis',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Disepsia',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Gastritis',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Ulcera gastrica',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Reflujo gastroesofagico',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Nauseas y/o vomitos',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Diarrea',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Estrenimiento',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Polipos en colon o recto',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Enfermedad respiratoria cronica',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Tumor maligno',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
+      },
+      {
+        name: 'Alteracion psiquiatrica',
+        paciente: 'Niega.',
+        padre: 'Niega.',
+        madre: 'Niega.',
+        hermanos: 'Niega.',
       },
     ],
   });
@@ -236,7 +341,6 @@ function MedicalHistory(props) {
       {
         title: '',
         field: 'name',
-        editable: 'never',
       },
     ],
     data: [
@@ -260,7 +364,6 @@ function MedicalHistory(props) {
       {
         title: '',
         field: 'name',
-        editable: 'never',
       },
     ],
     data: [
@@ -278,12 +381,11 @@ function MedicalHistory(props) {
       {
         title: '',
         field: 'name',
-        editable: 'never',
       },
     ],
     data: [
       {
-        name: 'Padre e madre sin antecedentes de hipertension arterial y litiasis.',
+        name: 'Padre e madre muertes por falla cardiaca.',
       },
       {
         name: 'Abuelos con problemas cardiacos tempranos.',
@@ -291,17 +393,58 @@ function MedicalHistory(props) {
     ],
   });
 
-  const [enfermedadesInfancia, setEnfermedadesInfancia] = React.useState({
+  const [patologicos, setPatologicos] = React.useState({
     columns: [
       {
         title: '',
         field: 'name',
         editable: 'never',
       },
+      {
+        title: 'Datos',
+        field: 'datos',
+      },
     ],
     data: [
       {
-        name: 'Operacion de corazon a los 9 años.',
+        name: 'Respiratorio',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Gastrointestinales',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Nefrourologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Neurologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Hematologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Infectologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Endocrinologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Quirurgicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Traumatologicos',
+        datos: 'Sin datos patolicos aparentes.',
+      },
+      {
+        name: 'Alergicos',
+        datos: 'Paciente relata tener alergia a plantas.',
       },
     ],
   });
@@ -334,6 +477,21 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setPersonales((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
+            }}
           />
         </AccordionDetails>
       </Accordion>
@@ -344,9 +502,9 @@ function MedicalHistory(props) {
         <AccordionDetails>
           <MaterialTable
             icons={tableIcons}
-            columns={antecedentesPersonalesToxicos.columns}
+            columns={antecedentesPersonales.columns}
             title="Habitos toxicos"
-            data={antecedentesPersonalesToxicos.data}
+            data={antecedentesPersonales.data}
             localization={{
               body: {
                 editTooltip: 'Editar',
@@ -363,27 +521,20 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-          />
-          <MaterialTable
-            icons={tableIcons}
-            columns={antecedentesPersonalesFisiologicos.columns}
-            title="Habitos fisiologicos"
-            data={antecedentesPersonalesFisiologicos.data}
-            localization={{
-              body: {
-                editTooltip: 'Editar',
-                editRow: {
-                  cancelTooltip: 'Cancelar',
-                  saveTooltip: 'Guardar',
-                },
-              },
-              header: {
-                actions: 'Acciones',
-              },
-            }}
-            options={{
-              search: false,
-              paging: false,
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setAntecedentesPersonales((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
             }}
           />
         </AccordionDetails>
@@ -414,6 +565,32 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setConsultas((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
+              onRowAdd: (newData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    setConsultas((prevState) => {
+                      const data = [...prevState.data];
+                      data.push(newData);
+                      return { ...prevState, data };
+                    });
+                  }, 600);
+                }),
+            }}
           />
         </AccordionDetails>
       </Accordion>
@@ -443,6 +620,32 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setEnfermedadesActuales((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
+              onRowAdd: (newData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    setEnfermedadesActuales((prevState) => {
+                      const data = [...prevState.data];
+                      data.push(newData);
+                      return { ...prevState, data };
+                    });
+                  }, 600);
+                }),
+            }}
           />
         </AccordionDetails>
       </Accordion>
@@ -454,7 +657,7 @@ function MedicalHistory(props) {
           <MaterialTable
             icons={tableIcons}
             columns={antecedentesHeredofamiliares.columns}
-            title="Enfermedades actuales"
+            title="Antecedentes heredofamiliares"
             data={antecedentesHeredofamiliares.data}
             localization={{
               body: {
@@ -472,19 +675,45 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setAntecedentesHeredofamiliares((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
+              onRowAdd: (newData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    setAntecedentesHeredofamiliares((prevState) => {
+                      const data = [...prevState.data];
+                      data.push(newData);
+                      return { ...prevState, data };
+                    });
+                  }, 600);
+                }),
+            }}
           />
         </AccordionDetails>
       </Accordion>
       <Accordion square expanded={expanded === 'panel6'} onChange={handleChange('panel6')}>
         <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-          <Typography>Enfermedades de la infancia</Typography>
+          <Typography>Patologias</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        <MaterialTable
+          <MaterialTable
             icons={tableIcons}
-            columns={enfermedadesInfancia.columns}
-            title="Enfermedades actuales"
-            data={enfermedadesInfancia.data}
+            columns={patologicos.columns}
+            title="Patologias"
+            data={patologicos.data}
             localization={{
               body: {
                 editTooltip: 'Editar',
@@ -500,6 +729,21 @@ function MedicalHistory(props) {
             options={{
               search: false,
               paging: false,
+            }}
+            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      setPatologicos((prevState) => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 600);
+                }),
             }}
           />
         </AccordionDetails>

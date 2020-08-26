@@ -4,7 +4,7 @@ import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import DashboardPaciente from "./dashboardPaciente/Dashboard";
-import MedicalHistory from "./dashboard/medicalhistory/MedicalHistory";
+import MedicalHistory from "./dashboard/medicalhistory/HistorialClinico";
 import Posts from "./posts/Posts";
 import PostsPaciente from "./postsPaciente/Posts"
 import Subscription from "./subscription/Subscription";

@@ -154,7 +154,7 @@ function NavBar(props) {
   const menuItemsPrueba = [
     {
       link: "/c/dashboard",
-      name: "Dashboard",
+      name: "Principal",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
@@ -170,7 +170,7 @@ function NavBar(props) {
     },
     {
       link: "/c/dashboardPaciente",
-      name: "Dashboard Paciente",
+      name: "Principal Paciente",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
