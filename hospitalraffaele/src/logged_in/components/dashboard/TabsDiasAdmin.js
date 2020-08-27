@@ -103,141 +103,267 @@ export default function VerticalTabsAdmin(props) {
             <Tab label="Dias deshabilitados" value={7} {...a11yProps(7)} />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={3}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={4}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={5}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />
           </TabPanel>
           <TabPanel value={value} index={6}>
-            <TextField
-              id="desde"
-              label="Desde"
-              variant="outlined"
-              color="secondary"
-            />
-            <TextField
-              id="hasta"
-              label="Hasta"
-              variant="outlined"
-              color="secondary"
-            />
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Desde"
+                type="time"
+                defaultValue="07:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
+            <form className={classes.container} noValidate>
+              <TextField
+                id="time"
+                label="Hasta"
+                type="time"
+                defaultValue="10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 300, // 5 min
+                }}
+              />
+            </form>
             <TextField
               id="frecuencia"
-              label="Frecuencia"
+              label="Frecuencia turnos(min)"
               variant="outlined"
               color="secondary"
             />

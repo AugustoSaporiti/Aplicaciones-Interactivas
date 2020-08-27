@@ -48,7 +48,7 @@ function SettingsArea(props) {
         centered
       >
        <Tab label="Sacar turno" />
-       <Tab label="Historial clinico" />
+       <Tab label="Historia clinica" />
       </Tabs>
 
       <TabPanel value={value} index={0}>
