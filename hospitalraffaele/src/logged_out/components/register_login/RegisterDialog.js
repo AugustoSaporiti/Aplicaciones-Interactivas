@@ -39,9 +39,21 @@ function RegisterDialog(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerTermsCheckbox = useRef();
   const registerPassword = useRef();
+  const mail = useRef();
+  const dni = useRef();
   const registerPasswordRepeat = useRef();
+  const userControler = require("../../../controllers/api/api.users");
 
+
+  function ActionLink() {
+    alert("hola");
+   }
+   
   const register = useCallback(() => {
+
+    console.log("mail",mail.current.value);
+    console.log("dni",dni.current.value);
+
     if (!registerTermsCheckbox.current.checked) {
       setHasTermsOfServiceError(true);
       return;
@@ -90,6 +102,7 @@ function RegisterDialog(props) {
             autoFocus
             autoComplete="off"
             type="email"
+            inputRef={mail}
             onChange={() => {
               if (status === "invalidEmail") {
                 setStatus(null);
@@ -100,9 +113,20 @@ function RegisterDialog(props) {
           <TextField
             variant="outlined"
             margin="normal"
+            inputRef={dni}
             required
             fullWidth
             label="DNI"
+            onChange={(e) => {   
+              console.log(e.target.value);
+              if (isNaN(e.target.value)) {
+                e.target.value = "";
+              }
+
+             else if (e.target.value.length > 5) {
+                e.target.value = e.target.value.substring(0,5);
+              }
+            }}
             autoFocus
             autoComplete="off"
             type="text"
@@ -237,6 +261,7 @@ function RegisterDialog(props) {
           variant="contained"
           size="large"
           color="secondary"
+         
           disabled={isLoading}
         >
           Registrar
@@ -280,5 +305,7 @@ RegisterDialog.propTypes = {
   setStatus: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
+
+
 
 export default withStyles(styles, { withTheme: true })(RegisterDialog);
