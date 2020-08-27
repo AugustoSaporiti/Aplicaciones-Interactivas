@@ -8,6 +8,7 @@ const urlWebServices = {
     updateUsers: rutaBack + "api/user/update",
     deleteUsers: rutaBack + "api/user/disable",
     listUsers: rutaBack + "api/user/list",
+    loginUser: rutaBack + "api/user/login",
     findUserByEmail: rutaBack + "api/user/find/email/",
     listUsersByRole: rutaBack + "api/user/list/role/",
 
@@ -50,6 +51,14 @@ const urlWebServices = {
     deleteAppointment: rutaBack + "api/appointment/delete",
     findAppointmentsByDoctor: rutaBack + "api/appointment/find/doctor/",
     findAppointmentsByPatient: rutaBack + "api/appointment/find/patient/",
+
+    /*
+     * Files
+     */ 
+    uploadFile: rutaBack + "api/upload",
+    findFilesByPatient: rutaBack + "api/upload/find/patient/",
+   //updateAvailability: rutaBack + "api/availability/update",
+    downloadFile: rutaBack + "api/download/fileName/",
 }
 
 export default urlWebServices;
