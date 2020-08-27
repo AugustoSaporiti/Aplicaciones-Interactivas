@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
 import QuienesSomos from "./home/quienessomos";
@@ -36,6 +36,7 @@ function Routing(props) {
       <PropsRoute path="/QuienesSomos"
                   component={QuienesSomos} 
                   selectQuienesSomos={selectQuienesSomos} />)
+      <Redirect from='*' to='/inicio'/>
     </Switch>
   );
 }

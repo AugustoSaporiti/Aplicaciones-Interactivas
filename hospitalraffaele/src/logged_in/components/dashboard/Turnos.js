@@ -56,7 +56,8 @@ export default function MaterialTableDemo() {
       },
       {
         title: 'Fecha',
-        field: 'birthYear'
+        field: 'birthYear',
+        validate: ({ birthYear }) => birthYear?.trim().length > 7
       },
       {
         title: 'Horario',
