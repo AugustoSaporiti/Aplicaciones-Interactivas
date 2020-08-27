@@ -4,6 +4,7 @@ import { Button, Box } from "@material-ui/core";
 import ActionPaper from "../../../shared/components/ActionPaper";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";
+import uploadFile from '../../../controllers/api/api.files'
 
 function AddPost(props) {
   const {
@@ -45,6 +46,7 @@ function AddPost(props) {
         file.preview = URL.createObjectURL(file);
         file.key = new Date().getTime();
         setCropperFile(file);
+        uploadFile(file)
       }
     },
     [pushMessageToSnackbar, setCropperFile]
