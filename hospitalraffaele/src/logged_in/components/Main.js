@@ -9,6 +9,7 @@ import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 import LazyLoadAddUserDialog from "./users/LazyLoadAddUserDialog";
+import * as Back from '../../controllers/raffaele.controller';
 
 const styles = (theme) => ({
   main: {
@@ -207,6 +208,16 @@ function Main(props) {
   }, [setTransactions]);
 
   const fetchRandomUsers = useCallback(() => {
+    let user = {
+      email: "hola@test.com",
+      password: 232323,
+      role: 2
+    }
+
+    const test = Back.createUser(user);
+    console.log('PAULA -> ');
+    console.log(test);
+    console.log('<- PAULA');
     const userList = [];
     const iterations = 4;
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
