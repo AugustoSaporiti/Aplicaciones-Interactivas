@@ -73,7 +73,7 @@ export const downloadFile = async function(fileName)  {
         return result;
       }
 }
-
+/*
 export const listByPatient = async function(patient)  {
     // url
     let url = urlWebServices.findFilesByPatient;
@@ -107,4 +107,4 @@ export const listByPatient = async function(patient)  {
 
         return result;
       }
-}
+}*/
