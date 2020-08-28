@@ -49,6 +49,7 @@ const urlWebServices = {
     createAppointment: rutaBack + "api/appointment/create",
    //updateAvailability: rutaBack + "api/availability/update",
     deleteAppointment: rutaBack + "api/appointment/delete",
+    listAppointments: rutaBack + "api/appointment/list",
     findAppointmentsByDoctor: rutaBack + "api/appointment/find/doctor/",
     findAppointmentsByPatient: rutaBack + "api/appointment/find/patient/",
 

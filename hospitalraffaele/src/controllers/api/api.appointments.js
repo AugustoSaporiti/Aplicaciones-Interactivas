@@ -140,7 +140,7 @@ export const findAppointmentsByPatient = async function(patientId)  {
             success: (response.status === 200 ? true : false),
             response: data
         }
-console.log(result);
+
         return result;
         
       } catch(e) {
@@ -151,4 +151,39 @@ console.log(result);
 
         return result;
       }
+}
+
+export const listAppointments = async function()  {
+  // url
+  let url = urlWebServices.listAppointments;
+
+  try {
+      // Hago llamada al endpoint
+      let response =  await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/x-www-form-urlencoded',
+          'Origin': 'http://localhost:3000/',
+          'Content-type': 'application/x-www-form-urlencoded'
+        }
+      });
+
+      let data = await response.json();
+
+      let result = {
+          success: (response.status === 200 ? true : false),
+          response: data
+      }
+console.log(result);
+      return result;
+      
+    } catch(e) {
+      let result = {
+          success: false,
+          response: e
+      };
+
+      return result;
+    }
 }
