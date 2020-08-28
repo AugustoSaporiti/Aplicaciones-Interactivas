@@ -1,5 +1,5 @@
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import React, { forwardRef , useState, useEffect} from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -18,7 +18,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Paper, withStyles } from "@material-ui/core";
-import {listUsers} from '../../../controllers/api/api.users'
+import { listUsers } from '../../../controllers/api/api.users'
+import { updateUser, deleteUser } from '../../../controllers/api/api.users'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -78,8 +79,8 @@ function UsersTable(props) {
   useEffect(() => {
     obtenerUsuarios()
   }, [])
-  
-  const obtenerUsuarios = async() => {
+
+  const obtenerUsuarios = async () => {
     await listUsers()
       .then(v => setUserList(v.response))
       .catch(e => { console.log(e) });
@@ -141,13 +142,11 @@ function UsersTable(props) {
         {
           title: 'ID',
           field: 'id',
-          validate: ({ dni }) =>
-            !isNaN(dni) && dni?.trim().length > 5
+          editable: 'never',
         },
         {
           title: 'Rol',
           field: 'role',
-          validate: ({ role }) => role?.trim().length > 0
         },
         {
           title: 'Mail',
@@ -165,8 +164,8 @@ function UsersTable(props) {
           }
         })
     }
-  ),[userList])
-  
+  ), [userList])
+
   if (userList.length > 0) {
     return (
       <Paper>
@@ -210,29 +209,33 @@ function UsersTable(props) {
           }}
           editable={{
             onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
+              updateUser(
+                {
+                  role_id: newData.role,
+                  email: newData.mail,
+                  //nombre: newData.name,
+                  //apellido: newData.surname,
+                  user_id: newData.id,
+                }
+              ).then(() => {
+                if (oldData) {
+                  setState((prevState) => {
+                    const data = [...prevState.data];
+                    data[data.indexOf(oldData)] = newData;
+                    return { ...prevState, data };
+                  });
+                };
+              }).catch(e => console.log(e)),
+
             onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
+              deleteUser(oldData.id)
+                .then(() => {
                   setState((prevState) => {
                     const data = [...prevState.data];
                     data.splice(data.indexOf(oldData), 1);
                     return { ...prevState, data };
                   });
-                }, 600);
-              }),
+                }).catch(e => console.log(e)),
           }}
         />
       </Paper>
