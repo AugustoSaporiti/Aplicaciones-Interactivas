@@ -42,6 +42,51 @@ import urlWebServices from '../webServices';
       }
 }
 
+export const loginUser = async function(user)  {
+  // url
+  let url = urlWebServices.loginUser;
+  // Genero formulario con datos a pasar
+  let formData = new URLSearchParams();
+  formData.append('email', user.email);
+  formData.append('password', user.password);
+
+  try {
+      // Hago llamada al endpoint
+      let response =  await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/x-www-form-urlencoded',
+          'Origin': 'http://localhost:3000/',
+          'Content-type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
+      });
+
+      let data = await response.json();
+
+      if(response.status === 200)
+      {
+        console.log(data.token);
+        localStorage.setItem("x", data.token);
+      }
+      let result = {
+          success: (response.status === 200 ? true : false),
+          response: response
+      }
+      console.log(result);
+      return result;
+      
+    } catch(e) {
+      let result = {
+          success: false,
+          response: e
+      };
+      console.log("chau "+result);
+      return result;
+    }
+}
+
 export const updateUser = async function(user)  {
     // url
     let url = urlWebServices.updateUsers;

@@ -1,6 +1,7 @@
 import urlWebServices from '../webServices';
 
  export const uploadFile = async function(file)  {
+
     // url
     let url = urlWebServices.uploadFile;
     // Genero formulario con datos a pasar
@@ -15,7 +16,7 @@ import urlWebServices from '../webServices';
           headers: {
             'Accept': 'application/x-www-form-urlencoded',
             'Origin': 'http://localhost:3000/',
-            'Content-type': 'multipart/related'
+            'Content-type': 'Content-Type: multipart/form-data; boundary='
           },
           body: formData
         });
@@ -34,7 +35,7 @@ import urlWebServices from '../webServices';
             success: false,
             response: e
         };
-
+        console.log(result);
         return result;
       }
 }
@@ -49,9 +50,9 @@ export const downloadFile = async function(fileName)  {
           method: 'GET',
           mode: 'cors',
           headers: {
-            'Accept': 'application/x-www-form-urlencoded',
+         //   'Accept': 'application/x-www-form-urlencoded',
             'Origin': 'http://localhost:3000/',
-            'Content-type': 'multipart/related'
+            'Content-type': 'Content-Type: multipart/form-data; boundary=---WebKitFormBoundary7MA4YWxkTrZu0gW'
           }
         });
   
@@ -80,7 +81,7 @@ export const listByPatient = async function(patient)  {
 
     try {
         // Hago llamada al endpoint
-        let response =  await fetch(url + fileName, {
+        let response =  await fetch(url + patient, {
           method: 'GET',
           mode: 'cors',
           headers: {
