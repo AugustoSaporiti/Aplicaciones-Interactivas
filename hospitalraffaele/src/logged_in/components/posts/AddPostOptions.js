@@ -1,6 +1,7 @@
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import TextField from '@material-ui/core/TextField';
+import { listPatients } from '../../../controllers/api/api.patients'
 import {
   Typography,
   IconButton,
@@ -14,7 +15,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
-import UserDataArea from "./ListaPacientes";
+import CustomTable from "./ListaPacientes";
 
 const styles = (theme) => ({
   floatButtonWrapper: {
@@ -121,6 +122,17 @@ function AddPostOptions(props) {
     );
   }, [onDrop, files, classes, deleteItem]);
 
+  const [miLista, setLista] = useState([])
+  useEffect(() => {
+    obtenerUsuarios()
+  }, [])
+
+  const obtenerUsuarios = async () => {
+    await listPatients()
+      .then(v => setLista(v.response))
+      .catch(e => { console.log(e) });
+  }
+
   return (
     <Fragment>
       {ImageCropper && (
@@ -156,16 +168,14 @@ function AddPostOptions(props) {
               disabled
               id="outlined-disabled"
               label="Fecha"
-              defaultValue={fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear()}
+              defaultValue={fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear()}
               variant="outlined"
             />
           </ListItem>
         </Bordered>
       </List>
-      <UserDataArea
-        pushMessageToSnackbar={pushMessageToSnackbar}
-        targets={targets}
-        setTargets={setTargets}
+      <CustomTable
+        targets={miLista}
       />
     </Fragment>
   );

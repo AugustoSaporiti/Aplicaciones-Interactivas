@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core";
 import MaterialTable from 'material-table';
@@ -17,6 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import {listRoles} from '../../../controllers/api/api.roles'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -65,8 +66,18 @@ const styles = theme => ({
 });
 
 function RoleTable(props) {
-  const { roleList, classes } = props;
-  const [count, setCount] = useState(roleList.length);
+  const { classes } = props;
+
+  const [roleList, setRoleList] = useState([])
+  useEffect(() => {
+    obtenerUsuarios()
+  }, [])
+  
+  const obtenerUsuarios = async() => {
+    await listRoles()
+      .then(v => setRoleList(v.response))
+      .catch(e => { console.log(e) });
+  }
 
   const [state, setState] = useState({
     columns: [
@@ -79,7 +90,7 @@ function RoleTable(props) {
         title: 'ID',
         field: 'id',
         editable: 'never',
-        initialEditValue: count
+        initialEditValue: '4'
       },
     ],
     data:
@@ -90,6 +101,32 @@ function RoleTable(props) {
         }
       })
   });
+
+  useEffect(() => setState(
+    {
+      columns: [
+        {
+          title: 'Rol',
+          field: 'role',
+          validate: ({ role }) => role?.trim().length > 0
+        },
+        {
+          title: 'ID',
+          field: 'id',
+          editable: 'never',
+          initialEditValue: '4'
+        },
+      ],
+      data:
+        roleList.map(v => {
+          return {
+            role: v.name,
+            id: v.id,
+          }
+        })
+    }
+  ),[roleList])
+
 
   return (
     <div className={classes.tableWrapper}>
@@ -140,7 +177,6 @@ function RoleTable(props) {
           isEditHidden: rowData => rowData.role === 'Admin',
           onRowAdd: (newData) =>
             new Promise((resolve) => {
-              setCount(count + 1)
               setTimeout(() => {
                 resolve();
                 setState((prevState) => {

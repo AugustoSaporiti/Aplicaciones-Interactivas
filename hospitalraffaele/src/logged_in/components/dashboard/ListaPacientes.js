@@ -75,7 +75,7 @@ const styles = (theme) => ({
 
 function CustomTable(props) {
   const { targets } = props;
-
+  console.log(targets)
   const [state, setState] = React.useState({
     columns: [
       {
@@ -91,17 +91,17 @@ function CustomTable(props) {
         field: 'telefono',
       },
       {
-        title: 'Mail',
-        field: 'mail'
+        title: 'DNI',
+        field: 'dni'
       },
     ],
     data:
       targets.map(v => {
         return {
-          name: v.name,
-          surname: v.lastName,
-          telefono: v.phoneNumber,
-          mail: v.email,
+          name: v.nombre,
+          surname: v.apellido,
+          telefono: v.telefono,
+          dni: v.dni,
         }
       })
   });

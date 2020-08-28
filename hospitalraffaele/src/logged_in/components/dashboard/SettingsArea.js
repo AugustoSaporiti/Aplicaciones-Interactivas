@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment , useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import Settings1 from "./Turnos";
 import MultipleSelect from "./HorarioAtencion";
 import { Tab, Tabs, Box, Typography } from "@material-ui/core"
 import UserDataArea from "./ListaPacientes";
-
+import { listPatients } from "../../../controllers/api/api.patients"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,6 +38,18 @@ function SettingsArea(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   }
+
+  const [miLista, setLista] = useState([])
+  useEffect(() => {
+    obtenerUsuarios()
+  }, [])
+  
+  const obtenerUsuarios = async() => {
+    await listPatients()
+      .then(v => setLista(v.response))
+      .catch(e => { console.log(e) });
+  }
+
   console.log(targets)
   return (
     <Fragment>
@@ -59,12 +71,12 @@ function SettingsArea(props) {
       <TabPanel value={value} index={1}>
         <UserDataArea
           pushMessageToSnackbar={pushMessageToSnackbar}
-          targets={targets}
+          targets={miLista}
           setTargets={setTargets}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <MultipleSelect pushMessageToSnackbar={pushMessageToSnackbar}/>
+        <MultipleSelect pushMessageToSnackbar={pushMessageToSnackbar} />
       </TabPanel>
     </Fragment>
   );

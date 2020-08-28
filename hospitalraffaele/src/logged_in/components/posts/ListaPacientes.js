@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -87,21 +87,55 @@ function CustomTable(props) {
         field: 'telefono',
       },
       {
-        title: 'Mail',
-        field: 'mail'
+        title: 'DNI',
+        field: 'dni'
       },
     ],
     data:
       targets.map(v => {
         return {
-          name: v.name,
-          surname: v.lastName,
-          telefono: v.phoneNumber,
-          mail: v.email,
+          name: v.nombre,
+          surname: v.apellido,
+          telefono: v.telefono,
+          dni: v.dni,
         }
       })
   });
   const [seleccionado, setSeleccionado] = useState(undefined);
+
+  useEffect(() => {
+    setState(
+      {
+        columns: [
+          {
+            title: 'Nombre',
+            field: 'name'
+          },
+          {
+            title: 'Apellido',
+            field: 'surname'
+          },
+          {
+            title: 'Telefono',
+            field: 'telefono',
+          },
+          {
+            title: 'DNI',
+            field: 'dni'
+          },
+        ],
+        data:
+          targets.map(v => {
+            return {
+              name: v.nombre,
+              surname: v.apellido,
+              telefono: v.telefono,
+              dni: v.dni,
+            }
+          })
+      }
+    )
+  },[targets])
 
   return (
     <Paper>
@@ -132,8 +166,7 @@ function CustomTable(props) {
             previousTooltip: 'Pagina anterior',
           },
         }}
-        options={{
-          
+        options={{ 
           actionsColumnIndex: -1,
           selection: true,
           detailPanelType: "single",

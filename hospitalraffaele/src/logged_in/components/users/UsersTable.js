@@ -1,5 +1,5 @@
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import React, { forwardRef } from "react";
+import React, { forwardRef , useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -18,6 +18,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Paper, withStyles } from "@material-ui/core";
+import {listUsers} from '../../../controllers/api/api.users'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -71,7 +72,18 @@ const styles = (theme) => ({
 });
 
 function UsersTable(props) {
-  const { userList, classes } = props;
+  const { classes } = props;
+
+  const [userList, setUserList] = useState([])
+  useEffect(() => {
+    obtenerUsuarios()
+  }, [])
+  
+  const obtenerUsuarios = async() => {
+    await listUsers()
+      .then(v => setUserList(v.response))
+      .catch(e => { console.log(e) });
+  }
 
   const [state, setState] = React.useState({
     columns: [
@@ -86,8 +98,8 @@ function UsersTable(props) {
         validate: ({ surname }) => surname?.trim().length > 2
       },
       {
-        title: 'DNI',
-        field: 'dni',
+        title: 'ID',
+        field: 'id',
         validate: ({ dni }) =>
           !isNaN(dni) && dni?.trim().length > 5
       },
@@ -106,13 +118,55 @@ function UsersTable(props) {
         return {
           name: v.name,
           surname: v.surname,
-          dni: v.dni,
-          role: v.role,
+          id: v.id,
+          role: v.role_id,
           mail: v.email,
         }
       })
   });
 
+  useEffect(() => setState(
+    {
+      columns: [
+        {
+          title: 'Nombre',
+          field: 'name',
+          validate: ({ name }) => name?.trim().length > 2
+        },
+        {
+          title: 'Apellido',
+          field: 'surname',
+          validate: ({ surname }) => surname?.trim().length > 2
+        },
+        {
+          title: 'ID',
+          field: 'id',
+          validate: ({ dni }) =>
+            !isNaN(dni) && dni?.trim().length > 5
+        },
+        {
+          title: 'Rol',
+          field: 'role',
+          validate: ({ role }) => role?.trim().length > 0
+        },
+        {
+          title: 'Mail',
+          field: 'mail'
+        },
+      ],
+      data:
+        userList.map(v => {
+          return {
+            name: v.name,
+            surname: v.surname,
+            id: v.id,
+            role: v.role_id,
+            mail: v.email,
+          }
+        })
+    }
+  ),[userList])
+  
   if (userList.length > 0) {
     return (
       <Paper>
