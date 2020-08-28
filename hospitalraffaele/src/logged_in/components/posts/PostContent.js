@@ -16,6 +16,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
+import {downloadFile} from '../../../controllers/api/api.files'
 
 const styles = {
   dBlock: { display: "block" },
@@ -101,7 +102,7 @@ function PostContent(props) {
                       {
                         name: "Descargar",
                         onClick: () => {
-                          onDelete(element);
+                          downloadFile(element)
                         },
                         icon: <ArrowDowardIcon />,
                       }

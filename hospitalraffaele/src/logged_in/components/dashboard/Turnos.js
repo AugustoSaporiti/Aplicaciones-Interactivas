@@ -52,11 +52,12 @@ export default function MaterialTableDemo() {
       {
         title: 'Doctor',
         field: 'Doctorfield',
-        lookup: { 20: 'Sarasa', 10: 'Tomas' },
+        lookup: { 20: 'Sarasa'},
       },
       {
         title: 'Fecha',
-        field: 'birthYear'
+        field: 'birthYear',
+        validate: ({ birthYear }) => birthYear?.trim().length > 7
       },
       {
         title: 'Horario',
@@ -68,7 +69,7 @@ export default function MaterialTableDemo() {
       {
         name: 'Mehmet',
         surname: 'Baran',
-        Doctorfield: 10,
+        Doctorfield: 20,
         birthYear: "19/11/2020",
         birthCity: 63
       },

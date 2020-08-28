@@ -44,11 +44,13 @@ export default function MaterialTableDemo() {
         title: 'Nombre',
         field: 'name',
         editable: 'never',
+        initialEditValue: "Susana"
       },
       {
         title: 'Apellido',
         field: 'surname',
         editable: 'never',
+        initialEditValue: "Aguirre"
       },
       {
         title: 'Doctor',
@@ -57,7 +59,8 @@ export default function MaterialTableDemo() {
       },
       {
         title: 'Fecha',
-        field: 'birthYear'
+        field: 'birthYear',
+        validate: ({ birthYear }) => birthYear?.trim().length > 7
       },
       {
         title: 'Horario',
@@ -67,15 +70,15 @@ export default function MaterialTableDemo() {
     ],
     data: [
       {
-        name: 'Mehmet',
-        surname: 'Baran',
+        name: 'Susana',
+        surname: 'Aguirre',
         Doctorfield: 10,
         birthYear: "19/11/2020",
         birthCity: 63
       },
       {
-        name: 'Zerya Betül',
-        surname: 'Baran',
+        name: 'Susana',
+        surname: 'Aguirre',
         Doctorfield: 20,
         birthYear: "17/12/2020",
         birthCity: 34,
