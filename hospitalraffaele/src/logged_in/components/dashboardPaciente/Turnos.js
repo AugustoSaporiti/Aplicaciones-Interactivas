@@ -46,7 +46,7 @@ export default function MaterialTableDemo() {
   }, [])
   console.log('caca')
   const obtenerUsuarios = async () => {
-    await findAppointmentsByPatient(7)
+    await findAppointmentsByPatient(1)
       .then(v => setTurnos(v.response))
   }
 
