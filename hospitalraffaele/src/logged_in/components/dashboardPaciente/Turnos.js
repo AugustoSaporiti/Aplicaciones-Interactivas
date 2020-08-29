@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
@@ -16,6 +16,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import {findAppointmentsByPatient} from '../../../controllers/api/api.appointments'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -38,60 +39,63 @@ const tableIcons = {
 };
 
 export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
-    columns: [
-      {
-        title: 'Nombre',
-        field: 'name',
-        editable: 'never',
-        initialEditValue: "Susana"
-      },
-      {
-        title: 'Apellido',
-        field: 'surname',
-        editable: 'never',
-        initialEditValue: "Aguirre"
-      },
-      {
-        title: 'Doctor',
-        field: 'Doctorfield',
-        lookup: { 20: 'Sarasa', 10: 'Tomas' },
-      },
-      {
-        title: 'Fecha',
-        field: 'birthYear',
-        validate: ({ birthYear }) => birthYear?.trim().length > 7
-      },
-      {
-        title: 'Horario',
-        field: 'birthCity',
-        lookup: { 34: '11:30', 63: '12:30' },
-      },
-    ],
-    data: [
-      {
-        name: 'Susana',
-        surname: 'Aguirre',
-        Doctorfield: 10,
-        birthYear: "19/11/2020",
-        birthCity: 63
-      },
-      {
-        name: 'Susana',
-        surname: 'Aguirre',
-        Doctorfield: 20,
-        birthYear: "17/12/2020",
-        birthCity: 34,
-      },
-    ],
-  });
+
+  const [turnos, setTurnos] = useState([])
+  useEffect(() => {
+    obtenerUsuarios()
+  }, [])
+  console.log('caca')
+  const obtenerUsuarios = async () => {
+    await findAppointmentsByPatient(7)
+      .then(v => setTurnos(v.response))
+  }
+
+  const [state, setState] = useState([])
+    useEffect(() =>
+    setState(
+      turnos.map(v => {
+        console.log(v)
+        return {
+          name: v.patients.nombre,
+          surname: v.patients.apellido,
+          doctor: v.doctors.apellido,
+          date: v.date,
+          horarios: v.time,
+        }
+      })
+    )
+    , [turnos])
 
   return (
     <MaterialTable
       icons={tableIcons}
       title="Turnos"
-      columns={state.columns}
-      data={state.data}
+      columns={
+        [
+          {
+            title: 'Nombre',
+            field: 'name',
+          },
+          {
+            title: 'Apellido',
+            field: 'surname',
+          },
+          {
+            title: 'Doctor',
+            field: 'doctor',
+          },
+          {
+            title: 'Fecha',
+            field: 'date',
+            validate: ({ date }) => date?.trim().length > 7
+          },
+          {
+            title: 'Horario',
+            field: 'horarios',
+          },
+        ]
+      }
+      data={state}
       localization={{
         body: {
           emptyDataSourceMessage: 'No hay datos por mostrar',
