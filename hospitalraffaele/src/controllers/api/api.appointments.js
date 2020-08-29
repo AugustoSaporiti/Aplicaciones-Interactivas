@@ -50,6 +50,7 @@ export const deleteAppointment = async function(appointment)  {
     formData.append('doctor_id', appointment.doctor);
     formData.append('date', appointment.date);
     formData.append('patient_id', appointment.patient);
+    formData.append('time', appointment.time);
 
     try {
         // Hago llamada al endpoint
@@ -186,4 +187,44 @@ console.log(result);
 
       return result;
     }
+}
+
+export const updateAppointment = async function(appointmentOld, appointmentNew) {
+  // Genero formulario con datos a pasar
+  let response = {
+    success: false,
+    msg: ""
+  };
+  
+  createAppointment(appointmentNew)
+    .then(result => {
+      console.log(result);
+      if(result.success) {
+        response.newAppointment = result.response;
+
+        deleteAppointment(appointmentOld)
+          .then(deleted => {
+
+            if(!deleted.success) {
+              response.msg = "Error borrando el turno original.";
+            } else {
+              response.success = true;
+              response.oldAppointment = deleted.response;
+            }
+            console.log(response);
+            return response;
+
+          })
+          .catch(error => {return error});
+
+      } else {
+        response.msg = "Error creando el nuevo turno.";
+console.log(response);
+        return response;
+      }
+
+      
+    })
+    .catch(error => {return error});
+
 }
