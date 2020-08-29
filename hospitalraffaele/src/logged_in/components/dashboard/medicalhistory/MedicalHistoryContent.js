@@ -38,7 +38,7 @@ const styles = {
 const rowsPerPage = 25;
 
 function MedicalHistoryContent(props) {
-  showButton = validadorUsuario.esVisible(global.usuarioElegido);
+  showButton = validadorUsuario.esVisible();
   const {
     pushMessageToSnackbar,
     //  setPosts,

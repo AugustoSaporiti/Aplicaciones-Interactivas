@@ -477,7 +477,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
@@ -521,7 +521,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
@@ -565,7 +565,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
@@ -620,7 +620,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
@@ -675,7 +675,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {
@@ -730,7 +730,7 @@ function MedicalHistory(props) {
               search: false,
               paging: false,
             }}
-            editable={validadorUsuario.esVisible(global.usuarioElegido) && {
+            editable={validadorUsuario.esVisible() && {
               onRowUpdate: (newData, oldData) =>
                 new Promise((resolve) => {
                   setTimeout(() => {

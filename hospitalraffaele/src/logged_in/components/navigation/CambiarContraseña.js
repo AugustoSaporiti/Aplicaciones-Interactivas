@@ -91,7 +91,7 @@ function CambiarContraseña(props) {
       buttons: [
         {
           label: 'Si',
-          onClick: () => history.push(validadorUsuario.esVisibleSecretario(global.usuarioElegido) ? "/c/dashboard" : "/c/dashboardPaciente")
+          onClick: () => history.push(validadorUsuario.esVisibleSecretario() ? "/c/dashboard" : "/c/dashboardPaciente")
         },
         {
           label: 'No',
@@ -162,7 +162,7 @@ function CambiarContraseña(props) {
           <Button
             style={{ float: 'right' }}
             variant="contained"
-            onClick={() => history.push(validadorUsuario.esVisibleSecretario(global.usuarioElegido) ? "/c/dashboard" : "/c/dashboardPaciente")}>
+            onClick={() => history.push(validadorUsuario.esVisibleSecretario() ? "/c/dashboard" : "/c/dashboardPaciente")}>
             Atras
         </Button>
         </Fragment>

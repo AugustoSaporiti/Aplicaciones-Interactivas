@@ -1,10 +1,12 @@
+import entities from "../controllers/entities";
 const variableGuardada = [];
+const role = parseInt(localStorage.getItem('r'));
 
-const validarUsuario = (value, role) => {
+const validarUsuario = (value) => {
     const menuItemValidado = [];
 
     if (role !== undefined && role !== null) {
-        if (role[0].role === "Paciente") {
+        if (role === entities.idPaciente) {
             value.filter(x => {
                 if (x.name === "Principal Paciente" || x.name === "Recetas paciente" || x.name === "Salir") {
                     menuItemValidado.push(x);
@@ -12,7 +14,7 @@ const validarUsuario = (value, role) => {
             });
         }
 
-        else if (role[0].role === "Secretario") {
+        else if (role === entities.idSecretario) {
             value.filter(x => {
                 if (x.name === "Principal" || x.name === "Recetas" || x.name === "Salir") {
                     menuItemValidado.push(x);
@@ -20,7 +22,7 @@ const validarUsuario = (value, role) => {
             });
         }
 
-        else if (role[0].role === "Doctor") {
+        else if (role === entities.idDoctor) {
             value.filter(x => {
                 if (x.name === "Principal" || x.name === "Recetas" || x.name === "Salir") {
                     menuItemValidado.push(x);
@@ -28,7 +30,7 @@ const validarUsuario = (value, role) => {
             });
         }
 
-        else if (role[0].role === "Admin") {
+        else if (role === entities.idAmin) {
             value.filter(x => {
                 if (x.name === "Principal" || x.name === "Recetas" || x.name === "Usuarios" || x.name === "Salir") {
                     menuItemValidado.push(x);
@@ -55,54 +57,36 @@ const validarUsuario = (value, role) => {
     }
 
     return menuItemValidado;
-    // if (role[0].role === "Paciente") {
-    //     for (let elemento of value) {
-    //         if(elemento.name === "Dashboard Paciente" || elemento.name === "Posts" || elemento.name === "Salir")
-    //         {
-    //             menuItemValidado.push(elemento);
-    //         }            
-    //     }
-    // }
 
 
 };
 
-const esVisible = (value) => {
+const esVisible = () => {
     var visible = false;
 
-    console.log("variable",value)
-    if (value !== null && value !== undefined) {
-            if (value[0].role === "Doctor" || value[0].role === "Admin") {
-                visible = true;
-            }
+    if (role !== null && role !== undefined) {
+        if (role === entities.idDoctor || role === entities.idAmin) {
+            visible = true;
+        }
+    }
+console.log(visible);
+    return visible;
+};
+
+const esVisibleSecretario = () => {
+    var visible = false;
+
+    if (role !== null && role !== undefined) {
+        if (role === entities.idDoctor || role === entities.idAdmin || role === entities.idSecretario ) {
+            visible = true;
+        }
     }
 
     return visible;
 };
 
-const esVisibleSecretario = (value) => {
-    var visible = false;
-
-    console.log("variable",value)
-    if (value !== null && value !== undefined) {
-            if (value[0].role === "Doctor" || value[0].role === "Admin" || value[0].role === "Secretario" ) {
-                visible = true;
-            }
-    }
-
-    return visible;
-};
-
-const esVisibleAdmin = (value) => {
-    var visible = false;
-
-    if (value !== null && value !== undefined) {
-            if (value[0].role === "Admin") {
-                visible = true;
-            }
-    }
-
-    return visible;
+const esVisibleAdmin = () => {
+    return role !== null && role !== undefined && role === entities.idAmin;
 };
 
 

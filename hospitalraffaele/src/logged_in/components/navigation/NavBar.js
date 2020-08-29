@@ -31,7 +31,6 @@ import SideDrawer from "./SideDrawer";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 import validadorUsuario from "../../validadorUsuario.js";
-import global from "../../../logged_out/components/Global.js";
 
 const styles = theme => ({
   appBar: {
@@ -151,6 +150,11 @@ function NavBar(props) {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
+  const logoutUser = function() {
+    localStorage.removeItem('x');
+    localStorage.removeItem('r');
+  };
+
   const menuItemsPrueba = [
     {
       link: "/c/dashboard",
@@ -235,6 +239,7 @@ function NavBar(props) {
     {
       link: "/inicio",
       name: "Salir",
+      onClick: logoutUser,
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -247,13 +252,13 @@ function NavBar(props) {
 
   const menu = () => {
 
-    const datosUsuario = validadorUsuario.validarUsuario(menuItemsPrueba, global.usuarioElegido);
+    const datosUsuario = validadorUsuario.validarUsuario(menuItemsPrueba);
 
     validadorUsuario.variableGuardada = datosUsuario;
-
+console.log(datosUsuario);
     return datosUsuario;
   }
-  console.log(selectedTab)
+
   const menuItems = menu();
 
 

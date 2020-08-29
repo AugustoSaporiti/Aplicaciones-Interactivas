@@ -50,7 +50,6 @@ function SettingsArea(props) {
       .catch(e => { console.log(e) });
   }
 
-  console.log(targets)
   return (
     <Fragment>
       <Tabs
