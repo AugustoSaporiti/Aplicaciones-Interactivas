@@ -50,18 +50,12 @@ function RegisterDialog(props) {
    }
    
   const register = useCallback(() => {
-<<<<<<< HEAD
     const usuario ={
       email: mail.current.value,
       password:  registerPassword.current.value,
       dni: dni.current.value,
       role: 3
     };
-=======
-
-    console.log("mail",mail.current.value);
-    console.log("dni",dni.current.value);
->>>>>>> 81f3a0f4b7145433df2b0e01fd57be91b4d42f8c
 
     if (!registerTermsCheckbox.current.checked) {
       setHasTermsOfServiceError(true);
@@ -129,10 +123,7 @@ function RegisterDialog(props) {
             required
             fullWidth
             label="DNI"
-<<<<<<< HEAD
             inputRef={dni}
-=======
->>>>>>> 81f3a0f4b7145433df2b0e01fd57be91b4d42f8c
             onChange={(e) => {   
               console.log(e.target.value);
               if (isNaN(e.target.value)) {
