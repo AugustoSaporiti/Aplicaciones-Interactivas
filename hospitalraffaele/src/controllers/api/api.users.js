@@ -67,14 +67,14 @@ export const loginUser = async function(user)  {
 
       if(response.status === 200)
       {
-        console.log(data.token);
         localStorage.setItem("x", data.token);
+        localStorage.setItem("r", data.user.role_id);
       }
       let result = {
           success: (response.status === 200 ? true : false),
-          response: response
+          response: data
       }
-      console.log(result);
+
       return result;
       
     } catch(e) {
@@ -82,7 +82,7 @@ export const loginUser = async function(user)  {
           success: false,
           response: e
       };
-      console.log("chau "+result);
+
       return result;
     }
 }
@@ -137,6 +137,8 @@ export const deleteUser = async function(userId)  {
     formData.append('user_id', userId);
     formData.append('status', 0);
 
+    let token = localStorage.getItem('x');
+
     try {
         // Hago llamada al endpoint
         let response =  await fetch(url, {
@@ -145,7 +147,8 @@ export const deleteUser = async function(userId)  {
           headers: {
             'Accept': 'application/x-www-form-urlencoded',
             'Origin': 'http://localhost:3000/',
-            'Content-type': 'application/x-www-form-urlencoded'
+            'Content-type': 'application/x-www-form-urlencoded',
+            'x-access-token': token
           },
           body: formData
         });

@@ -38,7 +38,6 @@ function SettingsArea(props) {
   }
   const { pushMessageToSnackbar } = props;
 
-  
   return (
     <Fragment>
       <Tabs

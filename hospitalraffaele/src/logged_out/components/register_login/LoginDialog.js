@@ -15,6 +15,8 @@ import HighlightedInformation from "../../../shared/components/HighlightedInform
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 import global from "../Global.js";
+import { loginUser } from "../../../controllers/api/api.users";
+import entities from "../../../controllers/entities";
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -54,49 +56,30 @@ function LoginDialog(props) {
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    global.usuarioElegido = global.usuarioRoles.filter(x=>{
 
-      if (loginEmail.current.value !== x.email) {
-        setTimeout(() => {
-          setStatus("invalidEmail");
-          setIsLoading(false);
-        }, 1500);
-      } else if (loginPassword.current.value !== x.pass) {
-        setTimeout(() => {
-          setStatus("invalidPassword");
-          setIsLoading(false);
-        }, 1500);
-      } else {
-        setTimeout(() => {
-          if (x.pass === "paciente") {
+    let loginData = {
+      email: loginEmail.current.value,
+      password: loginPassword.current.value
+    };
+
+    loginUser(loginData)
+      .then(response => {
+        if (response.success) {
+          if(response.response.user.role_id === entities.idPaciente) {
             history.push("/c/dashboardPaciente");
           } else {
             history.push("/c/dashboard");
           }
-        }, 150);
-      }
 
-      if ( x.email === loginEmail.current.value && x.pass === loginPassword.current.value) 
-      {
-        return x;
-      }       
-    });
+        } else {
+          
+          setTimeout(() => {
+            setStatus("invalidCredentials");
+            setIsLoading(false);
+          }, 1500);
+        }
+      });
 
-  // if (loginEmail.current.value !== "test@web.com") {
-  //   setTimeout(() => {
-  //     setStatus("invalidEmail");
-  //     setIsLoading(false);
-  //   }, 1500);
-  // } else if (loginPassword.current.value !== "test") {
-  //   setTimeout(() => {
-  //     setStatus("invalidPassword");
-  //     setIsLoading(false);
-  //   }, 1500);
-  // } else {
-  //   setTimeout(() => {
-  //     history.push("/c/dashboard");
-  //   }, 150);
-  // }
   }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
 
   return (
@@ -116,7 +99,7 @@ function LoginDialog(props) {
             <TextField
               variant="outlined"
               margin="normal"
-              error={status === "invalidEmail"}
+              error={status === "invalidCredentials"}
               required
               fullWidth
               label="Mail"
@@ -125,7 +108,7 @@ function LoginDialog(props) {
               autoComplete="off"
               type="email"
               onChange={() => {
-                if (status === "invalidEmail") {
+                if (status === "invalidCredentials") {
                   setStatus(null);
                 }
               }}
@@ -140,20 +123,20 @@ function LoginDialog(props) {
               margin="normal"
               required
               fullWidth
-              error={status === "invalidPassword"}
+              error={status === "invalidCredentials"}
               label="Contraseña"
               inputRef={loginPassword}
               autoComplete="off"
               onChange={() => {
-                if (status === "invalidPassword") {
+                if (status === "invalidCredentials") {
                   setStatus(null);
                 }
               }}
               helperText={
-                status === "invalidPassword" ? (
+                status === "invalidCredentials" ? (
                   <span>
-                    Contraseña invalida. Intente nuevamente, o clicke aca{" "}
-                    <b>&quot;Te olvidaste la contraseña?&quot;</b> para reseteat.
+                    Credenciales erróneas. Intente nuevamente, o haga click en
+                    <b>&quot;Te olvidaste la contraseña?&quot;</b> para resetear.
                   </span>
                 ) : (
                   ""

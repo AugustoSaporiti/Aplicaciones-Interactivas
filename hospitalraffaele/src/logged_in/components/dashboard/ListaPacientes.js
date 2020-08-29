@@ -159,7 +159,7 @@ function CustomTable(props) {
             }
           }
         ]}
-        editable={validadorUsuario.esVisibleAdmin(global.usuarioElegido) && {
+        editable={validadorUsuario.esVisibleAdmin() && {
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {

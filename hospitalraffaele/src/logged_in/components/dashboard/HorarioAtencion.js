@@ -74,7 +74,7 @@ export default function MultipleSelect(props) {
 
   return (
     <div>
-      {validadorUsuario.esVisibleAdmin(global.usuarioElegido) &&
+      {validadorUsuario.esVisibleAdmin() &&
         <Autocomplete
           id="combo-box-demo"
           options={doctores}
