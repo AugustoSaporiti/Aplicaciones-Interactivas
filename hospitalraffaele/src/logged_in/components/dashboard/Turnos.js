@@ -20,7 +20,7 @@ import HeadSection from "../../../logged_out/components/home/HeadSection";
 import { listAppointments, findAppointmentsByDoctor, findAppointmentsByPatient } from '../../../controllers/api/api.appointments'
 import validadorUsuario from "../../validadorUsuario.js";
 import global from "../../../logged_out/components/Global.js";
-
+import { deleteAppointment, createAppointment, updateAppointment } from '../../../controllers/api/api.appointments'
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -55,8 +55,10 @@ export default function MaterialTableDemo() {
     }
     else {
       await findAppointmentsByDoctor(6)
-        .then(v => { console.log(v.response) 
-          setTurnos(v.response)})
+        .then(v => {
+          console.log(v.response)
+          setTurnos(v.response)
+        })
     }
   }
 
@@ -144,41 +146,45 @@ export default function MaterialTableDemo() {
         actionsColumnIndex: -1,
       }}
       editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
+        onRowAdd: async (newData) => {
+          await createAppointment(
+            {
+              doctor_id: 6,
+              date: newData.date,
+              time: newData.horarios,
+              patient_id: 1,
+            }
+          ).then(() => {
+            setState(
+              state.concat(newData)
+            )
+          })
+        },
+        onRowDelete: async (oldData) => {
+          await deleteAppointment(
+            {
+              doctor_id: 6,
+              date: oldData.date,
+              time: oldData.horarios,
+              patient_id: 1,
+            }
+          )
+          window.location.reload(true);
+        },/*
+        onRowUpdate: async (newData, oldData) => {
+          await updateAppointment(
+            {
+
+            }
+          ).then(() => {
+            setState((prevState) => {
+              const data = [...prevState];
+              data[data.indexOf(oldData)] = newData;
+              return { ...prevState, data };
+            }
+            )
+          })
+        },*/
       }}
     />
   );

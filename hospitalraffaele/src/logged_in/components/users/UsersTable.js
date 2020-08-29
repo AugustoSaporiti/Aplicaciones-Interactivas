@@ -207,6 +207,7 @@ function UsersTable(props) {
             },
           }}
           editable={{
+            isEditHidden: rowData => rowData.role === 4,
             onRowUpdate: (newData, oldData) =>
               updateUser(
                 {

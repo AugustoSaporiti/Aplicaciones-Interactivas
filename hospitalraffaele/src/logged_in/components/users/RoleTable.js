@@ -171,8 +171,7 @@ function RoleTable(props) {
           },
         }}
         editable={{
-          isDeleteHidden: rowData => rowData.role === 'Admin',
-          isEditHidden: rowData => rowData.role === 'Admin',
+          isEditHidden: rowData => rowData.role === 'admin',
           onRowAdd: (newData) =>
             createRole(
               {

@@ -5,11 +5,11 @@ import urlWebServices from '../webServices';
     let url = urlWebServices.createAppointment;
     // Genero formulario con datos a pasar
     let formData = new URLSearchParams();
-    formData.append('doctor_id', appointment.doctor);
+    formData.append('doctor_id', appointment.doctor_id);
     formData.append('date', appointment.date);
     formData.append('time', appointment.time);
-    formData.append('patient_id', appointment.patient);
-
+    formData.append('patient_id', appointment.patient_id);
+  console.log(appointment)
     try {
         // Hago llamada al endpoint
         let response =  await fetch(url, {
@@ -47,9 +47,9 @@ export const deleteAppointment = async function(appointment)  {
     let url = urlWebServices.deleteAppointment;
     // Genero formulario con datos a pasar
     let formData = new URLSearchParams();
-    formData.append('doctor_id', appointment.doctor);
+    formData.append('doctor_id', appointment.doctor_id);
     formData.append('date', appointment.date);
-    formData.append('patient_id', appointment.patient);
+    formData.append('patient_id', appointment.patient_id);
     formData.append('time', appointment.time);
 
     try {

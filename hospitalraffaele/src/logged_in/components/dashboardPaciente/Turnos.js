@@ -93,6 +93,7 @@ export default function MaterialTableDemo() {
             title: 'Doctor ID',
             field: 'id_doctor',
             hidden: true,
+            initialEditValue: 6
           },
           {
             title: 'Fecha',
@@ -142,30 +143,37 @@ export default function MaterialTableDemo() {
         actionsColumnIndex: -1,
       }}
       editable={{
-        onRowAdd: (newData) =>
-          createAppointment(
+        onRowAdd: async (newData) => {
+          console.log({
+            doctor_id: 6,
+            date: newData.date,
+            time: newData.horarios,
+            patient_id: 1,
+          })
+          await createAppointment(
             {
-              doctor_id: newData.id_doctor,
+              doctor_id: 6,
               date: newData.date,
               time: newData.horarios,
               patient_id: 1,
             }
           ).then(() => {
-            setState((prevState) => {
-              const data = [...prevState.data];
-              data.push(newData);
-              return { ...prevState, data };
-            })
-          }),
-        onRowDelete: (oldData) =>
-          deleteAppointment(oldData)
-            .then(() => {
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }),
+            setState(
+              state.concat(newData)
+            )
+          })
+        },
+        onRowDelete: async (oldData) => {
+          await deleteAppointment(
+            {
+              doctor_id: 6,
+              date: oldData.date,
+              time: oldData.horarios,
+              patient_id: 1,
+            }
+          )
+          window.location.reload(true);
+        },
       }}
     />
   );
