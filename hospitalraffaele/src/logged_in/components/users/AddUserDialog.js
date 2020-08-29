@@ -54,20 +54,39 @@ const roles = [
 ];
 
 function AddUserDialog(props) {
-  const { setStatus, theme, onClose, status, classes, open } = props;
+  const { 
+    // setStatus,
+     theme, onClose, status, classes, open } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerPassword = useRef();
   const registerPasswordRepeat = useRef();
+  const mail = useRef();
+  const dni = useRef();
+  const nombre = useRef();
+  const apellido = useRef();
+  const rol = useRef();
 
   const register = useCallback(() => {
-    if (
-      registerPassword.current.value !== registerPasswordRepeat.current.value
-    ) {
-      setStatus("passwordsDontMatch");
-      return;
-    }
-    setStatus(null);
+    // if (
+    //   registerPassword.current.value !== registerPasswordRepeat.current.value
+    // ) {
+    //   // setStatus("passwordsDontMatch");
+    //   return;
+    // }
+
+    const usuario ={
+      email: mail.current.value,
+      password:  registerPassword.current.value,
+      dni: dni.current.value,
+      role: rol.current.value,
+      nombre:nombre.current.value,
+      apellido:apellido.current.value
+    };
+
+console.log("usuario",usuario);
+
+    // setStatus(null);
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -98,6 +117,7 @@ function AddUserDialog(props) {
             required
             fullWidth
             label="Nombre"
+            inputRef={nombre}
             autoFocus
             autoComplete="off"
             type="text"
@@ -108,6 +128,7 @@ function AddUserDialog(props) {
             required
             fullWidth
             label="Apellido"
+            inputRef={apellido}
             autoFocus
             autoComplete="off"
             type="text"
@@ -119,11 +140,12 @@ function AddUserDialog(props) {
             fullWidth
             error={status === "invalidEmail"}
             label="Mail"
+            inputRef={mail}
             autoComplete="off"
             type="email"
             onChange={() => {
               if (status === "invalidEmail") {
-                setStatus(null);
+                // setStatus(null);
               }
             }}
             FormHelperTextProps={{ error: true }}
@@ -134,6 +156,7 @@ function AddUserDialog(props) {
             required
             variant="outlined"
             label="Rol"
+            inputRef={rol}
           // onChange={handleChange}
           >
             {roles.map((option) => (
@@ -148,6 +171,16 @@ function AddUserDialog(props) {
             required
             fullWidth
             label="DNI"
+            inputRef={dni}
+            onChange={(e) => {   
+              if (isNaN(e.target.value)) {
+                e.target.value = "";
+              }
+
+             else if (e.target.value.length > 5) {
+                e.target.value = e.target.value.substring(0,5);
+              }
+            }}
             autoFocus
             autoComplete="off"
             type="text"
@@ -168,7 +201,7 @@ function AddUserDialog(props) {
                 status === "passwordTooShort" ||
                 status === "passwordsDontMatch"
               ) {
-                setStatus(null);
+                // setStatus(null);
               }
             }}
             helperText={(() => {
@@ -184,7 +217,7 @@ function AddUserDialog(props) {
             isVisible={isPasswordVisible}
             onVisibilityChange={setIsPasswordVisible}
           />
-          <VisibilityPasswordTextField
+          {/* <VisibilityPasswordTextField
             variant="outlined"
             margin="normal"
             required
@@ -200,7 +233,7 @@ function AddUserDialog(props) {
                 status === "passwordTooShort" ||
                 status === "passwordsDontMatch"
               ) {
-                setStatus(null);
+                // setStatus(null);
               }
             }}
             helperText={(() => {
@@ -214,7 +247,7 @@ function AddUserDialog(props) {
             FormHelperTextProps={{ error: true }}
             isVisible={isPasswordVisible}
             onVisibilityChange={setIsPasswordVisible}
-          />
+          /> */}
           {status === "accountCreated" ? (
             <HighlightedInformation>
               La cuenta ha sido creada.
