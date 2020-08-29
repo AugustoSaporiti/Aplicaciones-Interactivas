@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
@@ -16,7 +16,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import {findAppointmentsByPatient} from '../../../controllers/api/api.appointments'
+import { findAppointmentsByPatient, deleteAppointment, createAppointment } from '../../../controllers/api/api.appointments'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -51,7 +51,7 @@ export default function MaterialTableDemo() {
   }
 
   const [state, setState] = useState([])
-    useEffect(() =>
+  useEffect(() =>
     setState(
       turnos.map(v => {
         console.log(v)
@@ -61,6 +61,7 @@ export default function MaterialTableDemo() {
           doctor: v.doctors.apellido,
           date: v.date,
           horarios: v.time,
+          id_doctor: v.doctor_id,
         }
       })
     )
@@ -75,14 +76,23 @@ export default function MaterialTableDemo() {
           {
             title: 'Nombre',
             field: 'name',
+            initialEditValue: 'paciente',
+            editable: 'never'
           },
           {
             title: 'Apellido',
             field: 'surname',
+            initialEditValue: 'paciente',
+            editable: 'never'
           },
           {
             title: 'Doctor',
             field: 'doctor',
+          },
+          {
+            title: 'Doctor ID',
+            field: 'id_doctor',
+            hidden: true,
           },
           {
             title: 'Fecha',
@@ -133,27 +143,29 @@ export default function MaterialTableDemo() {
       }}
       editable={{
         onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
+          createAppointment(
+            {
+              doctor_id: newData.id_doctor,
+              date: newData.date,
+              time: newData.horarios,
+              patient_id: 1,
+            }
+          ).then(() => {
+            setState((prevState) => {
+              const data = [...prevState.data];
+              data.push(newData);
+              return { ...prevState, data };
+            })
           }),
         onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
+          deleteAppointment(oldData)
+            .then(() => {
               setState((prevState) => {
                 const data = [...prevState.data];
                 data.splice(data.indexOf(oldData), 1);
                 return { ...prevState, data };
               });
-            }, 600);
-          }),
+            }),
       }}
     />
   );

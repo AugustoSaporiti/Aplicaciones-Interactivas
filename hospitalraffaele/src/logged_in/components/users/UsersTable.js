@@ -155,8 +155,8 @@ function UsersTable(props) {
       data:
         userList.map(v => {
           return {
-            name: v.name,
-            surname: v.surname,
+            name: v.nombre,
+            surname: v.apellido,
             id: v.id,
             role: v.role_id,
             mail: v.email,
@@ -212,8 +212,8 @@ function UsersTable(props) {
                 {
                   role_id: newData.role,
                   email: newData.mail,
-                  //nombre: newData.name,
-                  //apellido: newData.surname,
+                  nombre: newData.name,
+                  apellido: newData.surname,
                   user_id: newData.id,
                 }
               ).then(() => {

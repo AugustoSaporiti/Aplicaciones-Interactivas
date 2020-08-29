@@ -249,6 +249,7 @@ AddUserDialog.propTypes = {
   theme: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   status: PropTypes.string,
+  setStatus: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
