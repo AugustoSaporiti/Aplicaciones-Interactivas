@@ -57,6 +57,7 @@ const urlWebServices = {
      * Files
      */ 
     uploadFile: rutaBack + "api/upload",
+    saveFileName: rutaBack + "api/upload/save",
     findFilesByPatient: rutaBack + "api/upload/find/patient/",
    //updateAvailability: rutaBack + "api/availability/update",
     downloadFile: rutaBack + "api/download/fileName/",

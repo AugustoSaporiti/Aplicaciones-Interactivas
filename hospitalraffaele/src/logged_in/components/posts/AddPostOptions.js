@@ -16,6 +16,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
 import CustomTable from "./ListaPacientes";
+//import "../../../assets/scss/material-kit-react.scss?v=1.8.0";
+import SubirArchivo from "../../../views/SubirArchivo";
+
 
 const styles = (theme) => ({
   floatButtonWrapper: {
@@ -114,11 +117,9 @@ function AddPostOptions(props) {
       );
     }
     return (
-      <Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
-        <span className={classes.uploadText}>
-          Clickea / Solta archivo <br /> aca
-        </span>
-      </Dropzone>
+      <div>
+            <SubirArchivo></SubirArchivo>
+        </div>
     );
   }, [onDrop, files, classes, deleteItem]);
 
