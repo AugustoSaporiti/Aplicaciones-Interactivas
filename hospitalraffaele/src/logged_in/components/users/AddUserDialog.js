@@ -15,7 +15,8 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import {createUser} from '../../../controllers/api/api.users'
+import { createUser } from '../../../controllers/api/api.users'
+import { useHistory } from 'react-router-dom';
 
 const styles = (theme) => ({
   link: {
@@ -54,9 +55,9 @@ const roles = [
 ];
 
 function AddUserDialog(props) {
-  const { 
+  const {
     // setStatus,
-     theme, onClose, status, classes, open } = props;
+    theme, onClose, status, classes, open } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerPassword = useRef();
@@ -75,16 +76,16 @@ function AddUserDialog(props) {
     //   return;
     // }
 
-    const usuario ={
+    const usuario = {
       email: mail.current.value,
-      password:  registerPassword.current.value,
+      password: registerPassword.current.value,
       dni: dni.current.value,
       role: rol.current.value,
-      nombre:nombre.current.value,
-      apellido:apellido.current.value
+      nombre: nombre.current.value,
+      apellido: apellido.current.value
     };
 
-console.log("usuario",usuario);
+    console.log("usuario", usuario);
 
     // setStatus(null);
     setIsLoading(true);
@@ -96,6 +97,8 @@ console.log("usuario",usuario);
     registerPassword,
     registerPasswordRepeat,
   ]);
+
+  const history = useHistory();
 
   return (
     <FormDialog
@@ -117,6 +120,7 @@ console.log("usuario",usuario);
             required
             fullWidth
             label="Nombre"
+            id='nombre'
             inputRef={nombre}
             autoFocus
             autoComplete="off"
@@ -129,6 +133,7 @@ console.log("usuario",usuario);
             fullWidth
             label="Apellido"
             inputRef={apellido}
+            id='apellido'
             autoFocus
             autoComplete="off"
             type="text"
@@ -141,6 +146,7 @@ console.log("usuario",usuario);
             error={status === "invalidEmail"}
             label="Mail"
             inputRef={mail}
+            id='mail'
             autoComplete="off"
             type="email"
             onChange={() => {
@@ -157,6 +163,7 @@ console.log("usuario",usuario);
             variant="outlined"
             label="Rol"
             inputRef={rol}
+            id='rol'
           // onChange={handleChange}
           >
             {roles.map((option) => (
@@ -172,13 +179,14 @@ console.log("usuario",usuario);
             fullWidth
             label="DNI"
             inputRef={dni}
-            onChange={(e) => {   
+            id='dni'
+            onChange={(e) => {
               if (isNaN(e.target.value)) {
                 e.target.value = "";
               }
 
-             else if (e.target.value.length > 5) {
-                e.target.value = e.target.value.substring(0,5);
+              else if (e.target.value.length > 5) {
+                e.target.value = e.target.value.substring(0, 5);
               }
             }}
             autoFocus
@@ -195,6 +203,7 @@ console.log("usuario",usuario);
             }
             label="Contraseña"
             inputRef={registerPassword}
+            id='registerPassword'
             autoComplete="off"
             onChange={() => {
               if (
@@ -268,6 +277,23 @@ console.log("usuario",usuario);
             size="large"
             color="secondary"
             disabled={isLoading}
+            onClick={
+              async () => {
+                await createUser(
+                  {
+                    email: mail.current.value,
+                    password: registerPassword.current.value,
+                    dni: dni.current.value,
+                    role: rol.current.value,
+                    nombre: nombre.current.value,
+                    apellido: apellido.current.value,
+                    status: 1
+                  }
+                )
+                window.location.reload(true);
+                onClose()
+              }
+            }
           >
             Crear
           {isLoading && <ButtonCircularProgress />}

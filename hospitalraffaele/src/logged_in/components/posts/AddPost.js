@@ -110,14 +110,6 @@ function AddPost(props) {
                 Atras
               </Button>
             </Box>
-            <Button
-              onClick={handleUpload}
-              variant="contained"
-              color="secondary"
-              disabled={files.length === 0 || loading}
-            >
-              Subir receta {loading && <ButtonCircularProgress />}
-            </Button>
           </Fragment>
         }
       />

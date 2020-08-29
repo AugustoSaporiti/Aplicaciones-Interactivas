@@ -57,9 +57,28 @@ const urlWebServices = {
      * Files
      */ 
     uploadFile: rutaBack + "api/upload",
+    saveFileName: rutaBack + "api/upload/save",
+    listFiles: rutaBack + "api/upload/list",
     findFilesByPatient: rutaBack + "api/upload/find/patient/",
    //updateAvailability: rutaBack + "api/availability/update",
     downloadFile: rutaBack + "api/download/fileName/",
+
+    /*
+     * Historia clinica
+     */ 
+    createAntecedente: rutaBack + "api/historia-clinica/create-antecedentes",
+    createAntecedenteFamiliar: rutaBack + "api/historia-clinica/create-antecedentes-familiares",
+    createInto: rutaBack + "api/historia-clinica/create-info",
+    createEnfermedades: rutaBack + "api/historia-clinica/create-enfermedades",
+    createPatologia: rutaBack + "api/historia-clinica/create-patologias",
+    createConsulta: rutaBack + "api/historia-clinica/create-consultas",
+    updateAntecedente: rutaBack + "api/historia-clinica/update-antecedentes",
+    updateAntecedenteFamiliar: rutaBack + "api/historia-clinica/update-antecedentes-familiares",
+    updateInto: rutaBack + "api/historia-clinica/update-info",
+    updateEnfermedades: rutaBack + "api/historia-clinica/update-enfermedades",
+    updatePatologia: rutaBack + "api/historia-clinica/update-patologias",
+    updateConsulta: rutaBack + "api/historia-clinica/update-consultas",
+    getHistoriaClinica: rutaBack + "api/historia-clinica/find/patient/",
 }
 
 export default urlWebServices;
