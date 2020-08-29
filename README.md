@@ -1,2 +1,2 @@
 # Aplicaciones-Interactivas
-Grupo numero __: Nydia, Paula y Augusto
+Grupo numero 12: Nydia, Paula y Augusto
