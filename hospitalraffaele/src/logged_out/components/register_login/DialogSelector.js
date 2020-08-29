@@ -55,7 +55,7 @@ function DialogSelector(props) {
         );
       default:
     }
-  }, [
+  },[
     dialogOpen,
     openChangePasswordDialog,
     openLoginDialog,

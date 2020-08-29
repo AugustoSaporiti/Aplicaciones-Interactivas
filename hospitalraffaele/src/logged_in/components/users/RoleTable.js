@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import {listRoles} from '../../../controllers/api/api.roles'
+import { listRoles, updateRole, createRole } from '../../../controllers/api/api.roles'
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -72,8 +72,8 @@ function RoleTable(props) {
   useEffect(() => {
     obtenerUsuarios()
   }, [])
-  
-  const obtenerUsuarios = async() => {
+
+  const obtenerUsuarios = async () => {
     await listRoles()
       .then(v => setRoleList(v.response))
       .catch(e => { console.log(e) });
@@ -114,7 +114,6 @@ function RoleTable(props) {
           title: 'ID',
           field: 'id',
           editable: 'never',
-          initialEditValue: '4'
         },
       ],
       data:
@@ -125,7 +124,7 @@ function RoleTable(props) {
           }
         })
     }
-  ),[roleList])
+  ), [roleList])
 
 
   return (
@@ -137,7 +136,7 @@ function RoleTable(props) {
         data={state.data}
         options={{
           actionsColumnIndex: -1,
-          
+
         }}
         localization={{
           body: {
@@ -176,29 +175,33 @@ function RoleTable(props) {
           isDeleteHidden: rowData => rowData.role === 'Admin',
           isEditHidden: rowData => rowData.role === 'Admin',
           onRowAdd: (newData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
+            createRole(
+              {
+                name: newData.role,
+              }
+            ).then(() => {
+              setState((prevState) => {
+                const data = [...prevState.data];
+                data.push(newData);
+                return { ...prevState, data };
+              })
+            }).catch(e => console.log(e)),
+          onRowUpdate: (newData, oldData) =>
+            updateRole(
+              {
+                name: newData.role,
+                id: newData.id,
+              }
+            ).then(() => {
+              if (oldData) {
                 setState((prevState) => {
                   const data = [...prevState.data];
-                  data.push(newData);
+                  data[data.indexOf(oldData)] = newData;
                   return { ...prevState, data };
                 });
-              }, 600);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                if (oldData) {
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
-                }
-              }, 600);
-            }),
+              };
+            }).catch(e => console.log(e)),
+            /*
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {
@@ -209,7 +212,7 @@ function RoleTable(props) {
                   return { ...prevState, data };
                 });
               }, 600);
-            }),
+            }),*/
         }}
       />
     </div>
