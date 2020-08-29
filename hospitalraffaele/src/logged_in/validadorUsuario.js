@@ -89,10 +89,22 @@ const esVisibleAdmin = () => {
     return role !== null && role !== undefined && role === entities.idAmin;
 };
 
+const esSecretarioAdmin = (value) => {
+    var visible = false;
+
+    if (role !== null && role !== undefined) {
+        if (role === entities.idAdmin || role === entities.idSecretario ) {
+            visible = true;
+        }
+    }
+
+    return visible;
+};
 
 export default {
     validarUsuario,
     esVisible,
     esVisibleAdmin,
-    esVisibleSecretario
+    esVisibleSecretario,
+    esSecretarioAdmin,
 }; 

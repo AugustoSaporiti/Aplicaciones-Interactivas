@@ -84,7 +84,7 @@ export const deleteAppointment = async function(appointment)  {
       }
 }
 
-export const findAppointmentsByDoctor = async function(doctorId)  {
+export const findAppointmentsByDoctor = async function(doctorId) {
     // url
     let url = urlWebServices.findAppointmentsByDoctor;
 
@@ -176,7 +176,7 @@ export const listAppointments = async function()  {
           success: (response.status === 200 ? true : false),
           response: data
       }
-console.log(result);
+      console.log(result);
       return result;
       
     } catch(e) {

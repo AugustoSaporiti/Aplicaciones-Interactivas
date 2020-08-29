@@ -130,7 +130,6 @@ function AddPostOptions(props) {
   const obtenerUsuarios = async () => {
     await listPatients()
       .then(v => setLista(v.response))
-      .catch(e => { console.log(e) });
   }
 
   return (

@@ -39,9 +39,24 @@ function RegisterDialog(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const registerTermsCheckbox = useRef();
   const registerPassword = useRef();
+  const mail = useRef();
+  const dni = useRef();
   const registerPasswordRepeat = useRef();
+  const userControler = require("../../../controllers/api/api.users");
 
+
+  function ActionLink() {
+    alert("hola");
+   }
+   
   const register = useCallback(() => {
+    const usuario ={
+      email: mail.current.value,
+      password:  registerPassword.current.value,
+      dni: dni.current.value,
+      role: 3
+    };
+
     if (!registerTermsCheckbox.current.checked) {
       setHasTermsOfServiceError(true);
       return;
@@ -52,6 +67,9 @@ function RegisterDialog(props) {
       setStatus("passwordsDontMatch");
       return;
     }
+
+    userControler.createUser(usuario);
+    onClose(true);
     setStatus(null);
     setIsLoading(true);
     setTimeout(() => {
@@ -90,6 +108,7 @@ function RegisterDialog(props) {
             autoFocus
             autoComplete="off"
             type="email"
+            inputRef={mail}
             onChange={() => {
               if (status === "invalidEmail") {
                 setStatus(null);
@@ -100,9 +119,21 @@ function RegisterDialog(props) {
           <TextField
             variant="outlined"
             margin="normal"
+            inputRef={dni}
             required
             fullWidth
             label="DNI"
+            inputRef={dni}
+            onChange={(e) => {   
+              console.log(e.target.value);
+              if (isNaN(e.target.value)) {
+                e.target.value = "";
+              }
+
+             else if (e.target.value.length > 5) {
+                e.target.value = e.target.value.substring(0,5);
+              }
+            }}
             autoFocus
             autoComplete="off"
             type="text"
@@ -237,6 +268,7 @@ function RegisterDialog(props) {
           variant="contained"
           size="large"
           color="secondary"
+         
           disabled={isLoading}
         >
           Registrar
@@ -280,5 +312,7 @@ RegisterDialog.propTypes = {
   setStatus: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
+
+
 
 export default withStyles(styles, { withTheme: true })(RegisterDialog);

@@ -258,10 +258,7 @@ function NavBar(props) {
 console.log(datosUsuario);
     return datosUsuario;
   }
-
   const menuItems = menu();
-
-
   return (
     <Fragment>
       <AppBar position="sticky" className={classes.appBar}>

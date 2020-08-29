@@ -8,6 +8,7 @@ import urlWebServices from '../webServices';
     formData.append('email', user.email);
     formData.append('password', user.password);
     formData.append('role_id', user.role);
+    formData.append('dni', user.dni);
     formData.append('status', 1);
 
     try {

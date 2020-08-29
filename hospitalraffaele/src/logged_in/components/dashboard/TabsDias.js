@@ -64,7 +64,7 @@ export default function VerticalTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(value)
+
   return (
     <Fragment>
       <div className={classes.root}>
