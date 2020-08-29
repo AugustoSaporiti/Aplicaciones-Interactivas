@@ -127,7 +127,6 @@ export default function SubirArchivos({ ...rest }) {
                     color= "warning"
                    // className={classes.textCenter}
                   >
-                    <h4 /*className={classes.cardTitle}*/>Formulario de carga de datos</h4>
                   </CardHeader>
                   <CardBody>
                     <GridContainer>
@@ -171,7 +170,8 @@ export default function SubirArchivos({ ...rest }) {
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                       <Button 
-                        color="warning" 
+                        variant="contained"
+                        color="secondary"
                         onClick={validarFormulario}
                         target="_blank"
                        // className={classes.pullRight}
@@ -212,7 +212,6 @@ export default function SubirArchivos({ ...rest }) {
                           >
                             <Close /*className={mClasses.modalClose}*/ />
                           </IconButton>
-                          <h5 /*className={mClasses.modalTitle}*/>Listo!!!</h5>
                         </DialogTitle>
                         <DialogContent
                           id="modal-slide-description"

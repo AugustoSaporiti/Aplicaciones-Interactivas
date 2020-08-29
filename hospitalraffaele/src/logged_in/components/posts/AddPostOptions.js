@@ -98,30 +98,7 @@ function AddPostOptions(props) {
     pushMessageToSnackbar
   } = props;
 
-  const printFile = useCallback(() => {
-    if (files[0]) {
-      return (
-        <div className={classes.imgWrapper}>
-          <img
-            alt="Se cargo la imagen"
-            src={files[0].preview}
-            className={classes.img}
-            style={{ height: 151 }}
-          />
-          <div className={classes.floatButtonWrapper}>
-            <IconButton onClick={deleteItem}>
-              <CloseIcon />
-            </IconButton>
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div>
-            <SubirArchivo></SubirArchivo>
-        </div>
-    );
-  }, [onDrop, files, classes, deleteItem]);
+  
 
   const [miLista, setLista] = useState([])
   useEffect(() => {
@@ -149,34 +126,12 @@ function AddPostOptions(props) {
         Subir receta
       </Typography>
       <Box mb={2}>
-        {EmojiTextArea && (
-          <EmojiTextArea
-            inputClassName={classes.emojiTextArea}
-            maxCharacters={2200}
-            rightContent={printFile()}
-            emojiSet="google"
-          />
-        )}
+      <div>
+            <SubirArchivo></SubirArchivo>
+        </div>
       </Box>
-      <List disablePadding>
-        <Bordered disableVerticalPadding disableBorderRadius>
-          <ListItem divider disableGutters className="listItemLeftPadding">
-            <ListItemText>
-              <Typography variant="body2">Fecha actual</Typography>
-            </ListItemText>
-            <TextField
-              disabled
-              id="outlined-disabled"
-              label="Fecha"
-              defaultValue={fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear()}
-              variant="outlined"
-            />
-          </ListItem>
-        </Bordered>
-      </List>
-      <CustomTable
-        targets={miLista}
-      />
+      
+      
     </Fragment>
   );
 }
