@@ -75,7 +75,9 @@ const styles = (theme) => ({
 
 function CustomTable(props) {
   const { targets } = props;
-  console.log(targets)
+  
+  
+
   const [state, setState] = React.useState({
     columns: [
       {

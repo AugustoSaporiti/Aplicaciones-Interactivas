@@ -117,7 +117,7 @@ function AddPostOptions(props) {
       </Dropzone>
     );
   }, [onDrop, files, classes, deleteItem]);
-  console.log(targets)
+ 
   return (
     <Fragment>
       {ImageCropper && (

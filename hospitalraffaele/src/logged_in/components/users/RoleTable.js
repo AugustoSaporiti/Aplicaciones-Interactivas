@@ -76,7 +76,6 @@ function RoleTable(props) {
   const obtenerUsuarios = async () => {
     await listRoles()
       .then(v => setRoleList(v.response))
-      .catch(e => { console.log(e) });
   }
 
   const [state, setState] = useState({
@@ -185,7 +184,7 @@ function RoleTable(props) {
                 data.push(newData);
                 return { ...prevState, data };
               })
-            }).catch(e => console.log(e)),
+            }),
           onRowUpdate: (newData, oldData) =>
             updateRole(
               {
@@ -200,8 +199,8 @@ function RoleTable(props) {
                   return { ...prevState, data };
                 });
               };
-            }).catch(e => console.log(e)),
-            /*
+            }),
+          /*
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
               setTimeout(() => {

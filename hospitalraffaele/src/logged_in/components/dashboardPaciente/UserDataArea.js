@@ -169,7 +169,7 @@ function CustomTable(props) {
     },
     [pushMessageToSnackbar, targets, setTargets]
   );
-    console.log(targets)
+    
   return ( 
     <ExpansionPanel>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

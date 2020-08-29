@@ -70,7 +70,6 @@ const validarUsuario = (value, role) => {
 const esVisible = (value) => {
     var visible = false;
 
-    console.log("variable",value)
     if (value !== null && value !== undefined) {
             if (value[0].role === "Doctor" || value[0].role === "Admin") {
                 visible = true;
@@ -83,7 +82,6 @@ const esVisible = (value) => {
 const esVisibleSecretario = (value) => {
     var visible = false;
 
-    console.log("variable",value)
     if (value !== null && value !== undefined) {
             if (value[0].role === "Doctor" || value[0].role === "Admin" || value[0].role === "Secretario" ) {
                 visible = true;
@@ -105,10 +103,35 @@ const esVisibleAdmin = (value) => {
     return visible;
 };
 
+const esSecretarioAdmin = (value) => {
+    var visible = false;
+
+    if (value !== null && value !== undefined) {
+            if (value[0].role === "Secretario" || value[0].role === "Admin" ) {
+                visible = true;
+            }
+    }
+
+    return visible;
+};
+
+const esDoctor = (value) => {
+    var visible = false;
+
+    if (value !== null && value !== undefined) {
+            if (value[0].role === "Doctor") {
+                visible = true;
+            }
+    }
+
+    return visible;
+};
 
 export default {
     validarUsuario,
     esVisible,
     esVisibleAdmin,
-    esVisibleSecretario
+    esVisibleSecretario,
+    esSecretarioAdmin,
+    esDoctor
 }; 

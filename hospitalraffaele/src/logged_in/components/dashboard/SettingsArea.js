@@ -49,8 +49,7 @@ function SettingsArea(props) {
       .then(v => setLista(v.response))
       .catch(e => { console.log(e) });
   }
-
-  console.log(targets)
+  
   return (
     <Fragment>
       <Tabs

@@ -253,7 +253,7 @@ function NavBar(props) {
 
     return datosUsuario;
   }
-  console.log(selectedTab)
+ 
   const menuItems = menu();
 
 

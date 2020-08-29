@@ -83,7 +83,6 @@ function UsersTable(props) {
   const obtenerUsuarios = async () => {
     await listUsers()
       .then(v => setUserList(v.response))
-      .catch(e => { console.log(e) });
   }
 
   const [state, setState] = React.useState({
@@ -225,8 +224,7 @@ function UsersTable(props) {
                     return { ...prevState, data };
                   });
                 };
-              }).catch(e => console.log(e)),
-
+              }),
             onRowDelete: (oldData) =>
               deleteUser(oldData.id)
                 .then(() => {
@@ -235,7 +233,7 @@ function UsersTable(props) {
                     data.splice(data.indexOf(oldData), 1);
                     return { ...prevState, data };
                   });
-                }).catch(e => console.log(e)),
+                }),
           }}
         />
       </Paper>
