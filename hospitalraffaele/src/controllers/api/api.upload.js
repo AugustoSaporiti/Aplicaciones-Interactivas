@@ -85,3 +85,32 @@ export const guardarImgUser = async function(message)
     }
 }
 
+
+
+export const listFiles = async function()
+{
+     //url webservices
+     let url = urlWebServices.listFiles;
+    
+    try
+    {
+        let response = await fetch(url,{
+            method: 'GET', // or 'PUT'
+            mode: "cors",
+            headers:{
+                'Accept':'application/form-data',
+                //'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000'
+                //'Content-Type': 'application/form-data'
+            }
+        });
+    
+        let result = await response.json()
+        console.log('respuestaUpload', result);
+        
+        return result;
+    } catch (err) {
+        alert('Error uploading the files')
+        console.log('Error uploading the files', err)
+    }
+}
